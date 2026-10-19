@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./motion.css";
 
 /* ── The brand's two faces, served from this domain ─────────────────────── */
 @font-face {
@@ -52,6 +53,7 @@
   --color-gold-2: #c9ab66;
   --color-gold-soft: #e3d4ae;
   --color-gold-ink: #6e5724;
+  --color-aurora-2: #8aa3bf;
 
   --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
   --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
