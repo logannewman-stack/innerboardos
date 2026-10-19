@@ -16,7 +16,7 @@ const nav = [
       <Wordmark class="text-cream" />
       <nav aria-label="Primary" class="hidden lg:flex items-center gap-7">
         {nav.map((item) => (
-          <a href={item.href} class="text-[14px] font-medium text-cream/85 hover:text-cream transition-colors">{item.label}</a>
+          <a href={item.href} class="text-[15px] font-medium text-cream/85 hover:text-cream transition-colors">{item.label}</a>
         ))}
         <a href={LINKS.talk} class="btn btn-sm btn-gold" data-event="consultation_click" data-event-location="header">Talk to Our Team <Arrow /></a>
       </nav>
@@ -32,7 +32,6 @@ const nav = [
       </button>
     </div>
   </div>
-  <div data-progress class="bg-gold-2" aria-hidden="true"></div>
   <div id="mobile-menu" data-menu-panel class="menu-panel lg:hidden absolute inset-x-0 top-full bg-navy border-t border-navy-line shadow-float">
     <nav aria-label="Primary, mobile" class="wrap py-4 flex flex-col">
       {nav.map((item) => (

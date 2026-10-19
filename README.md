@@ -29,8 +29,10 @@ npm run sweep      # after a build: fails on any em/en dash or "iOS" in the outp
 | `src/components/AssessmentPhone.astro` | The Company OS Score on a phone, with the book's own statements, labelled illustrative. |
 | `brief/` | The development brief and the approved visual reference. |
 | `src/components/BookCover.astro` | The book. Drop the approved cover at `public/images/replaceable-cover.jpg` and point the `img` at it. |
-| `src/components/Mountains.astro` | The panoramic close, drawn. Swap for the approved photograph when it arrives. |
-| `src/styles/global.css` | Tokens (navy, cream, muted gold), fonts, buttons, entrances. |
+| `src/components/Scorecard.astro` | The Company OS Score, drawn, in the hero. Numbers are server rendered and count up on load. |
+| `src/styles/global.css` | Tokens (navy, cream, muted gold), fonts, flat buttons, line cards, section rhythm (`sec-s`, `sec-m`, `sec-l`). |
+| `src/styles/motion.css` | Word reveals and scroll-lit text. Reduced motion and high contrast honoured. |
+| `scripts/sweep.mjs` | The copy check run by `npm run sweep`. |
 | `src/scripts/site.ts` | Entrances, the header, the mobile menu, analytics events, UTM passthrough. |
 
 ## Analytics events
@@ -61,7 +63,14 @@ under the campaign.
 - The founder's title under the closing quote reads "Founder, InnerBoard" until confirmed (`SITE.founderTitle`).
 - The real Replaceable cover file; the drawn one at `public/images/replaceable-cover.svg` is a placeholder.
 - Whether the existing assessment collects email and sends a follow up. The site adds no gate of its own.
-- The hero carries the drawn Company OS Score where the brief's executive photograph goes; the closing panorama is drawn too. Both accept an approved photograph without a layout change. By Leah's direction nothing of her appears on the sites; the closing quote keeps her name as the brief requires.
+- The hero carries the drawn Company OS Score where the brief's executive photograph goes. The closing section has a marked slot (an HTML comment in `index.astro`) for the brief's mountain photograph; no licensed image was available, so the close is flat navy until one is supplied. By Leah's direction nothing of her appears on the sites; the closing quote keeps her name as the brief requires.
+
+## Decisions made here
+
+- **Copy is the brief's, word for word**, in the brief's section order. Where the visual reference and the brief differ, the brief wins.
+- **The page reads like the live innerboardos.com**: numbered section eyebrows, one large serif statement per section, hairline lists instead of card grids, the argument in order.
+- **Design restraint.** Navy, cream and muted gold only. Two navy fills (Solution and Next Step), the rest cream. No glows, blobs, textures or watermarks. Flat 8px buttons, line cards, cream footer.
+- **Diagram 1 and diagram 2 stay separate**, as the brief requires. Diagram 2 is five columns with gold top rules and the Personal Power / Social Influence row under Develop.
 
 ## Copy rules enforced
 

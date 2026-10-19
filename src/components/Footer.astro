@@ -3,40 +3,40 @@ import Wordmark from "./Wordmark.astro";
 import { LINKS, SITE } from "../config/links";
 const year = new Date().getFullYear();
 ---
-<footer class="on-navy bg-navy text-cream border-t border-navy-line">
-  <div class="wrap py-14">
+<footer class="bg-cream-2 text-ink border-t border-line">
+  <div class="wrap py-20 sm:py-24">
     <div class="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
       <div>
-        <Wordmark class="text-cream" />
-        <p class="mt-4 max-w-[380px] text-[14.5px] text-cream-muted leading-relaxed">
+        <Wordmark class="text-navy" />
+        <p class="mt-4 max-w-[380px] text-[15px] text-ink-muted leading-relaxed">
           The internal operating system for organizations. Self-leadership, measured and installed across your company, so the business stops depending on a few people to hold it together.
         </p>
-        <p class="mt-5 text-[13px] text-cream-faint">Part of the InnerBoard ecosystem: <a class="underline decoration-navy-line-strong underline-offset-4 hover:text-cream" href={LINKS.suite}>InnerBoardSuite.com</a></p>
+        <p class="mt-5 text-[13px] text-ink-faint">Part of the InnerBoard ecosystem: <a class="underline underline-offset-4" href={LINKS.suite}>InnerBoardSuite.com</a></p>
       </div>
       <nav aria-label="Footer">
         <p class="eyebrow mb-4">On this site</p>
-        <ul class="space-y-2.5 text-[14.5px]">
-          <li><a class="hover:text-gold-2" href="/#ios">What IOS is</a></li>
-          <li><a class="hover:text-gold-2" href="/#how-it-works">How it works</a></li>
-          <li><a class="hover:text-gold-2" href="/#book">The book</a></li>
-          <li><a class="hover:text-gold-2" href="/#impact">Impact</a></li>
-          <li><a class="hover:text-gold-2" href="/#partners">Partners</a></li>
+        <ul class="text-[15px] leading-[2]">
+          <li><a class="hover:underline underline-offset-4" href="/#ios">What IOS is</a></li>
+          <li><a class="hover:underline underline-offset-4" href="/#how-it-works">How it works</a></li>
+          <li><a class="hover:underline underline-offset-4" href="/#book">The book</a></li>
+          <li><a class="hover:underline underline-offset-4" href="/#impact">Impact</a></li>
+          <li><a class="hover:underline underline-offset-4" href="/#partners">Partners</a></li>
         </ul>
       </nav>
       <div>
         <p class="eyebrow mb-4">Contact</p>
-        <ul class="space-y-2.5 text-[14.5px]">
-          <li><a class="hover:text-gold-2" href={LINKS.talk} data-event="consultation_click" data-event-location="footer">Talk to our team</a></li>
-          <li><a class="hover:text-gold-2" href={`mailto:${LINKS.contactEmail}`}>{LINKS.contactEmail}</a></li>
-          <li><a class="hover:text-gold-2" href={LINKS.score} data-passthrough data-event="assessment_click" data-event-location="footer">Get your Company OS Score</a></li>
+        <ul class="text-[15px] leading-[2]">
+          <li><a class="hover:underline underline-offset-4" href={LINKS.talk} data-event="consultation_click" data-event-location="footer">Talk to our team</a></li>
+          <li><a class="hover:underline underline-offset-4" href={`mailto:${LINKS.contactEmail}`}>{LINKS.contactEmail}</a></li>
+          <li><a class="hover:underline underline-offset-4" href={LINKS.score} data-passthrough data-event="assessment_click" data-event-location="footer">Get your Company OS Score</a></li>
         </ul>
       </div>
     </div>
-    <div class="hairline mt-12 pt-6 flex flex-col sm:flex-row gap-3 sm:items-center justify-between text-[13px] text-cream-faint">
+    <div class="hairline mt-16 pt-6 flex flex-col sm:flex-row gap-3 sm:items-center justify-between text-[12.5px] text-ink-faint">
       <p>&copy; {year} InnerBoard. All rights reserved. Founded by {SITE.founder}.</p>
       <div class="flex gap-5">
-        <a class="hover:text-cream" href={LINKS.privacy}>Privacy policy</a>
-        <a class="hover:text-cream" href={LINKS.terms}>Terms</a>
+        <a class="hover:underline underline-offset-4" href={LINKS.privacy}>Privacy policy</a>
+        <a class="hover:underline underline-offset-4" href={LINKS.terms}>Terms</a>
       </div>
     </div>
   </div>
