@@ -15,6 +15,7 @@ import Mark from "../components/Mark.astro";
 import CircleDiagram from "../components/CircleDiagram.astro";
 import WorkflowDiagram from "../components/WorkflowDiagram.astro";
 import AssessmentPhone from "../components/AssessmentPhone.astro";
+import Scorecard from "../components/Scorecard.astro";
 import Mountains from "../components/Mountains.astro";
 import BookCover from "../components/BookCover.astro";
 import { LINKS, SITE } from "../config/links";
@@ -50,15 +51,9 @@ const audiences = [
   <section id="ios" class="on-navy relative bg-navy text-cream overflow-hidden aurora" data-glow>
     <span class="aurora-2"></span>
     <div class="absolute inset-0 grid-lines" aria-hidden="true"></div>
-    <div class="hero-photo absolute inset-y-0 right-0 w-full lg:w-[58%]" aria-hidden="true">
-      <picture>
-        <source type="image/webp" srcset="/images/leah-hero-sm.webp 900w, /images/leah-hero.webp 1800w" sizes="(min-width: 1024px) 58vw, 100vw" />
-        <img src="/images/leah-hero.jpg" srcset="/images/leah-hero-sm.jpg 900w, /images/leah-hero.jpg 1800w" sizes="(min-width: 1024px) 58vw, 100vw" alt="" width="1800" height="1320" fetchpriority="high" decoding="async" class="w-full h-full object-cover object-[70%_30%]" />
-      </picture>
-      <div class="absolute inset-0 hero-fade"></div>
-    </div>
-    <div class="wrap relative pt-[128px] sm:pt-[160px] pb-20 sm:pb-28 min-h-[92vh] flex items-center">
-      <div class="grid gap-10 lg:grid-cols-[1fr_0.9fr] w-full">
+    <div class="watermark w-[760px] h-[760px] -left-56 -bottom-72" aria-hidden="true"><Mark /></div>
+    <div class="wrap relative pt-[128px] sm:pt-[160px] pb-20 sm:pb-28 flex items-center">
+      <div class="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] w-full lg:items-center">
         <div class="reveal is-in max-w-[620px]">
           <p class="eyebrow">InnerBoard Operating System</p>
           <h1 class="mt-5 text-[46px] sm:text-[64px] lg:text-[76px] leading-[0.98]" data-words>
@@ -77,10 +72,13 @@ const audiences = [
           </div>
           <p class="mt-4 text-[13.5px] text-cream-faint">Take the assessment and receive your Company OS Gap Report.</p>
         </div>
-        <div class="reveal is-in relative hidden lg:flex items-end justify-end" style="--d:200ms">
-          <ul class="text-right text-[12px] font-semibold uppercase tracking-[0.22em] text-cream/80 space-y-2 border-r border-gold-2/60 pr-5 mb-6">
-            {["People.", "Capability.", "Culture.", "Results.", "Valuation."].map((w) => <li>{w}</li>)}
-          </ul>
+        <div class="reveal is-in relative flex lg:justify-end" style="--d:200ms">
+          <div class="relative w-full max-w-[460px]" data-tilt="5">
+            <Scorecard />
+            <ul class="hidden lg:block absolute -right-28 bottom-4 text-right text-[11px] font-semibold uppercase tracking-[0.22em] text-cream/70 space-y-1.5 border-r border-gold-2/60 pr-4" aria-hidden="true">
+              {["People.", "Capability.", "Culture.", "Results.", "Valuation."].map((w) => <li>{w}</li>)}
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -295,10 +293,7 @@ const audiences = [
       <div class="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
         <blockquote class="reveal">
           <p class="font-display text-[30px] sm:text-[42px] leading-[1.12] tracking-[-0.02em]">"When people learn to lead themselves, <em class="text-gold-2">everything else changes."</em></p>
-          <footer class="mt-6 flex items-center gap-4">
-            <img src="/images/leah-portrait.jpg" alt="" width="56" height="51" loading="lazy" decoding="async" class="w-14 h-14 rounded-full object-cover object-top ring-2 ring-gold-2/50" />
-            <div class="text-[14px] text-cream-muted"><span class="font-semibold text-cream">{SITE.founder}</span><br />{SITE.founderTitle}</div>
-          </footer>
+          <footer class="mt-6 text-[14px] text-cream-muted"><span class="font-semibold text-cream">{SITE.founder}</span>, {SITE.founderTitle}</footer>
         </blockquote>
         <div class="reveal lg:text-right" style="--d:120ms">
           <p class="text-[13px] font-semibold uppercase tracking-[0.2em] text-gold-2 leading-[2]">A more capable team.<br />A stronger culture.<br />A more valuable business.</p>
@@ -311,7 +306,7 @@ const audiences = [
 </Base>
 
 <style>
-  .hero-fade { background: linear-gradient(to right, var(--color-navy) 0%, rgba(13,26,45,0.92) 22%, rgba(13,26,45,0.45) 55%, rgba(13,26,45,0.15) 100%); }
+  .unused-hero-fade { background: linear-gradient(to right, var(--color-navy) 0%, rgba(13,26,45,0.92) 22%, rgba(13,26,45,0.45) 55%, rgba(13,26,45,0.15) 100%); }
   @media (min-width: 1024px) {
     .hero-fade { background: linear-gradient(to right, var(--color-navy) 0%, rgba(13,26,45,0.85) 18%, rgba(13,26,45,0.1) 60%, rgba(13,26,45,0.05) 100%), linear-gradient(to top, var(--color-navy) 0%, transparent 35%); }
   }

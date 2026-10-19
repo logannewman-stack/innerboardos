@@ -61,7 +61,7 @@ under the campaign.
 - The founder's title under the closing quote reads "Founder, InnerBoard" until confirmed (`SITE.founderTitle`).
 - The real Replaceable cover file; the drawn one at `public/images/replaceable-cover.svg` is a placeholder.
 - Whether the existing assessment collects email and sends a follow up. The site adds no gate of its own.
-- The hero photograph is from Leah's 2024 brand shoot, placed as the brief's warm executive photography; swap it at `public/images/leah-hero.*` if a different image is approved. The closing panorama is drawn and accepts the approved photograph without a layout change.
+- The hero carries the drawn Company OS Score where the brief's executive photograph goes; the closing panorama is drawn too. Both accept an approved photograph without a layout change. By Leah's direction nothing of her appears on the sites; the closing quote keeps her name as the brief requires.
 
 ## Copy rules enforced
 
