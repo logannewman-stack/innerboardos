@@ -1,0 +1,46 @@
+---
+/**
+ * Diagram 1, the philosophy: five linked nodes, Leadership through Valuation.
+ * Each one is the cause of the next. Kept separate from the workflow diagram
+ * on purpose; the brief says never merge the two.
+ */
+const nodes = [
+  { key: "leadership", name: "Leadership", def: "How each person thinks, feels, decides and responds inside the responsibilities they hold. Self-leadership first, then leading others." },
+  { key: "culture", name: "Culture", def: "The sum of those individual operating systems. Not the agreements on the wall, but what people actually do when nobody is watching." },
+  { key: "behavior", name: "Behavior", def: "What the culture makes available: ownership or blame, the hard conversation or the quiet one, adjusting or waiting for you." },
+  { key: "results", name: "Results", def: "Produced by behavior, every time. The numbers you already track are downstream of the three above them." },
+  { key: "valuation", name: "Valuation", def: "What the business is worth to anyone but you. A company that runs without its founder is worth more than one that cannot." }
+];
+---
+<div class="draw" data-diagram="philosophy">
+  <ol class="relative grid gap-4 lg:grid-cols-5 lg:gap-0">
+    {nodes.map((node, i) => (
+      <li class="node relative lg:px-3" style={`transition-delay:${200 + i * 160}ms`}>
+        <div class="card-navy h-full p-5 lg:p-6 relative overflow-hidden">
+          <span class="absolute right-4 top-4 font-display text-[44px] leading-none text-cream/10 select-none">{String(i + 1).padStart(2, "0")}</span>
+          <span class="inline-flex items-center justify-center w-9 h-9 rounded-full border border-gold-2/60 text-gold-2 font-display text-[15px]">{i + 1}</span>
+          <h3 class="mt-4 text-[22px] text-cream">{node.name}</h3>
+          <p class="mt-2 text-[14px] leading-relaxed text-cream-muted">{node.def}</p>
+        </div>
+        {i < nodes.length - 1 && (
+          <span class="connector hidden lg:block" aria-hidden="true">
+            <svg viewBox="0 0 24 24" class="w-6 h-6 text-gold-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h14M13 7l5 5-5 5"/></svg>
+          </span>
+        )}
+        {i < nodes.length - 1 && (
+          <span class="lg:hidden flex justify-center py-1 text-gold-2" aria-hidden="true">
+            <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v14M7 13l5 5 5-5"/></svg>
+          </span>
+        )}
+      </li>
+    ))}
+  </ol>
+  <svg class="loop-line hidden lg:block w-full h-[56px] mt-2" viewBox="0 0 1000 56" fill="none" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M900 4 V30 Q900 46 884 46 H116 Q100 46 100 30 V8" stroke="var(--color-gold-2)" stroke-width="1.5" stroke-dasharray="4 6" pathLength="1" class="draw-line" />
+    <path d="M94 14 L100 6 L106 14" stroke="var(--color-gold-2)" stroke-width="1.5" pathLength="1" class="draw-line" />
+  </svg>
+  <p class="hidden lg:block text-center text-[12.5px] font-medium text-cream-faint -mt-1">Valuation funds the next round of leadership. The loop runs in one direction.</p>
+</div>
+<style>
+  .connector { position: absolute; right: -12px; top: 50%; transform: translateY(-50%); z-index: 2; background: var(--color-navy); border-radius: 999px; padding: 2px; }
+</style>

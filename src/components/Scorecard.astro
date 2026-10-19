@@ -1,0 +1,64 @@
+---
+/**
+ * The hero's visual: the Company OS Score, as it reads once scored. Drawn
+ * here rather than screenshotted, and labelled illustrative, because the
+ * brief asks that any sample screen be marked as such unless it is the real
+ * assessment.
+ */
+const rows = [
+  { label: "Ownership", score: 7.2 },
+  { label: "Execution", score: 5.8 },
+  { label: "Leadership capacity", score: 6.1 },
+  { label: "Founder dependency", score: 4.4 },
+  { label: "Culture", score: 6.9 }
+];
+---
+<div class="scorecard card bg-cream-3 text-ink p-6 sm:p-7 w-full max-w-[440px] relative" aria-hidden="true">
+  <div class="flex items-center justify-between">
+    <div>
+      <p class="eyebrow">Company OS Score</p>
+      <p class="mt-1 text-[13px] text-ink-faint font-medium">Illustrative sample. Your report is scored from your answers.</p>
+    </div>
+  </div>
+  <div class="mt-6 flex items-center gap-6">
+    <div class="relative w-[128px] h-[128px] shrink-0">
+      <svg viewBox="0 0 120 120" class="w-full h-full -rotate-90">
+        <circle cx="60" cy="60" r="52" fill="none" stroke="var(--color-cream-2)" stroke-width="10" />
+        <circle class="gauge" cx="60" cy="60" r="52" fill="none" stroke="var(--color-gold)" stroke-width="10" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100" />
+      </svg>
+      <div class="absolute inset-0 flex flex-col items-center justify-center">
+        <span class="font-display text-[38px] leading-none font-medium tracking-tight">61</span>
+        <span class="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint mt-1">of 100</span>
+      </div>
+    </div>
+    <div class="min-w-0">
+      <p class="font-display text-[22px] leading-[1.15] font-medium">A gap you can name.</p>
+      <p class="mt-2 text-[13.5px] text-ink-muted leading-snug">Where self-leadership holds, where it slips, and which module closes each gap.</p>
+    </div>
+  </div>
+  <ul class="mt-6 space-y-3">
+    {rows.map((row, i) => (
+      <li>
+        <div class="flex items-center justify-between text-[13px]">
+          <span class="font-medium text-ink">{row.label}</span>
+          <span class="font-semibold text-ink-muted tabular-nums">{row.score.toFixed(1)}</span>
+        </div>
+        <div class="mt-1.5 h-[6px] rounded-full bg-cream-2 overflow-hidden">
+          <div class="bar h-full rounded-full bg-navy" style={`--w:${row.score * 10}%; --d:${300 + i * 120}ms`}></div>
+        </div>
+      </li>
+    ))}
+  </ul>
+  <div class="mt-6 pt-5 border-t border-line flex items-center justify-between">
+    <span class="text-[12.5px] font-medium text-ink-faint">Company OS Gap Report</span>
+    <span class="inline-flex items-center gap-1.5 text-[12.5px] font-semibold text-gold-ink">Sent to your inbox</span>
+  </div>
+</div>
+<style>
+  .scorecard { box-shadow: var(--shadow-float); }
+  .gauge { transition: stroke-dashoffset 1600ms var(--ease-out) 300ms; }
+  :global(.is-in) .gauge, :global(.no-js) .gauge { stroke-dashoffset: 39; }
+  .bar { width: 0; transition: width 1200ms var(--ease-out); transition-delay: var(--d); }
+  :global(.is-in) .bar, :global(.no-js) .bar { width: var(--w); }
+  @media (prefers-reduced-motion: reduce) { .bar { width: var(--w); transition: none; } .gauge { transition: none; stroke-dashoffset: 39; } }
+</style>

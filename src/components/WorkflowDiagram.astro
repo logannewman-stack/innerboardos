@@ -1,0 +1,45 @@
+---
+/**
+ * Diagram 2, the workflow: Assess, Develop, Embed, Measure, Certify.
+ * Develop carries its two halves, Personal Power and Social Influence.
+ * Drawn on cream so it never reads as the same figure as diagram 1.
+ */
+const steps = [
+  { name: "Assess", body: "Score the company, the team and each person with the Company OS Score. You get a gap report before anyone is asked to change anything.", tag: "Under five minutes to start" },
+  { name: "Develop", body: "The curriculum, worked one real moment at a time. Two arcs: Personal Power, the self-leadership modules, and Social Influence, where it meets other people.", tag: "Personal Power · Social Influence" },
+  { name: "Embed", body: "Daily practice inside Practice by InnerBoard: a check-in, tools small enough for the ninety seconds you actually have, and a Proof due within twenty four hours of every module.", tag: "Practice, every day" },
+  { name: "Measure", body: "Leaders see module completion for the team as a whole. Individual answers and reflections stay with the person who wrote them.", tag: "Completion only, never answers" },
+  { name: "Certify", body: "Someone in the room holds the standard. OS Certification builds the leader who keeps the work running after the launch.", tag: "The standard, held" }
+];
+---
+<div class="draw" data-diagram="workflow">
+  <div class="relative">
+    <svg class="absolute left-0 right-0 top-[26px] hidden lg:block w-full h-[2px]" viewBox="0 0 100 2" preserveAspectRatio="none" aria-hidden="true">
+      <line x1="2" y1="1" x2="98" y2="1" stroke="var(--color-gold)" stroke-width="2" pathLength="1" class="draw-line" />
+    </svg>
+    <ol class="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
+      {steps.map((step, i) => (
+        <li class="node relative" style={`transition-delay:${150 + i * 140}ms`}>
+          <div class="flex items-center gap-3 lg:block">
+            <span class="relative z-[1] inline-flex items-center justify-center w-[52px] h-[52px] rounded-full bg-navy text-cream font-display text-[20px] ring-[6px] ring-cream">{i + 1}</span>
+          </div>
+          <h3 class="mt-4 text-[24px] text-navy">{step.name}</h3>
+          <p class="mt-2 text-[14.5px] leading-relaxed text-ink-muted">{step.body}</p>
+          <p class="mt-3 inline-block text-[11.5px] font-semibold uppercase tracking-[0.12em] text-gold-ink bg-gold-soft/50 border border-gold-soft rounded-full px-3 py-1">{step.tag}</p>
+          {step.name === "Develop" && (
+            <div class="mt-4 grid grid-cols-2 gap-2">
+              <div class="card p-3">
+                <p class="text-[12px] font-semibold text-navy">Personal Power</p>
+                <p class="mt-1 text-[12px] text-ink-faint leading-snug">Thought, feeling, regulation, capacity, ownership.</p>
+              </div>
+              <div class="card p-3">
+                <p class="text-[12px] font-semibold text-navy">Social Influence</p>
+                <p class="mt-1 text-[12px] text-ink-faint leading-snug">The standard, carried into every room.</p>
+              </div>
+            </div>
+          )}
+        </li>
+      ))}
+    </ol>
+  </div>
+</div>

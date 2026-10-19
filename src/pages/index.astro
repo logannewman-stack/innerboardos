@@ -1,0 +1,281 @@
+---
+import Base from "../layouts/Base.astro";
+import Arrow from "../components/Arrow.astro";
+import Scorecard from "../components/Scorecard.astro";
+import PhilosophyDiagram from "../components/PhilosophyDiagram.astro";
+import WorkflowDiagram from "../components/WorkflowDiagram.astro";
+import Mountains from "../components/Mountains.astro";
+import BookCover from "../components/BookCover.astro";
+import { LINKS, SITE } from "../config/links";
+
+const title = "InnerBoard IOS · The internal operating system for organizations";
+const description =
+  "Measure self-leadership across your company, install it one module at a time, and keep it running after the launch. Start with your Company OS Score.";
+
+const challenges = [
+  {
+    name: "Too Much Depends on Too Few",
+    body: "The founder is the busiest person in the building. Decisions wait, hard conversations route through one office, and the company's ceiling is one person's calendar."
+  },
+  {
+    name: "Execution Isn't Consistent",
+    body: "The plan is clear and the result still varies by who is holding it. When the plan changed on Tuesday, some people adjusted and some people waited."
+  },
+  {
+    name: "Your People Aren't Growing Fast Enough",
+    body: "Better systems, better meetings and better hires have all been tried. The next level is not hiding in any of them, because it is internal, and nobody has measured it."
+  }
+];
+
+const outcomes = [
+  { name: "More Ownership", body: "People move from explaining a result to authoring the next one. Blame stops being the first response." },
+  { name: "Stronger Execution", body: "When the plan changes, people adjust instead of waiting. Consistency stops depending on who is in the room." },
+  { name: "Greater Leadership Capacity", body: "Leaders who can stay clear while the room is not, and bring that to the people they lead." },
+  { name: "Less Founder Dependency", body: "The standard is held by many people, not one. The business runs on the days you are not in it." },
+  { name: "A Stronger Culture", body: "Culture becomes what people actually do under load, and it is measured instead of hoped for." },
+  { name: "Greater Enterprise Value", body: "A company that runs without its founder is worth more than one that cannot. That is the whole arc of IOS." }
+];
+
+const audiences = [
+  { name: "Founders and Owners", body: "You built something real and can feel its ceiling. You suspect, correctly, that the next level is not another system." },
+  { name: "CEOs and Executive Teams", body: "You need the leadership team to lead the same way on the same standard, without you in every room." },
+  { name: "Growing Organizations", body: "Headcount is up and consistency is down. The way the first ten people led themselves has to reach the next fifty." },
+  { name: "Organizations Preparing for Their Next Chapter", body: "A succession, a sale, a new leader. The question is whether the company holds its standard when the people holding it change." }
+];
+---
+<Base title={title} description={description} path="/">
+  <!-- ── Hero ─────────────────────────────────────────────────────────── -->
+  <section id="ios" class="on-navy relative bg-navy text-cream overflow-hidden">
+    <div class="absolute inset-0 grid-lines" aria-hidden="true"></div>
+    <div class="absolute -top-40 right-[-10%] w-[640px] h-[640px] rounded-full bg-gold/10 blur-3xl" aria-hidden="true"></div>
+    <div class="wrap relative pt-[120px] sm:pt-[150px] pb-16 sm:pb-24">
+      <div class="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+        <div class="reveal is-in">
+          <p class="eyebrow">InnerBoard IOS · The internal operating system</p>
+          <h1 class="mt-5 text-[40px] sm:text-[56px] lg:text-[64px] leading-[1.02]">
+            You measure everything in your business <em>except the thing running it.</em>
+          </h1>
+          <p class="mt-6 max-w-[560px] text-[17px] sm:text-[19px] leading-relaxed text-cream-muted">
+            Self-leadership, how your people think, feel, decide and respond inside the responsibilities they hold, sits upstream of every number you track. InnerBoard IOS measures it, installs it, and keeps it running after the launch.
+          </p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-3 sm:items-center">
+            <a href={LINKS.score} class="btn btn-gold" data-passthrough data-event="assessment_click" data-event-location="hero">
+              Get Your Company OS Score <Arrow />
+            </a>
+            <a href={LINKS.talk} class="btn btn-outline-cream" data-event="consultation_click" data-event-location="hero">Talk to Our Team</a>
+          </div>
+          <p class="mt-4 text-[13.5px] text-cream-faint">Take the assessment and receive your Company OS Gap Report.</p>
+        </div>
+        <div class="reveal is-in flex justify-center lg:justify-end" style="--d:150ms">
+          <Scorecard />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Challenge ────────────────────────────────────────────────────── -->
+  <section id="challenge" class="bg-cream">
+    <div class="wrap py-20 sm:py-28">
+      <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+        <div class="reveal">
+          <p class="eyebrow">The challenge</p>
+          <h2 class="mt-4 text-[34px] sm:text-[44px] text-navy">The ceiling is internal. <em>It is also measurable.</em></h2>
+          <p class="mt-5 text-[16.5px] leading-relaxed text-ink-muted max-w-[480px]">
+            Three things show up in almost every company that has stalled, and none of them appear on a dashboard.
+          </p>
+        </div>
+        <ul class="grid gap-4">
+          {challenges.map((item, i) => (
+            <li class="reveal card p-6 sm:p-7 flex gap-5" style={`--d:${i * 110}ms`}>
+              <span class="shrink-0 font-display text-[28px] leading-none text-gold mt-1">{String(i + 1).padStart(2, "0")}</span>
+              <div>
+                <h3 class="text-[22px] text-navy">{item.name}</h3>
+                <p class="mt-2 text-[15px] leading-relaxed text-ink-muted">{item.body}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="reveal mt-14 hairline pt-10 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+        <p class="eyebrow">What it costs</p>
+        <p class="text-[18px] sm:text-[21px] leading-relaxed text-ink font-display">
+          When you measure output alone, you learn what was done. You never learn what could have been done. The result on your dashboard and the result that was actually available to you that week are two different numbers, and only one of them gets reported. The distance between them is uncounted, and it is almost always larger than the gains you are chasing everywhere else. It sits underneath every input you already measure, and it comes from one place: how each person in your company leads themselves, whether anyone is watching or not.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Solution ─────────────────────────────────────────────────────── -->
+  <section id="solution" class="on-navy bg-navy text-cream relative overflow-hidden">
+    <div class="absolute inset-0 grid-lines opacity-70" aria-hidden="true"></div>
+    <div class="wrap relative py-20 sm:py-28">
+      <div class="reveal max-w-[760px]">
+        <p class="eyebrow">The solution</p>
+        <h2 class="mt-4 text-[34px] sm:text-[48px]">Leadership is upstream of <em>everything you measure.</em></h2>
+        <p class="mt-5 text-[16.5px] sm:text-[18px] leading-relaxed text-cream-muted">
+          IOS is built on one chain of cause. How people lead themselves becomes the culture. The culture produces the behavior. The behavior produces the results. The results set what the company is worth. Work anywhere else on the chain and you are treating a symptom.
+        </p>
+      </div>
+      <div class="mt-12 sm:mt-16">
+        <PhilosophyDiagram />
+      </div>
+      <div class="reveal mt-12 flex flex-col sm:flex-row gap-4 sm:items-center">
+        <a href="#how-it-works" class="btn btn-gold">See How InnerBoard IOS Works <Arrow /></a>
+        <p class="text-[14px] text-cream-faint">Five links. One direction. Every module of IOS moves the first one.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── How it works ─────────────────────────────────────────────────── -->
+  <section id="how-it-works" class="bg-cream-2">
+    <div class="wrap py-20 sm:py-28">
+      <div class="reveal max-w-[720px]">
+        <p class="eyebrow">How it works</p>
+        <h2 class="mt-4 text-[34px] sm:text-[46px] text-navy">Assess, develop, embed, measure, <em>certify.</em></h2>
+        <p class="mt-5 text-[16.5px] leading-relaxed text-ink-muted">
+          One workflow, in order. It starts with a score, not a workshop, and it ends with somebody inside your company holding the standard without us.
+        </p>
+      </div>
+      <div class="mt-12 sm:mt-16">
+        <WorkflowDiagram />
+      </div>
+      <div class="reveal mt-14 grid gap-6 lg:grid-cols-3">
+        <div class="card p-6">
+          <p class="eyebrow">What leaders see</p>
+          <p class="mt-3 text-[15px] leading-relaxed text-ink-muted">Module completion for the team as a whole: how many have finished, how many are mid way, how many have not started. Never an individual's answers.</p>
+        </div>
+        <div class="card p-6">
+          <p class="eyebrow">What stays with the person</p>
+          <p class="mt-3 text-[15px] leading-relaxed text-ink-muted">Every reflection, every assessment answer and every tool run belongs to the person who wrote it. Nobody in the company can read it, including us.</p>
+        </div>
+        <div class="card p-6">
+          <p class="eyebrow">Where it lives</p>
+          <p class="mt-3 text-[15px] leading-relaxed text-ink-muted">Practice by InnerBoard, a web app that sits on the home screen of any phone. The curriculum, the assessments, the book and the tools are in one place, and the daily practice is under a minute.</p>
+          <a href={LINKS.app} class="link-arrow mt-4 text-[14px]" data-passthrough>Open Practice <Arrow /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── The book ─────────────────────────────────────────────────────── -->
+  <section id="book" class="on-navy bg-navy-2 text-cream">
+    <div class="wrap py-20 sm:py-28">
+      <div class="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+        <div class="reveal flex justify-center lg:justify-start">
+          <BookCover />
+        </div>
+        <div class="reveal" style="--d:120ms">
+          <p class="eyebrow">The thinking behind IOS</p>
+          <h2 class="mt-4 text-[34px] sm:text-[46px]">Replaceable. <em>The book that measures the last unmeasured input.</em></h2>
+          <p class="mt-5 text-[16.5px] leading-relaxed text-cream-muted max-w-[560px]">
+            By Leah Roling. Everything in IOS was extracted, not invented: twenty five years, hundreds of companies, and tools refined until they work in anyone's hands. The book measures self-leadership in you and in your company, with an assessment in nearly every chapter, then installs it one module at a time, each with one action due within twenty four hours.
+          </p>
+          <p class="mt-4 text-[16.5px] leading-relaxed text-cream-muted max-w-[560px]">
+            Nothing in it asks you to replace what already works. If you run EOS or any operating framework, keep every piece of it. This installs the layer underneath.
+          </p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-3">
+            <a href={LINKS.book} class="btn btn-gold" data-event="book_click" data-event-location="book">Buy the Book <Arrow /></a>
+            <a href={LINKS.score} class="btn btn-outline-cream" data-passthrough data-event="assessment_click" data-event-location="book">Take the chapter one assessment</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Outcome ──────────────────────────────────────────────────────── -->
+  <section id="impact" class="bg-cream">
+    <div class="wrap py-20 sm:py-28">
+      <div class="reveal max-w-[720px]">
+        <p class="eyebrow">The outcome</p>
+        <h2 class="mt-4 text-[34px] sm:text-[46px] text-navy">What changes when the people <em>change.</em></h2>
+        <p class="mt-5 text-[16.5px] leading-relaxed text-ink-muted">Six things an organization gets from running on IOS. Each one is downstream of the first.</p>
+      </div>
+      <ul class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {outcomes.map((item, i) => (
+          <li class="reveal card p-6 sm:p-7 group" style={`--d:${i * 80}ms`}>
+            <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-navy text-gold-2 font-display text-[15px] group-hover:bg-gold group-hover:text-navy transition-colors">{i + 1}</span>
+            <h3 class="mt-4 text-[22px] text-navy">{item.name}</h3>
+            <p class="mt-2 text-[15px] leading-relaxed text-ink-muted">{item.body}</p>
+          </li>
+        ))}
+      </ul>
+      <div class="reveal mt-12">
+        <a href={LINKS.talk} class="btn btn-navy" data-event="consultation_click" data-event-location="impact">Talk to Our Team <Arrow /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Who it's for ─────────────────────────────────────────────────── -->
+  <section id="who-its-for" class="bg-cream-2">
+    <div class="wrap py-20 sm:py-28">
+      <div class="reveal max-w-[720px]">
+        <p class="eyebrow">Who it's for</p>
+        <h2 class="mt-4 text-[34px] sm:text-[46px] text-navy">Built for the people who can <em>feel the ceiling.</em></h2>
+      </div>
+      <ul class="mt-12 grid gap-4 md:grid-cols-2">
+        {audiences.map((item, i) => (
+          <li class="reveal card p-6 sm:p-8 border-l-[3px] border-l-gold" style={`--d:${i * 90}ms`}>
+            <h3 class="text-[24px] text-navy">{item.name}</h3>
+            <p class="mt-3 text-[15.5px] leading-relaxed text-ink-muted">{item.body}</p>
+          </li>
+        ))}
+      </ul>
+      <div class="reveal mt-12">
+        <a href={LINKS.talk} class="btn btn-navy" data-event="consultation_click" data-event-location="who">Let's Talk About Your Organization <Arrow /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Partners ─────────────────────────────────────────────────────── -->
+  <section id="partners" class="on-navy bg-navy text-cream relative overflow-hidden">
+    <div class="absolute -bottom-40 left-[-10%] w-[560px] h-[560px] rounded-full bg-gold/10 blur-3xl" aria-hidden="true"></div>
+    <div class="wrap relative py-20 sm:py-28">
+      <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+        <div class="reveal">
+          <p class="eyebrow">Partners</p>
+          <h2 class="mt-4 text-[34px] sm:text-[46px]">Bring IOS to the organizations <em>you already serve.</em></h2>
+          <p class="mt-5 text-[16.5px] leading-relaxed text-cream-muted max-w-[560px]">
+            Consultants, coaches, implementers and advisors who want a measured self-leadership layer underneath the work they already do. If that is you, the first step is a conversation.
+          </p>
+        </div>
+        <div class="reveal lg:justify-self-end" style="--d:120ms">
+          <a href={LINKS.partner} class="btn btn-gold" data-event="partner_inquiry_click" data-event-location="partners">Explore a Partnership <Arrow /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Next step + close ────────────────────────────────────────────── -->
+  <section id="next-step" class="bg-cream">
+    <div class="wrap py-20 sm:py-28">
+      <div class="reveal card bg-cream-3 p-8 sm:p-12 lg:p-16 text-center">
+        <p class="eyebrow">Your next step</p>
+        <h2 class="mt-4 text-[34px] sm:text-[48px] text-navy mx-auto max-w-[760px]">Find your ceiling. <em>Then move it.</em></h2>
+        <p class="mt-5 text-[16.5px] leading-relaxed text-ink-muted mx-auto max-w-[560px]">
+          A conversation with our team is the fastest way to know whether IOS fits your organization. The Company OS Score is the fastest way to know where you stand today.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+          <a href={LINKS.talk} class="btn btn-navy" data-event="consultation_click" data-event-location="next-step">Talk to Our Team <Arrow /></a>
+          <a href={LINKS.score} class="btn btn-outline-navy" data-passthrough data-event="assessment_click" data-event-location="next-step">Get your Company OS Score</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="on-navy relative text-cream">
+    <div class="absolute inset-0" aria-hidden="true"><Mountains /></div>
+    <div class="wrap relative py-24 sm:py-36">
+      <div class="reveal max-w-[780px]">
+        <p class="eyebrow">InnerBoard</p>
+        <blockquote class="mt-5">
+          <p class="font-display text-[28px] sm:text-[40px] leading-[1.15] tracking-[-0.02em]">
+            "I would never ask you to lead something you cannot control. This work asks you to lead the only things you can."
+          </p>
+          <footer class="mt-6 text-[14px] text-cream-muted">
+            <span class="font-semibold text-cream">{SITE.founder}</span>, {SITE.founderTitle}
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+</Base>

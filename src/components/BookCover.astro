@@ -1,0 +1,21 @@
+---
+/**
+ * The cover of Replaceable. The real cover file goes at
+ * /images/replaceable-cover.jpg and replaces this drawn one the moment it
+ * exists; nothing else about the section changes.
+ */
+---
+<div class="book" aria-hidden="true">
+  <div class="book-face">
+    <picture>
+      <img src="/images/replaceable-cover.svg" alt="" width="360" height="540" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+    </picture>
+  </div>
+  <div class="book-spine"></div>
+</div>
+<style>
+  .book { position: relative; width: min(300px, 70vw); aspect-ratio: 2/3; transform: perspective(1200px) rotateY(-14deg) rotateX(2deg); transform-style: preserve-3d; filter: drop-shadow(0 30px 40px rgba(13,26,45,0.35)); transition: transform 600ms var(--ease-out); }
+  .book:hover { transform: perspective(1200px) rotateY(-8deg) rotateX(1deg); }
+  .book-face { position: absolute; inset: 0; border-radius: 4px 12px 12px 4px; overflow: hidden; background: var(--color-navy); box-shadow: inset 6px 0 12px -8px rgba(0,0,0,0.6); }
+  .book-spine { position: absolute; left: -14px; top: 4px; bottom: 4px; width: 14px; background: linear-gradient(to right, #0a1424, #132440); transform: rotateY(-90deg); transform-origin: right; border-radius: 3px 0 0 3px; }
+</style>

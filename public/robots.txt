@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://innerboardos.com/sitemap-index.xml

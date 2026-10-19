@@ -1,0 +1,56 @@
+---
+import Wordmark from "./Wordmark.astro";
+import Arrow from "./Arrow.astro";
+import { LINKS } from "../config/links";
+const nav = [
+  { href: "/#ios", label: "IOS" },
+  { href: "/#how-it-works", label: "How It Works" },
+  { href: "/#impact", label: "Impact" },
+  { href: "/#who-its-for", label: "Who It's For" },
+  { href: "/#partners", label: "Partners" }
+];
+---
+<header data-header class="site-header on-navy fixed inset-x-0 top-0 z-50">
+  <div class="wrap">
+    <div class="flex items-center justify-between h-[72px]">
+      <Wordmark class="text-cream" />
+      <nav aria-label="Primary" class="hidden lg:flex items-center gap-7">
+        {nav.map((item) => (
+          <a href={item.href} class="text-[14px] font-medium text-cream/85 hover:text-cream transition-colors">{item.label}</a>
+        ))}
+        <a href={LINKS.talk} class="btn btn-sm btn-gold" data-event="consultation_click" data-event-location="header">Talk to Our Team <Arrow /></a>
+      </nav>
+      <button
+        type="button"
+        class="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-full text-cream border border-navy-line-strong"
+        data-menu-button
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Open menu"
+      >
+        <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path class="bar-1" d="M4 7h16"/><path class="bar-2" d="M4 12h16"/><path class="bar-3" d="M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" data-menu-panel class="menu-panel lg:hidden absolute inset-x-0 top-full bg-navy border-t border-navy-line shadow-float">
+    <nav aria-label="Primary, mobile" class="wrap py-4 flex flex-col">
+      {nav.map((item) => (
+        <a href={item.href} class="py-3.5 text-[17px] font-medium text-cream border-b border-navy-line last:border-0">{item.label}</a>
+      ))}
+      <a href={LINKS.talk} class="btn btn-gold mt-4" data-event="consultation_click" data-event-location="mobile-menu">Talk to Our Team <Arrow /></a>
+    </nav>
+  </div>
+</header>
+<style>
+  .site-header { transition: background-color 240ms var(--ease-out), box-shadow 240ms var(--ease-out); }
+  .site-header.is-scrolled, :global(.menu-open) .site-header {
+    background: rgba(13, 26, 45, 0.86);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 1px 0 var(--color-navy-line);
+  }
+  [data-menu-button][aria-expanded="true"] .bar-1 { transform: translateY(5px) rotate(45deg); }
+  [data-menu-button][aria-expanded="true"] .bar-2 { opacity: 0; }
+  [data-menu-button][aria-expanded="true"] .bar-3 { transform: translateY(-5px) rotate(-45deg); }
+  [data-menu-button] path { transform-origin: center; transition: transform 200ms var(--ease-out), opacity 150ms; }
+</style>

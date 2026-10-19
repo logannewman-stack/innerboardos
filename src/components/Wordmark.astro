@@ -1,0 +1,11 @@
+---
+import Mark from "./Mark.astro";
+interface Props { class?: string; href?: string; label?: string; sub?: string }
+const { class: className = "", href = "/", label = "InnerBoard", sub = "IOS" } = Astro.props;
+---
+<a href={href} class={`inline-flex items-center gap-2.5 ${className}`} aria-label={`${label} ${sub}, home`}>
+  <Mark class="w-[26px] h-[26px]" />
+  <span class="font-display text-[21px] leading-none tracking-[-0.02em] font-medium">
+    {label}<span class="font-sans font-semibold text-[12px] tracking-[0.14em] uppercase align-middle ml-2 opacity-80">{sub}</span>
+  </span>
+</a>
