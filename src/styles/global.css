@@ -196,6 +196,14 @@
     .reveal { opacity: 1; transform: none; transition: none; }
   }
 
+  /* A stacked argument: one line at a time, a short rule between. */
+  .stack { list-style: none; margin: 0; padding: 0; }
+  .stack > li + li { position: relative; padding-top: 44px; }
+  .stack > li + li::before {
+    content: ""; position: absolute; left: 50%; top: 10px; width: 1px; height: 24px;
+    background: var(--color-line); transform: translateX(-50%);
+  }
+
   .link-arrow {
     display: inline-flex;
     align-items: center;
