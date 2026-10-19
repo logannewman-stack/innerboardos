@@ -24,9 +24,10 @@ npm run sweep      # after a build: fails on any em/en dash or "iOS" in the outp
 | --- | --- |
 | `src/config/links.ts` | Every destination on the site, in one place. The pending ones from the tracker's "Links to Confirm" tab are marked. |
 | `src/pages/index.astro` | The page and all of its copy. |
-| `src/components/PhilosophyDiagram.astro` | Diagram 1: Leadership, Culture, Behavior, Results, Valuation. |
+| `src/components/CircleDiagram.astro` | Diagram 1: five linked circles, Leadership, Culture, Behavior, Results, Valuation, with the brief's definitions. |
 | `src/components/WorkflowDiagram.astro` | Diagram 2: Assess, Develop (Personal Power, Social Influence), Embed, Measure, Certify. Never merged with diagram 1. |
-| `src/components/Scorecard.astro` | The hero visual, labelled illustrative. |
+| `src/components/AssessmentPhone.astro` | The Company OS Score on a phone, with the book's own statements, labelled illustrative. |
+| `brief/` | The development brief and the approved visual reference. |
 | `src/components/BookCover.astro` | The book. Drop the approved cover at `public/images/replaceable-cover.jpg` and point the `img` at it. |
 | `src/components/Mountains.astro` | The panoramic close, drawn. Swap for the approved photograph when it arrives. |
 | `src/styles/global.css` | Tokens (navy, cream, muted gold), fonts, buttons, entrances. |
@@ -60,7 +61,7 @@ under the campaign.
 - The founder's title under the closing quote reads "Founder, InnerBoard" until confirmed (`SITE.founderTitle`).
 - The real Replaceable cover file; the drawn one at `public/images/replaceable-cover.svg` is a placeholder.
 - Whether the existing assessment collects email and sends a follow up. The site adds no gate of its own.
-- The hero's executive photograph and the closing panoramic photograph: both sections are built with drawn art and accept a photograph without a layout change.
+- The hero photograph is from Leah's 2024 brand shoot, placed as the brief's warm executive photography; swap it at `public/images/leah-hero.*` if a different image is approved. The closing panorama is drawn and accepts the approved photograph without a layout change.
 
 ## Copy rules enforced
 

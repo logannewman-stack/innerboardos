@@ -1,40 +1,41 @@
 ---
 /**
- * Diagram 2, the workflow: Assess, Develop, Embed, Measure, Certify.
- * Develop carries its two halves, Personal Power and Social Influence.
- * Drawn on cream so it never reads as the same figure as diagram 1.
+ * Diagram 2, the workflow: Assess, Develop, Embed, Measure, Certify, with the
+ * brief's copy. Develop carries Personal Power and Social Influence. Drawn
+ * on cream so it never reads as the same figure as diagram 1.
  */
+import Icon from "./Icon.astro";
 const steps = [
-  { name: "Assess", body: "Score the company, the team and each person with the Company OS Score. You get a gap report before anyone is asked to change anything.", tag: "Under five minutes to start" },
-  { name: "Develop", body: "The curriculum, worked one real moment at a time. Two arcs: Personal Power, the self-leadership modules, and Social Influence, where it meets other people.", tag: "Personal Power · Social Influence" },
-  { name: "Embed", body: "Daily practice inside Practice by InnerBoard: a check-in, tools small enough for the ninety seconds you actually have, and a Proof due within twenty four hours of every module.", tag: "Practice, every day" },
-  { name: "Measure", body: "Leaders see module completion for the team as a whole. Individual answers and reflections stay with the person who wrote them.", tag: "Completion only, never answers" },
-  { name: "Certify", body: "Someone in the room holds the standard. OS Certification builds the leader who keeps the work running after the launch.", tag: "The standard, held" }
+  { icon: "compass", name: "Assess", lead: "Understand your people and where the opportunities exist.", body: "Identify current strengths, development opportunities, role expectations, and what influences performance. Create greater clarity about where your team is today and what needs to develop next." },
+  { icon: "seed", name: "Develop", lead: "Build the self-leadership skills and capacity your business needs.", body: "Give people practical development that strengthens how they think, communicate, solve problems, take ownership, and lead themselves. Help every person grow into the demands and opportunities of their role." },
+  { icon: "cycle", name: "Embed", lead: "Turn learning into everyday behavior.", body: "Development doesn't create value simply because someone completes a course. It creates value when people apply what they've learned. InnerBoard IOS brings development into daily work through intentional practice, clear expectations, and consistent application." },
+  { icon: "chart", name: "Measure", lead: "Track curriculum progress through module completion.", body: "Leaders can see how many modules each person has completed. Individual answers, reflections, and written responses remain private." },
+  { icon: "award", name: "Certify", lead: "Develop leaders who can sustain and scale the work.", body: "Build internal strength through trained and certified leaders who can reinforce the methodology, support their teams, and help sustain a culture of development." }
 ];
 ---
 <div class="draw" data-diagram="workflow">
   <div class="relative">
-    <svg class="absolute left-0 right-0 top-[26px] hidden lg:block w-full h-[2px]" viewBox="0 0 100 2" preserveAspectRatio="none" aria-hidden="true">
-      <line x1="2" y1="1" x2="98" y2="1" stroke="var(--color-gold)" stroke-width="2" pathLength="1" class="draw-line" />
+    <svg class="absolute left-0 right-0 top-[34px] hidden lg:block w-full h-[2px]" viewBox="0 0 100 2" preserveAspectRatio="none" aria-hidden="true">
+      <line x1="4" y1="1" x2="96" y2="1" stroke="var(--color-gold)" stroke-width="2" pathLength="1" class="draw-line" />
     </svg>
-    <ol class="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
+    <ol class="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
       {steps.map((step, i) => (
-        <li class="node relative" style={`transition-delay:${150 + i * 140}ms`}>
-          <div class="flex items-center gap-3 lg:block">
-            <span class="relative z-[1] inline-flex items-center justify-center w-[52px] h-[52px] rounded-full bg-navy text-cream font-display text-[20px] ring-[6px] ring-cream">{i + 1}</span>
-          </div>
-          <h3 class="mt-4 text-[24px] text-navy">{step.name}</h3>
-          <p class="mt-2 text-[14.5px] leading-relaxed text-ink-muted">{step.body}</p>
-          <p class="mt-3 inline-block text-[11.5px] font-semibold uppercase tracking-[0.12em] text-gold-ink bg-gold-soft/50 border border-gold-soft rounded-full px-3 py-1">{step.tag}</p>
+        <li class="node relative" style={`transition-delay:${150 + i * 130}ms`}>
+          <span class="relative z-[1] inline-flex items-center justify-center w-[68px] h-[68px] rounded-full bg-gold-soft/60 text-gold-ink ring-[8px] ring-cream">
+            <Icon name={step.icon} class="w-7 h-7" />
+          </span>
+          <p class="mt-4 eyebrow">{String(i + 1).padStart(2, "0")}. {step.name}</p>
+          <h3 class="mt-2 text-[21px] leading-[1.2] text-navy">{step.lead}</h3>
+          <p class="mt-2 text-[14px] leading-relaxed text-ink-muted">{step.body}</p>
           {step.name === "Develop" && (
-            <div class="mt-4 grid grid-cols-2 gap-2">
-              <div class="card p-3">
-                <p class="text-[12px] font-semibold text-navy">Personal Power</p>
-                <p class="mt-1 text-[12px] text-ink-faint leading-snug">Thought, feeling, regulation, capacity, ownership.</p>
+            <div class="mt-4 space-y-2">
+              <div class="card p-3.5">
+                <p class="text-[12.5px] font-semibold text-navy">Personal Power</p>
+                <p class="mt-1 text-[12px] text-ink-muted leading-snug">How we lead ourselves. Build the awareness, confidence, and emotional capacity to make intentional choices, take ownership, and follow through.</p>
               </div>
-              <div class="card p-3">
-                <p class="text-[12px] font-semibold text-navy">Social Influence</p>
-                <p class="mt-1 text-[12px] text-ink-faint leading-snug">The standard, carried into every room.</p>
+              <div class="card p-3.5">
+                <p class="text-[12.5px] font-semibold text-navy">Social Influence</p>
+                <p class="mt-1 text-[12px] text-ink-muted leading-snug">How we co-create results with and through other people. Strengthen communication, trust, collaboration, and the ability to positively influence shared outcomes.</p>
               </div>
             </div>
           )}

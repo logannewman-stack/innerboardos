@@ -1,0 +1,54 @@
+---
+/**
+ * Diagram 1, the philosophy: five linked circles around IOS, in the order
+ * the brief gives, Leadership through Valuation, each with its approved
+ * definition. Separate from the workflow by design.
+ */
+const nodes = [
+  { name: "Leadership", def: "How every person leads themselves and influences others." },
+  { name: "Culture", def: "The environment, expectations, and experiences that shape how people show up." },
+  { name: "Behavior", def: "The daily choices, actions, and habits that determine execution." },
+  { name: "Results", def: "The performance created through consistent behaviors and shared accountability." },
+  { name: "Valuation", def: "The organizational value created by stronger people, more reliable execution, and less dependency on any one individual." }
+];
+// Five circles on a ring around the centre, starting at the top and going clockwise.
+const R = 118; const r = 88; const cx = 200; const cy = 200;
+const pos = nodes.map((_, i) => {
+  const a = -Math.PI / 2 + (i * 2 * Math.PI) / 5;
+  return { x: cx + R * Math.cos(a), y: cy + R * Math.sin(a) };
+});
+---
+<div class="draw" data-diagram="philosophy">
+  <div class="grid gap-10 lg:grid-cols-[minmax(0,460px)_1fr] lg:gap-16 lg:items-center">
+    <svg viewBox="0 0 400 400" class="w-full max-w-[460px] mx-auto" role="img" aria-label="Five linked circles around IOS: Leadership, Culture, Behavior, Results and Valuation.">
+      <defs>
+        <radialGradient id="ios-core" cx="50%" cy="40%" r="60%">
+          <stop offset="0" stop-color="#1b3052" />
+          <stop offset="1" stop-color="#0d1a2d" />
+        </radialGradient>
+      </defs>
+      {pos.map((p, i) => (
+        <g class="node" style={`transition-delay:${200 + i * 140}ms`}>
+          <circle cx={p.x} cy={p.y} r={r} fill="rgba(244,239,228,0.03)" stroke="var(--color-gold-2)" stroke-width="1.2" pathLength="1" class="draw-line" />
+          <text x={p.x} y={p.y - (i === 0 ? 46 : i === 1 ? 30 : i === 2 ? 30 : i === 3 ? 30 : 30)} text-anchor="middle" font-family="Instrument Sans, sans-serif" font-size="11.5" font-weight="600" letter-spacing="1.6" fill="#f4efe4">{nodes[i].name.toUpperCase()}</text>
+          <text x={p.x} y={p.y - (i === 0 ? 30 : 14)} text-anchor="middle" font-family="Instrument Sans, sans-serif" font-size="9.5" fill="#c9c2b4">
+            {nodes[i].name === "Leadership" ? "Self. Others." : nodes[i].name === "Culture" ? "Environment." : nodes[i].name === "Behavior" ? "Daily execution." : nodes[i].name === "Results" ? "Performance." : "Enterprise value."}
+          </text>
+        </g>
+      ))}
+      <circle cx={cx} cy={cy} r="54" fill="url(#ios-core)" stroke="var(--color-gold-2)" stroke-width="1.6" pathLength="1" class="draw-line" />
+      <text x={cx} y={cy + 9} text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="30" font-weight="500" fill="#f4efe4">IOS</text>
+    </svg>
+    <ol class="space-y-0 divide-y divide-navy-line">
+      {nodes.map((n, i) => (
+        <li class="node py-4 grid grid-cols-[32px_1fr] gap-3" style={`transition-delay:${260 + i * 110}ms`}>
+          <span class="font-display text-[20px] text-gold-2 leading-none pt-0.5">{i + 1}</span>
+          <div>
+            <h3 class="text-[20px] text-cream leading-tight">{n.name}</h3>
+            <p class="mt-1 text-[14px] leading-relaxed text-cream-muted">{n.def}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</div>

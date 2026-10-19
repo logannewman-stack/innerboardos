@@ -54,6 +54,14 @@
   --color-gold-soft: #e3d4ae;
   --color-gold-ink: #6e5724;
   --color-aurora-2: #8aa3bf;
+  --color-app-canvas: #f2ece0;
+  --color-app-surface: #f8f5ee;
+  --color-app-line: #d9cfbe;
+  --color-app-ink: #1b1916;
+  --color-app-muted: #4b4540;
+  --color-app-faint: #67605a;
+  --color-steel: #486786;
+  --color-steel-soft: #e6e7ea;
 
   --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
   --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
@@ -228,3 +236,8 @@
 /* Mobile menu */
 .menu-panel { transform: translateY(-8px); opacity: 0; pointer-events: none; transition: opacity 180ms var(--ease-out), transform 220ms var(--ease-out); }
 .menu-panel.is-open { transform: none; opacity: 1; pointer-events: auto; }
+
+/* The app, drawn: a phone frame any mock sits inside. */
+.phone { width: 300px; aspect-ratio: 300 / 620; border-radius: 44px; background: #0f0e0c; padding: 10px; box-shadow: var(--shadow-float), 0 0 0 1px rgba(0,0,0,0.5) inset; }
+.phone-screen { position: relative; width: 100%; height: 100%; border-radius: 34px; overflow: hidden; background: var(--color-app-canvas); color: var(--color-app-ink); font-family: var(--font-sans); }
+.phone-notch { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 96px; height: 26px; border-radius: 999px; background: #0f0e0c; }
