@@ -13,7 +13,7 @@
  * (IOS_SPEC 1.2).
  */
 @theme {
-  --color-navy: #0d1a2d;
+  --color-navy: #071b30;
   --color-navy-2: #132440;
   --color-navy-3: #1b3052;
   --color-navy-line: rgba(244, 239, 228, 0.14);
@@ -28,10 +28,11 @@
   --color-ink: #1f1d1a;
   --color-ink-muted: #3d3a35;
   --color-ink-faint: #5c574f;
-  --color-gold: #b3934f;
-  --color-gold-2: #c9ab66;
-  --color-gold-soft: #e3d4ae;
-  --color-gold-ink: #6e5724;
+  /* BRAND_FIX I1: the approved muted gold. Honey on navy (buttons, italics, eyebrows), bronze on cream. */
+  --color-gold: #e4b676;
+  --color-gold-2: #e4b676;
+  --color-gold-soft: #f1dcb4;
+  --color-gold-ink: #8f6230;
   --color-aurora-2: #8aa3bf;
 
   /* Practice, the app, as it draws itself inside the frames: ivory and steel. */
@@ -117,7 +118,7 @@
   --sh-object: 0 1px 2px rgba(31,29,26,.12), 0 14px 28px -12px rgba(31,29,26,.26), 0 64px 90px -44px rgba(31,29,26,.38);
   --sh-object-dark: 0 1px 2px rgba(0,0,0,.35), 0 18px 32px -12px rgba(0,0,0,.5), 0 80px 100px -40px rgba(0,0,0,.6);
   --sh-toast: 0 0 0 1px rgba(31,29,26,.06), 0 2px 6px rgba(31,29,26,.05), 0 12px 32px rgba(31,29,26,.1);
-  --line-gold: rgba(201,171,102,.35);
+  --line-gold: rgba(228,182,118,.35);
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 @media (max-width: 1068px) { :root { --nav-h: 60px; } }
@@ -155,22 +156,22 @@
 :root, [data-theme="cream"] {
   --bg: #f4efe4; --fg: #1f1d1a; --fg-2: #3d3a35; --fg-3: #5c574f;
   --line: rgba(31,29,26,.12); --line-strong: rgba(31,29,26,.22);
-  --accent: #6e5724;
+  --accent: #8f6230;
   --btn-line: rgba(31,29,26,.24); --btn-hover: rgba(31,29,26,.05); --lit-off: rgba(31,29,26,.22);
-  --focus: #6e5724; --paper: #faf7f0; --dark: 0;
+  --focus: #8f6230; --paper: #faf7f0; --dark: 0;
 }
-[data-theme="navy"]     { --bg: #0d1a2d; --fg: #f4efe4; --fg-2: #cdc6b8; --fg-3: #aaa396; --line: rgba(244,239,228,.14); --line-strong: rgba(244,239,228,.32); --accent: #c9ab66; --btn-line: rgba(244,239,228,.32); --btn-hover: rgba(244,239,228,.06); --lit-off: rgba(244,239,228,.25); --focus: #c9ab66; --paper: #faf7f0; --dark: 1; }
+[data-theme="navy"]     { --bg: #071b30; --fg: #f4efe4; --fg-2: #cdc6b8; --fg-3: #aaa396; --line: rgba(244,239,228,.14); --line-strong: rgba(244,239,228,.32); --accent: #e4b676; --btn-line: rgba(244,239,228,.32); --btn-hover: rgba(244,239,228,.06); --lit-off: rgba(244,239,228,.25); --focus: #e4b676; --paper: #faf7f0; --dark: 1; }
 
 /* Dark surfaces on cream pages (the navy plate and panel) carry their own
  * text tokens so nothing inside follows the page. */
 [data-surface="dark"], .surface-dark, .on-dark {
   --fg: #f4efe4; --fg-2: #cdc6b8; --fg-3: #aaa396; --line: rgba(244,239,228,.14); --line-strong: rgba(244,239,228,.32);
-  --accent: #c9ab66; --btn-line: rgba(244,239,228,.32); --btn-hover: rgba(244,239,228,.06); --lit-off: rgba(244,239,228,.25); --focus: #c9ab66; --dark: 1;
+  --accent: #e4b676; --btn-line: rgba(244,239,228,.32); --btn-hover: rgba(244,239,228,.06); --lit-off: rgba(244,239,228,.25); --focus: #e4b676; --dark: 1;
   color: var(--fg);
 }
 [data-surface="light"], .surface-light {
   --fg: #1f1d1a; --fg-2: #3d3a35; --fg-3: #5c574f; --line: rgba(31,29,26,.12); --line-strong: rgba(31,29,26,.22);
-  --accent: #6e5724; --btn-line: rgba(31,29,26,.24); --btn-hover: rgba(31,29,26,.05); --lit-off: rgba(31,29,26,.22); --focus: #6e5724; --dark: 0;
+  --accent: #8f6230; --btn-line: rgba(31,29,26,.24); --btn-hover: rgba(31,29,26,.05); --lit-off: rgba(31,29,26,.22); --focus: #8f6230; --dark: 0;
   color: var(--fg);
 }
 
@@ -181,25 +182,27 @@
     font-family: var(--font-sans);
     background: var(--bg);
     color: var(--fg);
-    font-weight: 450;
+    font-weight: 400;
     font-size: var(--fs-body);
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
     overflow-x: clip;
     transition: background-color .5s var(--ease), color .5s var(--ease);
   }
+  /* BRAND_FIX I4: the InnerBoard OS brand book's Fraunces Light (the app's rule: h1 300, h2 and h3 360). */
   h1, h2, h3, .display {
     font-family: var(--font-display);
-    font-weight: 500;
+    font-weight: 360;
     letter-spacing: -0.02em;
     line-height: 1.05;
     text-wrap: balance;
   }
-  h1 em, h2 em, h3 em, .display em, .t-xl em, .t-l em, .t-m em, .t-s em, .t-state em { font-style: italic; font-weight: 400; color: var(--accent); }
+  h1 { font-weight: 300; }
+  h1 em, h2 em, h3 em, .display em, .t-xl em, .t-l em, .t-m em, .t-s em, .t-state em { font-style: italic; font-weight: inherit; color: var(--accent); }
   p { text-wrap: pretty; }
   [id] { scroll-margin-top: 96px; }
   :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 6px; }
-  ::selection { background: #e3d4ae; color: #1f1d1a; }
+  ::selection { background: #f1dcb4; color: #1f1d1a; }
   img, picture, svg, video { display: block; max-width: 100%; }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -224,7 +227,7 @@
    * down, so the top still cross fades with the body. The floor is painted exactly while the page is in
    * that section's tone, and fades with the body (--tone-floor is a registered colour). */
   [data-tone="cream"] { --tone-bg: #f4efe4; }
-  [data-tone="navy"] { --tone-bg: #0d1a2d; }
+  [data-tone="navy"] { --tone-bg: #071b30; }
   main [data-tone] { background-image: var(--tone-tint, none), linear-gradient(to bottom, transparent 0, var(--tone-floor) 200px); transition: --tone-floor .5s var(--ease); }
   html[data-theme="cream"] main [data-tone="cream"], html[data-theme="navy"] main [data-tone="navy"] { --tone-floor: var(--tone-bg); }
 
@@ -240,34 +243,33 @@
   .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
   /* ── 1.3 Type roles ─────────────────────────────────────────────────── */
-  .t-xl { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: 450; letter-spacing: -.028em; line-height: .96; text-wrap: balance; }
-  .t-l { font-family: var(--font-display); font-size: var(--fs-l); font-weight: 500; letter-spacing: -.022em; line-height: 1; text-wrap: balance; max-width: 12em; }
-  .t-m { font-family: var(--font-display); font-size: var(--fs-m); font-weight: 500; letter-spacing: -.018em; line-height: 1.04; text-wrap: balance; max-width: 13em; }
-  .t-s { font-family: var(--font-display); font-size: var(--fs-s); font-weight: 500; letter-spacing: -.012em; line-height: 1.12; text-wrap: balance; max-width: 18em; }
-  .t-s-pull, .t-s-quote { font-family: var(--font-display); font-size: var(--fs-s); font-weight: 400; letter-spacing: -.012em; line-height: 1.12; text-wrap: pretty; max-width: 18em; }
+  .t-xl { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: 300; letter-spacing: -.028em; line-height: .96; text-wrap: balance; }
+  .t-l { font-family: var(--font-display); font-size: var(--fs-l); font-weight: 360; letter-spacing: -.022em; line-height: 1; text-wrap: balance; max-width: 12em; }
+  .t-m { font-family: var(--font-display); font-size: var(--fs-m); font-weight: 360; letter-spacing: -.018em; line-height: 1.04; text-wrap: balance; max-width: 13em; }
+  .t-s { font-family: var(--font-display); font-size: var(--fs-s); font-weight: 360; letter-spacing: -.012em; line-height: 1.12; text-wrap: balance; max-width: 18em; }
+  .t-s-pull, .t-s-quote { font-family: var(--font-display); font-size: var(--fs-s); font-weight: 360; letter-spacing: -.012em; line-height: 1.12; text-wrap: pretty; max-width: 18em; }
   .t-s-pull { font-style: italic; }
-  .t-state { font-family: var(--font-display); font-size: var(--fs-state); font-weight: 400; letter-spacing: -.014em; line-height: 1.22; text-wrap: pretty; max-width: 24em; }
-  .t-title { font-family: var(--font-display); font-size: var(--fs-title); font-weight: 500; letter-spacing: -.008em; line-height: 1.2; text-wrap: balance; max-width: 20em; }
-  .t-lead { font-family: var(--font-sans); font-size: var(--fs-lead); font-weight: 450; letter-spacing: 0; line-height: 1.45; max-width: 30em; }
-  .t-body { font-family: var(--font-sans); font-size: var(--fs-body); font-weight: 450; letter-spacing: 0; line-height: 1.55; max-width: 34em; }
+  .t-state { font-family: var(--font-display); font-size: var(--fs-state); font-weight: 360; letter-spacing: -.014em; line-height: 1.22; text-wrap: pretty; max-width: 24em; }
+  .t-title { font-family: var(--font-display); font-size: var(--fs-title); font-weight: 360; letter-spacing: -.008em; line-height: 1.2; text-wrap: balance; max-width: 20em; }
+  .t-lead { font-family: var(--font-sans); font-size: var(--fs-lead); font-weight: 400; letter-spacing: 0; line-height: 1.45; max-width: 30em; }
+  .t-body { font-family: var(--font-sans); font-size: var(--fs-body); font-weight: 400; letter-spacing: 0; line-height: 1.55; max-width: 34em; }
   .t-small { font-family: var(--font-sans); font-size: var(--fs-small); font-weight: 500; letter-spacing: -.005em; line-height: 1; }
-  .t-cap { font-family: var(--font-sans); font-size: var(--fs-cap); font-weight: 450; letter-spacing: 0; line-height: 1.45; color: var(--fg-3); max-width: 40em; }
+  .t-cap { font-family: var(--font-sans); font-size: var(--fs-cap); font-weight: 400; letter-spacing: 0; line-height: 1.45; color: var(--fg-3); max-width: 40em; }
   .t-cap-i { font-family: var(--font-display); font-style: italic; font-size: var(--fs-cap-i); font-weight: 400; letter-spacing: 0; line-height: 1.4; color: var(--fg-3); max-width: 40em; }
   .t-folio { font-family: var(--font-sans); font-size: var(--fs-folio); font-weight: 500; letter-spacing: .04em; line-height: 1; font-variant-numeric: tabular-nums; }
   @media (max-width: 734px) { .t-xl { line-height: .98; } .t-state { line-height: 1.28; } }
-  .t-xl em, .t-l em, .t-m em, .t-s em, .t-state em { font-style: italic; font-weight: 400; color: var(--accent); }
+  .t-xl em, .t-l em, .t-m em, .t-s em, .t-state em { font-style: italic; font-weight: inherit; color: var(--accent); }
   .lead-phrase, .lb { color: var(--fg); }
   .quote-hang { hanging-punctuation: first; }
   @supports not (hanging-punctuation: first) { .quote-hang { text-indent: -.38em; } }
-  .grad { background: linear-gradient(100deg, #e3d4ae 0%, #c9ab66 48%, #b3934f 100%); -webkit-background-clip: text; background-clip: text; color: transparent; padding-bottom: .08em; }
+  .grad { background: linear-gradient(100deg, #f1dcb4 0%, #e4b676 48%, #c99a5b 100%); -webkit-background-clip: text; background-clip: text; color: transparent; padding-bottom: .08em; }
   /* The gradient wins over the heading em colour rules above (0,1,1 against 0,1,0). */
   h1 em.grad, h2 em.grad, h3 em.grad, .t-xl em.grad, .t-l em.grad, .t-m em.grad, .t-s em.grad, .t-state em.grad { color: transparent; -webkit-text-fill-color: transparent; }
   .tabular { font-variant-numeric: tabular-nums; }
 
   /* ── Eyebrow ─────────────────────────────────────────────────────────── */
-  .eyebrow { display: block; font-family: var(--font-sans); font-size: var(--fs-eyebrow); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; line-height: 1; color: var(--fg-3); margin-bottom: var(--eyebrow-gap); }
-  [data-theme="navy"] .eyebrow { color: var(--fg-3); }
-  [data-surface="dark"] .eyebrow, .on-dark .eyebrow { color: #aaa396; }
+  /* BRAND_FIX I2: the eyebrow is the section's accent (bronze on cream, honey on navy), as the approved reference. */
+  .eyebrow { display: block; font-family: var(--font-sans); font-size: var(--fs-eyebrow); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; line-height: 1; color: var(--accent); margin-bottom: var(--eyebrow-gap); }
   @media (orientation: landscape) and (max-height: 500px) { .eyebrow { margin-bottom: 10px; } }
 
   /* ── Buttons, pills ──────────────────────────────────────────────────── */
@@ -280,14 +282,17 @@
   }
   .btn svg { width: 14px; height: 14px; flex: none; transition: transform 200ms var(--hover); }
   .btn:active { transform: scale(.98); }
-  .btn-gold { background: #b3934f; color: #1f1d1a; }
+  /* BRAND_FIX I1: bronze with a cream label on cream; honey with an ink label on navy and in the dark header. */
+  .btn-gold { background: #8f6230; color: #fbf8f1; }
+  :is(.js[data-theme="navy"] main, html.no-js main [data-tone="navy"], [data-surface="dark"], .on-dark, .site-header.is-dark) .btn-gold { background: #e4b676; color: #1f1d1a; }
   .btn-line { box-shadow: inset 0 0 0 1px var(--btn-line); color: var(--fg); }
   .btn-cream { background: #f7f4ee; color: #1f1d1a; }
   /* Hover states only where a pointer can hover: a tapped button or link on a touch screen does not stay lit
    * (audit 2, P2 19). :active and :focus-visible still answer every input. */
   @media (hover: hover) and (pointer: fine) {
     .btn:hover svg { transform: translateX(3px); }
-    .btn-gold:hover { background: #c9ab66; }
+    .btn-gold:hover { background: #7d5527; }
+    :is(.js[data-theme="navy"] main, html.no-js main [data-tone="navy"], [data-surface="dark"], .on-dark, .site-header.is-dark) .btn-gold:hover { background: #ecc58e; }
     .btn-line:hover { background: var(--btn-hover); }
     .btn-cream:hover { background: #ffffff; }
     .link:hover, .link-arrow:hover { text-decoration: underline; }
@@ -311,17 +316,17 @@
     box-shadow: inset 0 1px 0 rgba(255,255,255,.9), inset 0 0 0 1px rgba(255,255,255,.5), var(--sh-paper);
     color: #1f1d1a;
   }
-  .paper, .card { --fg: #1f1d1a; --fg-2: #3d3a35; --fg-3: #5c574f; --line: rgba(31,29,26,.12); --lit-off: rgba(31,29,26,.22); --dark: 0; }
+  .paper, .card { --fg: #1f1d1a; --fg-2: #3d3a35; --fg-3: #5c574f; --line: rgba(31,29,26,.12); --lit-off: rgba(31,29,26,.22); --accent: #8f6230; --focus: #8f6230; --dark: 0; }
   .paper-lift { transition: transform 200ms var(--hover), box-shadow 200ms var(--hover); }
   .mat { position: relative; overflow: visible; background: #ebe4d5; border-radius: var(--r-lg); box-shadow: inset 0 1px 2px rgba(31,29,26,.06), inset 0 0 0 1px rgba(31,29,26,.05); }
   .mat-blush { background: linear-gradient(160deg, #ebe4d5 0%, #ede1d8 100%); }
-  .plate { position: relative; overflow: hidden; background: #0d1a2d; border-radius: var(--r-lg); box-shadow: inset 0 1px 0 rgba(255,255,255,.07); }
-  .panel-navy { position: relative; overflow: clip; background: #132440; border-radius: var(--r-lg); box-shadow: inset 0 1px 0 rgba(255,255,255,.07); }
+  .plate { position: relative; overflow: hidden; background: #071b30; border-radius: var(--r-lg); box-shadow: inset 0 1px 0 rgba(255,255,255,.07); }
+  .panel-navy { position: relative; overflow: clip; background: #071b30; border-radius: var(--r-lg); box-shadow: inset 0 1px 0 rgba(255,255,255,.07); }
 
   /* ── Lamp, grain ─────────────────────────────────────────────────────── */
   .lamp { position: absolute; inset: 0; pointer-events: none; border-radius: inherit; z-index: 0;
-    background: radial-gradient(55% 60% at var(--lx, 18%) var(--ly, 0%), rgba(201,171,102,var(--la, .16)), transparent 70%); }
-  .lamp-cream { background: radial-gradient(50% 45% at var(--lx, 50%) var(--ly, 0%), rgba(255,255,255,.75), transparent 72%), linear-gradient(to top, rgba(179,147,79,.08), transparent 30%); animation: lights 2.2s var(--ease) both; }
+    background: radial-gradient(55% 60% at var(--lx, 18%) var(--ly, 0%), rgba(228,182,118,var(--la, .16)), transparent 70%); }
+  .lamp-cream { background: radial-gradient(50% 45% at var(--lx, 50%) var(--ly, 0%), rgba(255,255,255,.75), transparent 72%), linear-gradient(to top, rgba(143,98,48,.08), transparent 30%); animation: lights 2.2s var(--ease) both; }
   @keyframes lights { from { opacity: 0; } }
   .grain { position: relative; }
   /* A lamp that also carries the grain stays an absolute layer over its section (.grain alone would make it
@@ -341,8 +346,8 @@
   .ladder-gold > li::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--line-gold) 12% 88%, transparent); }
   .ladder-gold > li:last-child { padding-bottom: 22px; }
   .ladder > li::before { content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 1px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 450ms var(--slow); z-index: 1; }
-  .ladder-name { font-family: var(--font-display); font-size: var(--fs-title); font-weight: 500; letter-spacing: -.008em; line-height: 1.2; color: var(--fg); transition: color 350ms var(--ease); }
-  .ladder-body { font-family: var(--font-sans); font-size: var(--fs-body); font-weight: 450; line-height: 1.55; color: var(--fg-2); max-width: 34em; }
+  .ladder-name { font-family: var(--font-display); font-size: var(--fs-title); font-weight: 360; letter-spacing: -.008em; line-height: 1.2; color: var(--fg); transition: color 350ms var(--ease); }
+  .ladder-body { font-family: var(--font-sans); font-size: var(--fs-body); font-weight: 400; line-height: 1.55; color: var(--fg-2); max-width: 34em; }
   @media (hover: hover) and (pointer: fine) {
     .ladder > li:hover::before { transform: scaleX(1); }
     .ladder > li:hover .ladder-name { color: var(--accent); }
@@ -403,7 +408,7 @@
   .tap::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: #486786; opacity: calc(var(--fill, .5) * .7); }
   /* The halo: a soft gold ring on one of the app's own controls (a tab in its bottom bar), lit for a step. */
   .halo { position: absolute; left: 0; top: 0; width: 15cqw; aspect-ratio: 1; border-radius: 50%; pointer-events: none; z-index: 4; opacity: 0;
-    background: radial-gradient(closest-side, rgba(201,171,102,.42), rgba(201,171,102,.18) 62%, transparent); box-shadow: 0 0 0 1px rgba(201,171,102,.38);
+    background: radial-gradient(closest-side, rgba(228,182,118,.42), rgba(228,182,118,.18) 62%, transparent); box-shadow: 0 0 0 1px rgba(228,182,118,.38);
     transform: translate(calc(var(--x, 50) * 1cqw), calc(var(--y, 50) * 1cqh)) translate(-50%, -50%) scale(.86); }
   /* The lift: a device rises 10 px (and its floor shadow deepens) as a story step reaches it (--lift 0 to 1). */
   [data-device] { translate: 0 calc(var(--lift, 0) * -10px); }
@@ -460,6 +465,13 @@
   @media (max-width: 734px) { .story-static .static-desk { display: none; } }
   @media (min-width: 735px) { .story-static .static-phone { display: none; } }
   :where(.story:not([data-story-static="device"])) .story-device-box { display: none; }
+  /* Story v2 (STORY_V2 1.11), static: the step layout's parts are plain blocks; an element that exists for the
+   * pinned layout only (.story-only: an eyebrow the static page does not have) is not shown; the button row
+   * (.story-cta) stays in flow after the steps, so the static page keeps its button where it always was. Page
+   * CSS must not set `display` on a .story-only element (the pinned layout shows it). */
+  .story-only { display: none; }
+  .story-device-col, .story-copy { display: block; }
+  .story-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: var(--btn-gap); }
   /* A system probe (site.ts): 100svh tall and the gutter wide, read on measure only. */
   .sys-probe { position: fixed; left: 0; top: 0; width: var(--gutter); height: 100vh; height: 100svh; visibility: hidden; pointer-events: none; z-index: -1; }
 
@@ -469,7 +481,7 @@
   .story-marks > button { position: relative; flex: 1 1 0; min-width: 0; height: 28px; padding: 0; border: 0; background: none; cursor: pointer; border-radius: 2px; }
   .story-marks > button::before { content: ""; position: absolute; left: 0; right: 0; top: 13px; height: 2px; border-radius: 2px; background: var(--mark-track); }
   .story-marks > button::after { content: ""; position: absolute; inset: -8px 0; }
-  .story-marks > button > i { position: absolute; left: 0; right: 0; top: 13px; height: 2px; border-radius: 2px; background: var(--mark-fill); transform-origin: 0 50%; transform: scaleX(0); }
+  .story-marks > button > i { position: absolute; left: 0; right: 0; top: 13px; height: 2px; border-radius: 2px; background: var(--mark-fill); transform-origin: 0 50%; transform: scaleX(var(--f, 0)); }
   /* The words variant (the IOS workflow): the locked line itself, each word a button, the arrows text. */
   .story-marks-words { flex-direction: column; align-items: flex-start; gap: 10px; width: auto; }
   .story-words { margin: 0; color: var(--fg-3); }
@@ -478,7 +490,7 @@
   .story-words > button { position: relative; }
   .story-words > button::after { content: ""; position: absolute; inset: -4px -4px; }
   .story-marks-rule { position: relative; display: block; width: 100%; height: 1px; background: var(--line); }
-  .story-marks-rule > i { position: absolute; inset: 0; background: #c9ab66; transform-origin: 0 50%; transform: scaleX(0); }
+  .story-marks-rule > i { position: absolute; inset: 0; background: var(--accent); transform-origin: 0 50%; transform: scaleX(0); }
   /* The single bar of a hero (no step text): 72 px, centred under the device. */
   .story-bar { position: relative; width: 72px; height: 2px; border-radius: 2px; background: var(--lit-off); margin-inline: auto; overflow: hidden; }
   .story-bar > i { position: absolute; inset: 0; background: var(--fg); transform-origin: 0 50%; transform: scaleX(0); }
@@ -490,11 +502,11 @@
   .geo circle.dot { fill: currentColor; stroke: none; opacity: calc(var(--geo-o, .08) * 2); }
 
   /* ── Header (1.8) ──────────────────────────────────────────────────── */
-  .site-header { position: fixed; inset-inline: 0; top: 0; z-index: 50; height: var(--nav-h); color: #1f1d1a; --fg: #1f1d1a; --fg-2: #3d3a35; --fg-3: #5c574f; --focus: #6e5724;
+  .site-header { position: fixed; inset-inline: 0; top: 0; z-index: 50; height: var(--nav-h); color: #1f1d1a; --fg: #1f1d1a; --fg-2: #3d3a35; --fg-3: #5c574f; --focus: #8f6230;
     transition: background-color 240ms var(--ease), box-shadow 240ms var(--ease), color 240ms var(--ease), transform 450ms var(--sheet); }
   .site-header .hdr-row { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); view-transition-name: nav; }
   .site-header.is-scrolled { background: rgba(244,239,228,.82); -webkit-backdrop-filter: saturate(160%) blur(18px); backdrop-filter: saturate(160%) blur(18px); box-shadow: 0 1px 0 rgba(31,29,26,.08); }
-  .site-header.is-dark { color: #f4efe4; --fg: #f4efe4; --fg-2: #cdc6b8; --fg-3: #aaa396; --focus: #c9ab66; }
+  .site-header.is-dark { color: #f4efe4; --fg: #f4efe4; --fg-2: #cdc6b8; --fg-3: #aaa396; --focus: #e4b676; }
   /* Dark state: the bar takes the colour of what it sits on (the page's tone, or the dark surface under it,
    * which the script writes as --hdr-bg), at 90 percent with the blur, so nothing reads through it. */
   .site-header.is-dark.is-scrolled { background: color-mix(in srgb, var(--hdr-bg, var(--bg)) 90%, transparent); box-shadow: 0 1px 0 rgba(244,239,228,.1); }
@@ -521,11 +533,11 @@
    * lines become a link to the footer's list of the site's sections (#site-nav). */
   .no-js button.hdr-burger { display: none; }
   .js .hdr-nojs { display: none; }
-  .menu-panel { position: fixed; inset: var(--nav-h) 0 0 0; z-index: 49; background: #faf7f0; color: #1f1d1a; --fg: #1f1d1a; --fg-2: #3d3a35; --fg-3: #5c574f; --focus: #6e5724; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .35s var(--ease), visibility 0s linear .35s; overflow: auto; }
+  .menu-panel { position: fixed; inset: var(--nav-h) 0 0 0; z-index: 49; background: #faf7f0; color: #1f1d1a; --fg: #1f1d1a; --fg-2: #3d3a35; --fg-3: #5c574f; --focus: #8f6230; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .35s var(--ease), visibility 0s linear .35s; overflow: auto; }
   .menu-panel.is-open { opacity: 1; visibility: visible; pointer-events: auto; transition-delay: 0s; }
   @media (min-width: 1069px) { .menu-panel { display: none; } }
   .menu-nav { display: flex; flex-direction: column; min-height: 100%; padding-block: 24px max(24px, env(safe-area-inset-bottom, 0px)); }
-  .menu-link { display: flex; flex-direction: column; gap: 6px; padding: 18px 0; border-top: 1px solid rgba(31,29,26,.12); color: #1f1d1a; text-decoration: none; font-family: var(--font-display); font-size: var(--fs-s); font-weight: 500; letter-spacing: -.012em; line-height: 1.12; opacity: 0; transform: translateY(-8px); transition: opacity .3s var(--ease), transform .3s var(--sheet); }
+  .menu-link { display: flex; flex-direction: column; gap: 6px; padding: 18px 0; border-top: 1px solid rgba(31,29,26,.12); color: #1f1d1a; text-decoration: none; font-family: var(--font-display); font-size: var(--fs-s); font-weight: 360; letter-spacing: -.012em; line-height: 1.12; opacity: 0; transform: translateY(-8px); transition: opacity .3s var(--ease), transform .3s var(--sheet); }
   .menu-link .sub { font-family: var(--font-sans); font-size: var(--fs-eyebrow); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #5c574f; }
   .menu-panel.is-open .menu-link { opacity: 1; transform: none; transition-delay: calc(.06s + var(--i, 0) * .03s); }
   .menu-cta { margin-top: auto; padding-top: 24px; }
@@ -541,14 +553,14 @@
   .hdr-row > a:not(.hdr-burger), .ftr-blurb-col > a { padding-block: 9px; margin-block: -9px; }
   html.menu-open .site-header { background: #faf7f0; box-shadow: none; color: #1f1d1a; }
   html.menu-open { overflow: hidden; }
-  .skip { position: absolute; left: 12px; top: 12px; z-index: 100; padding: 11px 16px; min-height: 44px; border-radius: 999px; background: #b3934f; color: #1f1d1a; font-family: var(--font-sans); font-size: var(--fs-small); font-weight: 500; transform: translateY(-200%); }
+  .skip { position: absolute; left: 12px; top: 12px; z-index: 100; padding: 11px 16px; min-height: 44px; border-radius: 999px; background: #8f6230; color: #fbf8f1; font-family: var(--font-sans); font-size: var(--fs-small); font-weight: 500; transform: translateY(-200%); }
   .skip:focus { transform: none; }
 
   /* ── Footer (1.9) ──────────────────────────────────────────────────── */
-  .site-footer { position: relative; background: #ebe4d5; color: #1f1d1a; --fg: #1f1d1a; --fg-2: #3d3a35; --fg-3: #5c574f; --line: rgba(31,29,26,.12); --accent: #6e5724; --focus: #6e5724; --dark: 0; border-top: 1px solid rgba(31,29,26,.12); padding: clamp(72px, 10vh, 120px) 0 32px; }
+  .site-footer { position: relative; background: #ebe4d5; color: #1f1d1a; --fg: #1f1d1a; --fg-2: #3d3a35; --fg-3: #5c574f; --line: rgba(31,29,26,.12); --accent: #8f6230; --focus: #8f6230; --dark: 0; border-top: 1px solid rgba(31,29,26,.12); padding: clamp(72px, 10vh, 120px) 0 32px; }
   .ftr-top { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); row-gap: 28px; align-items: end; }
   .ftr-blurb-col { grid-column: 1 / span 7; }
-  .ftr-blurb { margin-top: 28px; font-family: var(--font-display); font-size: var(--fs-s); font-weight: 400; letter-spacing: -.012em; line-height: 1.2; max-width: 22em; color: var(--fg); text-wrap: pretty; }
+  .ftr-blurb { margin-top: 28px; font-family: var(--font-display); font-size: var(--fs-s); font-weight: 360; letter-spacing: -.012em; line-height: 1.2; max-width: 22em; color: var(--fg); text-wrap: pretty; }
   .ftr-founder { grid-column: 9 / span 4; justify-self: end; font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: var(--fs-cap-i); line-height: 1.4; color: var(--fg-3); margin: 0; }
   .ftr-rule { height: 1px; margin-top: 40px; background: linear-gradient(90deg, transparent, var(--line-gold) 12% 88%, transparent); }
   .ftr-cols { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); row-gap: 32px; margin-top: 56px; }
@@ -556,7 +568,7 @@
   .ftr-col .eyebrow { margin-bottom: 14px; }
   .ftr-col ul { list-style: none; margin: 0; padding: 0; }
   /* Each link is a 44 px target (audit 2, P1 2); the 44 px rows replace the old line height of 2. */
-  .ftr-col a { display: inline-flex; align-items: center; min-height: 44px; font-family: var(--font-sans); font-size: var(--fs-body); font-weight: 450; line-height: 1.3; color: var(--fg); text-decoration: none; text-underline-offset: .18em; text-decoration-thickness: 1px; }
+  .ftr-col a { display: inline-flex; align-items: center; min-height: 44px; font-family: var(--font-sans); font-size: var(--fs-body); font-weight: 400; line-height: 1.3; color: var(--fg); text-decoration: none; text-underline-offset: .18em; text-decoration-thickness: 1px; }
   .ftr-col li + li { margin-top: 0; }
   .ftr-legal { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 64px; padding-top: 18px; border-top: 1px solid var(--line); font-family: var(--font-sans); font-size: var(--fs-cap); line-height: 1.45; color: var(--fg-3); }
   .ftr-legal p { margin: 0; }
@@ -583,21 +595,23 @@
 }
 
 /* IOS */
-/* Muted gold eyebrows on navy, as the approved direction (IOS_SPEC 1.3). */
-[data-theme="navy"] .eyebrow, [data-surface="dark"] .eyebrow { color: #c9ab66; }
+/* Muted gold eyebrows on navy, as the approved direction (IOS_SPEC 1.3; BRAND_FIX I2: the accent, honey). */
+[data-theme="navy"] .eyebrow, [data-surface="dark"] .eyebrow { color: var(--accent); }
+/* BRAND_FIX I4: every h1 at the brand book's 300, whatever its size role (the legal pages' h1 is a .t-m). */
+h1:is(.t-l, .t-m, .t-s) { font-weight: 300; }
 /* The hero's stage: linen, lit from its top centre; it carries data-surface="light". */
 .plate-linen { position: relative; overflow: hidden; background: #ebe4d5; border-radius: var(--r-lg);
   box-shadow: inset 0 1px 0 rgba(255,255,255,.6), inset 0 0 0 1px rgba(31,29,26,.05); }
 .plate-linen > .lamp { background: radial-gradient(50% 45% at var(--lx, 50%) var(--ly, 0%), rgba(255,255,255,.75), transparent 72%),
-  linear-gradient(to top, rgba(179,147,79,.08), transparent 30%); animation: lights 2.2s var(--ease) both; }
-.t-s-quote em, .t-s-pull em { font-style: italic; font-weight: 400; color: var(--accent); }
+  linear-gradient(to top, rgba(143,98,48,.08), transparent 30%); animation: lights 2.2s var(--ease) both; }
+.t-s-quote em, .t-s-pull em { font-style: italic; font-weight: inherit; color: var(--accent); }
 /* An italic word in a lit statement lights to the accent on either tone (the IOS italic is always gold). */
 .js em.lw.on, .js [data-lit="lines"] > em.lw.on { color: var(--accent); }
 /* The menu sheet paints cream on every page tone (it carries data-surface="light"); its links keep their ink. */
 .menu-panel[data-surface="light"] { color: #1f1d1a; }
-/* The footer paints its own linen with ink tokens; its eyebrows keep the ink faint while the page
- * above it is still navy (the gold eyebrow rule keys off the page theme). */
-[data-theme="navy"] .site-footer .eyebrow { color: var(--fg-3); }
+/* The footer paints its own linen with ink tokens; its column labels keep the faint ink on any page tone
+ * (BRAND_FIX I2). */
+.site-footer .eyebrow { color: var(--fg-3); }
 /* On a phone the footer's two columns size to their links, so "Get your Company OS Score" holds one
  * line beside the short anchors of "On this site" (below 360 the system's even columns stay). */
 @media (min-width: 360px) and (max-width: 734px) { .ftr-cols { grid-template-columns: max-content minmax(0, 1fr); column-gap: clamp(20px, 6vw, 48px); } }
@@ -611,9 +625,19 @@
  * its navy bleeds paint themselves (.no-js [data-tone="navy"] in motion.css), as the Suite's pages do. */
 html.no-js[data-theme="navy"] {
   --bg: #f4efe4; --fg: #1f1d1a; --fg-2: #3d3a35; --fg-3: #5c574f;
-  --line: rgba(31,29,26,.12); --line-strong: rgba(31,29,26,.22); --accent: #6e5724;
-  --btn-line: rgba(31,29,26,.24); --btn-hover: rgba(31,29,26,.05); --lit-off: rgba(31,29,26,.22); --focus: #6e5724; --dark: 0;
+  --line: rgba(31,29,26,.12); --line-strong: rgba(31,29,26,.22); --accent: #8f6230;
+  --btn-line: rgba(31,29,26,.24); --btn-hover: rgba(31,29,26,.05); --lit-off: rgba(31,29,26,.22); --focus: #8f6230; --dark: 0;
 }
-html.no-js[data-theme="navy"] main .eyebrow { color: var(--fg-3); }
+html.no-js main [data-tone="cream"] .eyebrow { color: #8f6230; }
 html.no-js main [data-tone="navy"] { --line-strong: rgba(244,239,228,.32); --btn-hover: rgba(244,239,228,.06); --dark: 1; }
-html.no-js main [data-tone="navy"] .eyebrow { color: #c9ab66; }
+html.no-js main [data-tone="navy"] .eyebrow { color: #e4b676; }
+/* Story v2 on this site (BRAND_FIX part 5): the step layout's headline in the brand book's Fraunces Light (360;
+ * an h1 300), its italic at the same weight, and its body in Instrument Sans 400. motion.css (the Suite's, verbatim)
+ * sets 500 and 450; these carry more classes, so they win while a story is pinned. */
+@media screen and (prefers-reduced-motion: no-preference) and (min-width: 1069px) and (min-height: 600px),
+       screen and (prefers-reduced-motion: no-preference) and (max-width: 1068px) and (min-height: 560px) {
+  .js [data-story-ui="steps"]:not(.static) .story-steps > .story-step .story-h { font-weight: 360; }
+  .js [data-story-ui="steps"]:not(.static) .story-steps > .story-step h1.story-h { font-weight: 300; }
+  .js [data-story-ui="steps"]:not(.static) .story-steps > .story-step .story-h em { font-weight: inherit; }
+  .js [data-story-ui="steps"]:not(.static) .story-steps > .story-step .story-body { font-weight: 400; }
+}

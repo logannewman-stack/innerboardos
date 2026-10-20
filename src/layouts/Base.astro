@@ -26,7 +26,7 @@ interface Props {
   navStart?: "light" | "dark";
 }
 const { title, description = SITE.description, path = "/", image = "/og-image.png", theme = "cream", navStart = "light" } = Astro.props;
-const color = theme === "navy" ? "#0d1a2d" : "#f4efe4";
+const color = theme === "navy" ? "#071b30" : "#f4efe4";
 const canonical = new URL(path, SITE.url).toString();
 const imageUrl = new URL(image, SITE.url).toString();
 ---

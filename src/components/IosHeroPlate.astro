@@ -1,26 +1,26 @@
 ---
 /**
- * The hero's object (SCROLL_SPEC S9): the Company OS Score in a drawn phone,
- * alone on the navy in a warm halo, as the device of the hero's scroll story.
- * Nothing moves on its own: as the reader scrolls through the hero's three
- * beats the later statements come in scored, the ring presses the app's own
- * "See what ... means" bar and the result wipes up from it, then the result
- * scrolls inside the phone until the three lowest statements and their
- * chapters are at the top and the sample score has left the screen. There is
- * no camera move anywhere in it, so the score is never zoomed or centred.
- * Without the pin (no script, reduced motion, a short or landscape screen)
- * it rests on the scored statements, as the hero has always shown it.
+ * The hero's object (SCROLL_SPEC S9, STORY_V2 3.6): the Company OS Score in
+ * a drawn phone, alone on the navy in a warm halo, as the device of the
+ * hero's scroll story. It is the story's device box (`.story-device-box
+ * .story-phone`); the page puts the rail beside it in the device column.
+ * Nothing moves on its own: on laptops, as the reader scrolls through the
+ * hero's three steps, the later statements come in scored, the ring presses
+ * the app's own "See what ... means" bar and the result wipes up from it,
+ * then the result scrolls inside the phone until the three lowest statements
+ * and their chapters are at the top and the sample score has left the
+ * screen. There is no camera move anywhere in it, so the score is never
+ * zoomed or centred. Without the pin (under 1069 wide, no script, reduced
+ * motion, a short or landscape screen) it rests on the scored statements,
+ * as the hero has always shown it.
  *
- * The wrapper is the narrow layout's anchor (the phone sticks 12 px under
- * the header there, the copy above it masked); the entrance lives on an
- * inner wrapper so the anchor is measured where it really sits. The arrival
- * keeps its reveal gate (data-reveal-at="1"), measured on the stage, whose
- * centre is inside the first viewport (the section is now the stage plus the
- * run, three viewports tall). The section's CSS (index.astro) places it.
+ * The entrance lives on an inner wrapper; it keeps its reveal gate
+ * (data-reveal-at="1"), measured on the stage, whose centre is inside the
+ * first viewport. The section's CSS (index.astro) places and sizes the box.
  */
 import PhoneFrame from "./PhoneFrame.astro";
 ---
-<div class="io-hero-phone" data-story-anchor="narrow">
+<div class="story-device-box story-phone io-hero-phone">
   <div class="io-hero-device rise-obj floor-on" style="--d:.3s" data-reveal-at="1" data-reveal-host=".io-hero-story .story-stage">
     <i class="io-halo" aria-hidden="true"></i>
     <PhoneFrame
@@ -40,5 +40,4 @@ import PhoneFrame from "./PhoneFrame.astro";
       ]}
     />
   </div>
-  <span class="story-bar io-hero-bar" aria-hidden="true"><i></i></span>
 </div>

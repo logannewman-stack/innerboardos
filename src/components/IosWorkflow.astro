@@ -1,25 +1,29 @@
 ---
 /**
- * Diagram 2, the workflow, as a scroll story (SCROLL_SPEC S10). The five
- * steps of the workflow are the story's steps: while the reader scrolls, the
- * stage stays under the header and the app does each step. On a laptop a
- * browser window: the cursor clicks the Company OS Score's "See what ...
- * means" bar and the result wipes up (Assess), clicks InnerBoard OS in the
- * rail and rests on the Personal and then the Social leadership modules of
- * the Track, lighting Personal Power and Social Influence in turn (Develop),
- * clicks Tools for the Role Blueprint filled in for one role (Embed), and
- * goes back to the Track's status column (Measure); Certify holds. On
- * tablets and phones a phone does the same story. The locked line
- * "Assess → Develop → Embed → Measure → Certify" is the progress marks: each
- * word a button, the arrows text, a gold rule filling with the scroll. The
- * statement, the goal and the button follow the story (the page places them).
+ * Diagram 2, the workflow, as a scroll story on the step layout (SCROLL_SPEC
+ * S10, STORY_V2 3.7). The five steps of the workflow are the story's steps:
+ * while the reader scrolls, the stage stays under the header, the device is
+ * pinned at the left with the rail and its "01 / 05" counter, and one step's
+ * label (as the eyebrow), lead (the headline) and body show at a time at the
+ * right, changing with the screen. On a laptop a browser window: the cursor
+ * clicks the Company OS Score's "See what ... means" bar and the result
+ * wipes up (Assess), clicks InnerBoard OS in the rail and rests on the
+ * Personal and then the Social leadership modules of the Track while
+ * Develop's text gives way to Personal Power and then Social Influence (the
+ * group label "02. Develop" stays as their eyebrow), clicks Tools for the
+ * Role Blueprint filled in for one role (Embed), and goes back to the
+ * Track's status column (Measure); Certify changes only its copy (no capture
+ * shows certification honestly). On tablets and phones a phone does the same
+ * story. The locked line "Assess → Develop → Embed → Measure → Certify" is
+ * no longer the progress control: the page sets it under the statement that
+ * follows the story.
  *
- * The window is eight columns wide: 792 up to 1799 px, and the system's zoom
- * (1.12) above, where the eight columns are 888.
+ * The window is the step layout's window (700 at 1440, at most 888 from
+ * 1800); its caption follows the frame under it.
  *
  * Static (no script, reduced motion, a landscape phone, a short laptop
- * window): the line, then the five steps in order, each with its own screen
- * (a window above 734, a phone below), Develop's two items under it.
+ * window): the five steps in order, each with its own screen (a window above
+ * 734, a phone below), Develop's two items under it.
  */
 import WindowFrame from "./WindowFrame.astro";
 import PhoneFrame from "./PhoneFrame.astro";
@@ -44,7 +48,6 @@ const phone = [
   { name: "track-home", alt: "The Track on a phone: the modules under Personal leadership and Social leadership.", w: 780, h: 1688 },
   { name: "leader-blueprint", alt: "The Role Blueprint on a phone, filled in for one role.", w: 780, h: 1688 }
 ] as const;
-const labels = ["Assess", "Develop", "Embed", "Measure", "Certify"];
 const steps = [
   { label: "01. Assess.", lead: "Understand your people and where the opportunities exist.", body: "Identify current strengths, development opportunities, role expectations, and what influences performance. Create greater clarity about where your team is today and what needs to develop next.",
     w: 1.2, win: 1, phone: 1, off: 89.23,
@@ -68,67 +71,72 @@ const steps = [
     act: '{"win":{},"phone":{}}' }
 ];
 ---
-<div class="story io-wf-story" data-story="workflow" data-warm style="--story-w:5.8;--step-l:80svh;--step-l-n:68svh">
-  <p class="t-folio io-wf-arrows io-wf-arrows-static">Assess → Develop → Embed → Measure → Certify</p>
+<div class="story io-wf-story" data-story="workflow" data-story-ui="steps" data-side="left" data-kind="win" data-story-h="s" data-warm style="--story-w:5.8;--step-l:64svh;--step-l-n:58svh">
   <div class="story-track">
     <div class="story-stage">
-      <StoryMarks variant="words" class="io-wf-marks" labels={labels} label="The InnerBoard IOS workflow, step by step" />
-      <div class="story-device-box io-wf-box">
-        <div class="story-win io-wf-win">
-          <WindowFrame device="win" ww={888} label="InnerBoard IOS on a desk, step by step." screens={win} />
-          <div class="win-caps io-wf-caps">
-            {caps.map((c, i) => <p class={`win-cap t-cap-i${i === 0 ? " on" : ""}`} data-cap={i}>{c}</p>)}
+      <div class="story-device-col">
+        <StoryMarks variant="rail" labels={steps.map((s) => s.lead)} label="The InnerBoard IOS workflow, step by step" />
+        <div class="story-device-box io-wf-box">
+          <!-- Laptops: the desk window and its caption. -->
+          <div class="story-win io-wf-win">
+            <WindowFrame device="win" ww={888} label="InnerBoard IOS on a desk, step by step." screens={win} />
+            <div class="win-caps io-wf-caps">
+              {caps.map((c, i) => <p class={`win-cap t-cap-i${i === 0 ? " on" : ""}`} data-cap={i}>{c}</p>)}
+            </div>
+          </div>
+          <!-- Tablets and phones: the phone. -->
+          <div class="story-phone io-wf-phone" style="--pw-max-n:240px">
+            <PhoneFrame device="phone" width={240} style="--pw:inherit" label="InnerBoard IOS on a phone, step by step." screens={[...phone]} />
           </div>
         </div>
-        <div class="story-phone io-wf-phone">
-          <PhoneFrame device="phone" width={240} style="--pw:inherit" label="InnerBoard IOS on a phone, step by step." screens={[...phone]} />
-        </div>
       </div>
-      <ol class="story-steps io-wf-steps" data-story-text="slot">
-        {steps.map((s, i) => (
-          <li class={`story-step${i === 1 ? " io-wf-has-sub" : ""}`} data-step={i} data-w={s.w !== 1 ? s.w : undefined} data-act={s.act}>
-            {i === 1 ? (
-              <Fragment>
-                <div class="story-sub io-wf-text" data-sub="0">
-                  <p class="t-folio io-wf-label">{s.label}</p>
-                  <p class="t-title io-wf-lead">{s.lead}</p>
-                  <p class="t-body io-wf-body">{s.body}</p>
-                </div>
-                <div class="story-subs io-wf-develop">
-                  <i class="io-wf-dev-rule" aria-hidden="true"></i>
-                  <p class="t-folio io-wf-dev-label">02. Develop</p>
-                  <div class="story-sub io-wf-dev-item" data-sub="1">
-                    <p class="t-title io-wf-dev-name">Personal Power</p>
-                    <p class="t-body io-wf-dev-body">How we lead ourselves. Build the awareness, confidence, and emotional capacity to make intentional choices, take ownership, and follow through.</p>
+      <div class="story-copy io-wf-copy">
+        <ol class="story-steps io-wf-steps" role="list">
+          {steps.map((s, i) => (
+            <li class={`story-step${i === 1 ? " io-wf-has-sub" : ""}`} data-step={i} data-w={s.w !== 1 ? s.w : undefined} data-act={s.act}>
+              {i === 1 ? (
+                <Fragment>
+                  <div class="story-sub io-wf-text" data-sub="0">
+                    <p class="t-folio io-wf-label story-eyebrow">{s.label}</p>
+                    <p class="t-title io-wf-lead story-h">{s.lead}</p>
+                    <p class="t-body io-wf-body story-body">{s.body}</p>
                   </div>
-                  <div class="story-sub io-wf-dev-item" data-sub="2">
-                    <p class="t-title io-wf-dev-name">Social Influence</p>
-                    <p class="t-body io-wf-dev-body">How we co-create results with and through other people. Strengthen communication, trust, collaboration, and the ability to positively influence shared outcomes.</p>
+                  <div class="story-subs io-wf-develop">
+                    <i class="io-wf-dev-rule" aria-hidden="true"></i>
+                    <p class="t-folio io-wf-dev-label story-eyebrow">02. Develop</p>
+                    <div class="story-sub io-wf-dev-item" data-sub="1">
+                      <p class="t-title io-wf-dev-name story-h">Personal Power</p>
+                      <p class="t-body io-wf-dev-body story-body">How we lead ourselves. Build the awareness, confidence, and emotional capacity to make intentional choices, take ownership, and follow through.</p>
+                    </div>
+                    <div class="story-sub io-wf-dev-item" data-sub="2">
+                      <p class="t-title io-wf-dev-name story-h">Social Influence</p>
+                      <p class="t-body io-wf-dev-body story-body">How we co-create results with and through other people. Strengthen communication, trust, collaboration, and the ability to positively influence shared outcomes.</p>
+                    </div>
+                  </div>
+                </Fragment>
+              ) : (
+                <div class="io-wf-text">
+                  <p class="t-folio io-wf-label story-eyebrow">{s.label}</p>
+                  <p class="t-title io-wf-lead story-h">{s.lead}</p>
+                  <p class="t-body io-wf-body story-body">{s.body}</p>
+                </div>
+              )}
+              <span class="sr-only story-alt">{s.alt}</span>
+              {s.win !== null && (
+                <div class="story-static io-wf-fig">
+                  <div class="static-desk">
+                    <WindowFrame ww={640} screens={[win[s.win]]} />
+                    <p class="t-cap-i io-wf-fig-cap">{caps[s.win]}</p>
+                  </div>
+                  <div class="static-phone">
+                    <PhoneFrame width={180} screens={[phone[s.phone!]]} off={s.off} />
                   </div>
                 </div>
-              </Fragment>
-            ) : (
-              <div class="io-wf-text">
-                <p class="t-folio io-wf-label">{s.label}</p>
-                <p class="t-title io-wf-lead">{s.lead}</p>
-                <p class="t-body io-wf-body">{s.body}</p>
-              </div>
-            )}
-            <span class="sr-only story-alt">{s.alt}</span>
-            {s.win !== null && (
-              <div class="story-static io-wf-fig">
-                <div class="static-desk">
-                  <WindowFrame ww={640} screens={[win[s.win]]} />
-                  <p class="t-cap-i io-wf-fig-cap">{caps[s.win]}</p>
-                </div>
-                <div class="static-phone">
-                  <PhoneFrame width={180} screens={[phone[s.phone!]]} off={s.off} />
-                </div>
-              </div>
-            )}
-          </li>
-        ))}
-      </ol>
+              )}
+            </li>
+          ))}
+        </ol>
+      </div>
     </div>
     <div class="story-run" aria-hidden="true"></div>
   </div>
