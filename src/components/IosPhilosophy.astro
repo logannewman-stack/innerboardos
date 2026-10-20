@@ -82,12 +82,15 @@ const head = [
   .io-ring-line { fill: rgba(244,239,228,.025); stroke: #c9ab66; stroke-width: 1.1; }
   .io-core { fill: #1b3052; }
   .io-core-ring { fill: none; stroke: #c9ab66; stroke-width: 1.4; }
-  .ring-name { font-family: var(--font-sans); font-size: 14px; font-weight: 600; letter-spacing: .14em; fill: #f4efe4; }
+  /* The names take the page's text colour (cream on navy), so when the page cross fades to cream with
+   * the drawing's foot still in view they turn ink instead of vanishing. The centre word sits on the
+   * navy disc and stays cream. */
+  .ring-name { font-family: var(--font-sans); font-size: 14px; font-weight: 600; letter-spacing: .14em; fill: var(--fg); transition: fill .5s var(--ease); }
   .io-core-word { font-family: var(--font-display); font-size: 34px; font-weight: 500; fill: #f4efe4; }
   .io-phil-orbit .draw-line { fill: none; stroke: #c9ab66; stroke-width: 1; stroke-linecap: round; }
   .io-phil-orbit .draw-head { fill: #c9ab66; }
   /* Each name fades in once its ring has finished drawing. */
-  :global(.js) .ring-name { opacity: 0; transition: opacity .4s var(--ease); transition-delay: calc(var(--d, 0s) + 1.2s); }
+  :global(.js) .ring-name { opacity: 0; transition: opacity .4s var(--ease) calc(var(--d, 0s) + 1.2s), fill .5s var(--ease); }
   :global(.js) .io-phil-svg.in .ring-name { opacity: 1; }
   @media (prefers-reduced-motion: reduce) { :global(.js) .ring-name { opacity: 1; transition: none; } }
   @media (max-width: 734px) { .ring-name { font-size: 17px; } .io-core-word { font-size: 40px; } }

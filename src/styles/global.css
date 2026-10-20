@@ -444,3 +444,19 @@
 .plate-linen > .lamp { background: radial-gradient(50% 45% at var(--lx, 50%) var(--ly, 0%), rgba(255,255,255,.75), transparent 72%),
   linear-gradient(to top, rgba(179,147,79,.08), transparent 30%); animation: lights 2.2s var(--ease) both; }
 .t-s-quote em, .t-s-pull em { font-style: italic; font-weight: 400; color: var(--accent); }
+/* The footer paints its own linen with ink tokens; its eyebrows keep the ink faint while the page
+ * above it is still navy (the gold eyebrow rule keys off the page theme). */
+[data-theme="navy"] .site-footer .eyebrow { color: var(--fg-3); }
+/* On a phone the footer's two columns size to their links, so "Get your Company OS Score" holds one
+ * line beside the short anchors of "On this site" (below 360 the system's even columns stay). */
+@media (min-width: 360px) and (max-width: 734px) { .ftr-cols { grid-template-columns: max-content minmax(0, 1fr); column-gap: clamp(28px, 9vw, 48px); } }
+/* Without the script the page cannot cross fade: a page that opens on navy rests on cream instead, and
+ * its navy bleeds paint themselves (.no-js [data-tone="navy"] in motion.css), as the Suite's pages do. */
+html.no-js[data-theme="navy"] {
+  --bg: #f4efe4; --fg: #1f1d1a; --fg-2: #3d3a35; --fg-3: #5c574f;
+  --line: rgba(31,29,26,.12); --line-strong: rgba(31,29,26,.22); --accent: #6e5724;
+  --btn-line: rgba(31,29,26,.24); --btn-hover: rgba(31,29,26,.05); --lit-off: rgba(31,29,26,.22); --focus: #6e5724; --dark: 0;
+}
+html.no-js[data-theme="navy"] main .eyebrow { color: var(--fg-3); }
+html.no-js main [data-tone="navy"] { --line-strong: rgba(244,239,228,.32); --btn-hover: rgba(244,239,228,.06); --dark: 1; }
+html.no-js main [data-tone="navy"] .eyebrow { color: #c9ab66; }

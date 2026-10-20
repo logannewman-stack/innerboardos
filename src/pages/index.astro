@@ -320,6 +320,11 @@ const audiences = [
    * rules never reach a shared component. Every text colour is a role token,
    * so the overlap of a tone cross fade reads correctly. */
 
+  /* The system's wipe parks its mask at 100%, where the 1% ramp still shows the heading's first few
+   * pixels before it arrives; parked at 102% the unrevealed heading is fully hidden (same transition). */
+  .js .wipe:not(.in) { -webkit-mask-position: 102% 0; mask-position: 102% 0; }
+  @media (prefers-reduced-motion: reduce) { .js .wipe:not(.in) { -webkit-mask-position: 0 0; mask-position: 0 0; } }
+
   .io-btns { display: flex; flex-wrap: wrap; gap: 12px; }
   .io-stack > p + p { margin-top: 1em; }
   .io-nw { white-space: nowrap; }
@@ -337,13 +342,16 @@ const audiences = [
   .io-hero-lead { margin-top: 20px; color: var(--fg-2); }
   .io-hero-btns { margin-top: 32px; }
   .io-hero-cap { margin-top: 14px; }
-  .io-plate, .io-hero-phone { --plate-l: calc(var(--edge) + 8 * (var(--colw) + var(--gap))); }
-  .io-plate { position: absolute; top: 120px; bottom: 0; left: var(--plate-l); right: 0; border-radius: var(--r-lg) 0 0 var(--r-lg); z-index: 1; }
-  /* The phone's bottom lands 72 px under the plate's bottom edge (the section's bottom) at every height:
-   * 300 from the top at 1440 x 900, centred on the plate's visible width (x 1187 at 1440). */
-  .io-hero-phone { --pw: clamp(240px, min(21vw, 40vh), 340px); position: absolute; z-index: 3;
-    top: max(200px, calc(max(640px, min(100svh, 980px)) + 72px - var(--pw) * 2.224));
-    left: calc(var(--plate-l) + (100% - var(--plate-l)) / 2 - var(--pw) * .53); }
+  /* The product is the hero's object: the phone alone on the navy, about 380 wide at 1440, right aligned
+   * to the grid, in a warm halo with a deep shadow, its foot hanging past the fold onto the next section. */
+  .io-hero { overflow-x: clip; }
+  .io-hero-phone { --pw: clamp(280px, min(26.5vw, 48vh), 400px); position: absolute; z-index: 3;
+    top: max(108px, calc(max(640px, min(100svh, 980px)) + 56px - var(--pw) * 2.224));
+    left: calc(100% - var(--edge) - var(--pw) * 1.06); }
+  .io-halo { position: absolute; z-index: -1; pointer-events: none; left: 50%; top: 40%; width: 200%; aspect-ratio: 1; transform: translate(-50%, -50%);
+    border-radius: 50%; background: radial-gradient(closest-side, rgba(201,171,102,.26), rgba(201,171,102,.1) 50%, rgba(201,171,102,0) 100%); }
+  .io-hero-phone .phone { box-shadow: inset 0 0 0 .55em #0c0b09, inset 0 0 0 .9em rgba(255,255,255,.08), 0 0 0 1px rgba(201,171,102,.28),
+    0 2px 4px rgba(0,0,0,.35), 0 24px 44px -14px rgba(0,0,0,.55), 0 90px 120px -40px rgba(0,0,0,.65); }
 
   /* ── 2.2 The challenge ────────────────────────────────────────────── */
   .io-challenge { padding-top: calc(var(--sec) + 72px); padding-bottom: var(--sec); }
@@ -448,13 +456,17 @@ const audiences = [
   /* ── 2.5 The book ─────────────────────────────────────────────────── */
   .io-book-wrap { border-top: 1px solid var(--line); padding-block: var(--sec); }
   .io-book-grid { align-items: start; }
-  .io-bookmat { grid-column: 1 / span 5; grid-row: 1 / span 2; align-self: center; height: 560px; }
+  /* The mat clips the book's object shadow and its floor, so the contact shadow stays on the linen. */
+  .io-bookmat { grid-column: 1 / span 5; grid-row: 1 / span 2; align-self: center; height: 560px; overflow: hidden; }
   .io-book-floor { position: absolute; left: 50%; bottom: 28px; width: 340px; height: 64px; margin-left: -170px; border-radius: 50%; pointer-events: none;
     background: radial-gradient(50% 50% at 50% 50%, rgba(31,29,26,var(--floor-a, .3)), transparent 70%); filter: blur(10px); }
-  .io-book { position: absolute; left: 50%; bottom: 48px; width: 300px; height: 450px; margin: 0 0 0 -150px; transform: perspective(1200px) rotateY(-12deg) rotateX(1deg); transform-style: preserve-3d; transition: transform 600ms var(--ease); }
+  /* The book is one flat plane turned in perspective. A preserve-3d book (a spine rotated a quarter turn)
+   * loses its lower tiles in Chromium whenever its top is scrolled past the viewport, so the spine is
+   * drawn on the plane instead: a dark binding strip along the left edge. */
+  .io-book { position: absolute; left: 50%; bottom: 48px; width: 300px; height: 450px; margin: 0 0 0 -150px; transform: perspective(1200px) rotateY(-12deg) rotateX(1deg); transform-style: flat; transition: transform 600ms var(--ease); }
   .io-book-face { position: absolute; inset: 0; display: block; border-radius: 4px 12px 12px 4px; overflow: hidden; background: #0d1a2d; box-shadow: var(--sh-object), inset 6px 0 12px -8px rgba(0,0,0,.6); }
   .io-book-face img { width: 100%; height: 100%; object-fit: cover; }
-  .io-book-spine { position: absolute; left: -14px; top: 4px; bottom: 4px; width: 14px; display: block; background: linear-gradient(to right, rgba(0,0,0,.4), transparent), #132440; transform: rotateY(-90deg); transform-origin: right; border-radius: 3px 0 0 3px; }
+  .io-book-spine { position: absolute; left: -6px; top: 3px; bottom: 3px; width: 6px; display: block; background: linear-gradient(to right, #060d18, #132440); border-radius: 3px 0 0 3px; }
   @media (hover: hover) and (pointer: fine) { .io-bookmat:hover .io-book { transform: perspective(1200px) rotateY(-6deg) rotateX(1deg); } }
   /* The book arrives 160 ms after the mat, from a deeper turn; the floor fades in under it. */
   .js .io-bookmat .io-book { opacity: 0; }
@@ -475,6 +487,10 @@ const audiences = [
   .io-imp-quote { grid-column: 1 / span 7; margin-top: 20px; color: var(--fg); }
   .io-imp-lit { grid-column: 1 / span 9; margin-top: var(--head-gap); }
   .io-imp-lit p { max-width: 23em; }
+  /* The lead phrases carry the emphasis by tone (cream against the paragraph's secondary); at the
+   * browser's bold 700 a three line lead read heavier than every heading on the page, so they sit at
+   * the display weight of the headings instead. */
+  .io-imp-lit .lb { font-weight: 500; }
   .io-imp-lit p + p { margin-top: 1em; }
   /* Six outcomes on three column lines (x 120, 512.3, 904.6), a faded gold rule above each. */
   .io-outcomes { list-style: none; margin: 80px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--gap); row-gap: 40px; }
@@ -549,6 +565,13 @@ const audiences = [
   }
   @media (prefers-contrast: more) { .js p.io-brand-line > .lw { color: var(--accent) !important; } }
 
+  /* Below 1340 the geos' centres (spec placement: 230 px inside the right edge) would meet the centred
+   * statements; they move just past the right edge, so only the rings and the horizontal hairline show. */
+  @media (max-width: 1339px) {
+    .io-geo-solution { right: -560px; }
+    .io-geo-next { right: -560px; }
+  }
+
   /* ── Tablet (735 to 1068) ─────────────────────────────────────────── */
   @media (max-width: 1068px) {
     .io-ch-head { grid-column: 1 / span 9; }
@@ -585,9 +608,9 @@ const audiences = [
   @media (max-width: 899px) {
     .io-hero { min-height: 0; padding-bottom: 0; overflow-x: clip; }
     .io-hero-copy { grid-column: 1 / span 10; padding-top: 48px; padding-bottom: 0; }
-    .io-plate { position: relative; top: auto; left: auto; right: auto; bottom: auto; margin: 32px 0 0; height: 600px; border-radius: 0; }
-    .io-hero-phone { --pw: 272px; position: absolute; top: auto; bottom: -56px; left: calc(50% - var(--pw) * .53); }
-    .io-challenge { padding-top: calc(var(--sec) + 56px); }
+    .io-hero { padding-bottom: 72px; }
+    .io-hero-phone { --pw: 300px; position: relative; top: auto; left: auto; width: calc(var(--pw) * 1.06); margin: 48px auto 0; }
+    .io-challenge { padding-top: var(--sec); }
     .io-wf { margin-top: var(--head-gap); }
     .io-wf-line-wrap { position: absolute; left: 0; top: 0; width: 24px; height: 100%; }
     .io-wf-svg { width: 24px; height: 100%; }
@@ -620,8 +643,7 @@ const audiences = [
     .io-hero-lead { margin-top: 20px; }
     .io-hero-btns { margin-top: 32px; }
     .io-hero-cap { margin-top: 16px; }
-    .io-plate { margin-top: 32px; height: 496px; }
-    .io-hero-phone { --pw: 234px; }
+    .io-hero-phone { --pw: min(286px, calc(100vw - 88px)); margin-top: 40px; }
     .io-ch-head { grid-column: 1 / -1; }
     .io-cols { grid-template-columns: minmax(0, 1fr); }
     .io-cols > li { padding: 24px 0; }
@@ -648,6 +670,8 @@ const audiences = [
     .io-phil-rows > li { padding-block: 18px; }
     .io-how-quote { margin-top: 16px; }
     .io-wf-product { margin-top: 56px; }
+    /* The longest caption takes two lines at 350; the pager sits under both. */
+    .io-wf-caps { min-height: 2.8em; }
     .io-wf-state { margin-top: 40px; }
     .io-wf-btn .btn { width: 100%; }
     .io-book-copy { margin-top: 0; }
@@ -679,7 +703,7 @@ const audiences = [
     .io-pt-btn { grid-row: 4; margin-top: 24px; width: 100%; }
     .io-pt-btn .btn { width: 100%; }
     .io-next { padding-top: 101px; padding-bottom: 96px; }
-    .io-geo-next { --geo-size: 720px !important; --geo-o: .06 !important; right: -300px; bottom: -260px; }
+    .io-geo-next { --geo-size: 720px !important; --geo-o: .06 !important; right: -400px; bottom: -330px; }
     .io-next-in, .io-close { max-width: none; }
     .io-next-line { margin-top: 28px; }
     .io-close-rule { margin-top: 72px; }

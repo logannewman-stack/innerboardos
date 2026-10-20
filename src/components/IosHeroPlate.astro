@@ -1,11 +1,10 @@
 ---
 /**
- * The hero's object (IOS_SPEC 2.1): the linen plate that starts at column 9
- * and runs to the right edge, lit from its top centre, and the Company OS
- * Score standing on it in a drawn phone, scoring itself (the ring presses
- * the app's own "See what ... means" button, the result appears, the camera
- * leans into the score card, the statements come back) and hanging past the
- * plate's bottom edge onto the page. Both are siblings of the copy inside
+ * The hero's object: the Company OS Score in a drawn phone, alone on the navy
+ * in a warm halo (the linen plate that stood behind it sat where a photograph
+ * used to be and is gone by the client's direction), scoring itself (the ring presses
+ * the app's own "See what ... means" button, the result appears, the statements come back; no camera move onto the
+ * sample score) and hanging past the fold onto the page. Both are siblings of the copy inside
  * the hero section, which positions them; the CSS lives in index.astro.
  * The phone arrives on load through the reveal gate (data-reveal-at="1": the
  * hero's centre is always inside the first viewport), so it rises even on a
@@ -13,20 +12,18 @@
  */
 import PhoneFrame from "./PhoneFrame.astro";
 ---
-<div class="plate-linen grain grain-cream io-plate" data-surface="light" aria-hidden="true">
-  <i class="lamp" aria-hidden="true" style="--lx:50%;--ly:0%" data-parallax="-48"></i>
-</div>
 <div class="io-hero-phone rise-obj floor-on" style="--d:.3s" data-reveal-at="1">
+  <i class="io-halo" aria-hidden="true"></i>
   <PhoneFrame
     id="hero-phone"
-    width={302}
+    width={380}
     style="--pw:inherit"
     eager
-    shadow="light"
+    shadow="dark"
     tilt={3}
     parallax={-36}
     loop={2400}
-    flow='[["hold",1200],["tap",50,95.6],["state",1,320],["hold",5200],["cam",1.18,50,14,1200],["hold",2000],["cam",1,50,50,1000],["hold",800],["state",0,320],["end"]]'
+    flow='[["hold",1200],["tap",50,95.6],["state",1,320],["hold",6400],["state",0,320],["end"]]'
     screens={[
       { name: "score-upstream-scored", alt: "The Company OS Score on a phone: four of its statements scored on the ten point scale, and the button that shows what the score means.", w: 780, h: 1688 },
       { name: "score-upstream-result", alt: "The Company OS Score result: the score, its reading, and the lowest statements with the chapter that answers each.", w: 780, h: 1688 }

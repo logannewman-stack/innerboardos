@@ -4,7 +4,10 @@
  * picks the page's first tone, written server side on <html data-theme> so
  * the first paint is right before the script runs: "navy" on the homepage,
  * "cream" on the legal pages. `navStart` seeds the header tone ("dark" on
- * the homepage, "light" on the legal pages).
+ * the homepage, "light" on the legal pages). The structured data names the
+ * organization only: the founder's name appears on the site where the brief
+ * puts it (the closing quote, the book's author line, the footer credit) and
+ * nowhere else, as on the Suite.
  */
 import "../styles/global.css";
 import "../styles/motion.css";
@@ -63,7 +66,6 @@ const imageUrl = new URL(image, SITE.url).toString();
       "@type": "Organization",
       name: "InnerBoard",
       url: SITE.url,
-      founder: { "@type": "Person", name: SITE.founder },
       sameAs: ["https://innerboardsuite.com", "https://practiceinnerboard.com"]
     })} />
   </head>
