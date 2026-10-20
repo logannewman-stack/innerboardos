@@ -1,0 +1,106 @@
+---
+/**
+ * Diagram 2, the workflow (IOS_SPEC 2.4): five points on one drawn line,
+ * Assess to Certify, lit as the reader scrolls (1.7.14, scroll mode). The
+ * The engine measures a scroll line's progress over the svg's own height, so
+ * on a desk the svg is a 400 px transparent box laid over the steps with the
+ * line 20 px into its 40 px slot: the line draws over 400 px of scrolling and
+ * lights the steps one by one, rather than all at once in 40 px. On a phone
+ * the same svg runs down the list's left edge and its vertical path draws.
+ * The Develop sub row (Personal Power, Social Influence) belongs to the Develop
+ * step, so it lives inside that step's list item: on a desk it hangs from the
+ * Develop column under a gold tick across columns two to five (a subgrid of
+ * the five column list), on a phone it stacks under Develop. Then the
+ * companion product: the Company OS Score on a desk in a browser window,
+ * scoring itself, with the Track and the Role Blueprint behind it. Hovering
+ * Assess, Develop or Embed shows the screen that does that step (1.7.13);
+ * the pager pages it on touch and by keyboard. Drawn on cream so it never
+ * reads as the same figure as diagram 1. The page carries the layout CSS.
+ */
+import WindowFrame from "./WindowFrame.astro";
+import Arrow from "./Arrow.astro";
+import { LINKS } from "../config/links";
+
+const steps = [
+  { label: "01. Assess.", lead: "Understand your people and where the opportunities exist.", body: "Identify current strengths, development opportunities, role expectations, and what influences performance. Create greater clarity about where your team is today and what needs to develop next.", preview: 0 },
+  { label: "02. Develop.", lead: "Build the self-leadership skills and capacity your business needs.", body: "Give people practical development that strengthens how they think, communicate, solve problems, take ownership, and lead themselves. Help every person grow into the demands and opportunities of their role.", preview: 2 },
+  { label: "03. Embed.", lead: "Turn learning into everyday behavior.", body: "Development doesn't create value simply because someone completes a course. It creates value when people apply what they've learned. InnerBoard IOS brings development into daily work through intentional practice, clear expectations, and consistent application.", preview: 3 },
+  { label: "04. Measure.", lead: "Track curriculum progress through module completion.", body: "Leaders can see how many modules each person has completed. Individual answers, reflections, and written responses remain private.", preview: undefined },
+  { label: "05. Certify.", lead: "Develop leaders who can sustain and scale the work.", body: "Build internal strength through trained and certified leaders who can reinforce the methodology, support their teams, and help sustain a culture of development.", preview: undefined }
+];
+// The five column starts of a five column grid with a 23 px gap in 1200.
+const dots = [0, 244.6, 489.2, 733.8, 978.4];
+const caps = [
+  "The Company OS Score, scored on a desk.",
+  "What the score means: the reading, and the chapters that answer the lowest statements.",
+  "The Track inside Practice: the modules under Personal leadership and Social leadership.",
+  "The Role Blueprint, filled in for one role."
+];
+---
+<div class="io-wf-prog">
+  <div class="io-wf-line-wrap rise" style="--d:.1s">
+    <svg id="wf-line" class="io-wf-svg" viewBox="0 0 1200 400" preserveAspectRatio="none" data-draw="scroll" data-draw-rows="5" data-draw-for="#wf-steps" aria-hidden="true" focusable="false">
+      <path class="draw-line io-wf-h" d="M0 20H1200"></path>
+      <path class="draw-line io-wf-v" d="M600 0V400"></path>
+      {dots.map((x, i) => <circle class="draw-pop io-wf-dot" cx={x} cy="20" r="5" style={`--d:${i * 120}ms`}></circle>)}
+    </svg>
+  </div>
+  <ol id="wf-steps" class="loop-rows io-wf-steps">
+    {steps.map((s, i) => (
+      <li class={`loop-row${i === 1 ? " io-wf-has-sub" : ""}`} data-preview={s.preview} data-preview-target={s.preview !== undefined ? "#wf-win" : undefined}>
+        <div class="io-wf-main">
+          <p class="t-folio io-wf-label">{s.label}</p>
+          <p class="t-title io-wf-lead">{s.lead}</p>
+          <p class="t-body io-wf-body">{s.body}</p>
+        </div>
+        {i === 1 && (
+          <div class="io-wf-develop rise" style="--d:.2s">
+            <i class="rule-gold-v rule-draw-v io-wf-tick" aria-hidden="true"></i>
+            <i class="rule-draw io-wf-dev-rule" aria-hidden="true" style="--d:.25s"></i>
+            <div class="io-wf-dev-grid">
+              <p class="t-folio io-wf-dev-label">02. Develop</p>
+              <div class="io-wf-dev-item">
+                <p class="t-title io-wf-dev-name">Personal Power</p>
+                <p class="t-body io-wf-dev-body">How we lead ourselves. Build the awareness, confidence, and emotional capacity to make intentional choices, take ownership, and follow through.</p>
+              </div>
+              <div class="io-wf-dev-item">
+                <p class="t-title io-wf-dev-name">Social Influence</p>
+                <p class="t-body io-wf-dev-body">How we co-create results with and through other people. Strengthen communication, trust, collaboration, and the ability to positively influence shared outcomes.</p>
+              </div>
+            </div>
+          </div>
+        )}
+      </li>
+    ))}
+  </ol>
+</div>
+<div class="grid io-wf-product" data-warm>
+  <div class="io-wf-desk">
+    <WindowFrame id="wf-win" ww={792} loop={5000} class="io-wf-win rise-obj"
+      flow='[["start",40,60],["hold",1200],["move",58.6,95.7,1300],["click"],["state",1,320],["hold",2600],["cam",1.2,50,22,1300],["hold",2200],["cam",1,50,50,1100],["move",40,60,900],["hold",600],["state",0,320],["end"]]'
+      screens={[
+        { name: "desk-score-upstream-scored", alt: caps[0], x2: true },
+        { name: "desk-score-upstream-result", alt: caps[1], x2: true },
+        { name: "desk-track-home", alt: caps[2], x2: true },
+        { name: "desk-leader-blueprint", alt: caps[3], x2: true }
+      ]} />
+    <div class="io-wf-under">
+      <div class="win-caps io-wf-caps">
+        {caps.map((c, i) => <p class={`win-cap t-cap-i${i === 0 ? " on" : ""}`} data-cap={i}>{c}</p>)}
+      </div>
+      <div class="win-pager io-wf-pager" role="tablist" data-preview-target="#wf-win" aria-label="The screens on the desk">
+        {caps.map((c, i) => <button type="button" role="tab" data-go={i} aria-selected={i === 0 ? "true" : "false"} tabindex={i === 0 ? 0 : -1} aria-label={c}><i></i></button>)}
+      </div>
+    </div>
+  </div>
+  <div class="io-wf-state">
+    <div class="io-wf-statement-w">
+      <p class="t-m wipe io-wf-statement">One connected system. Continuous development. <em>Stronger execution.</em></p>
+    </div>
+    <p class="t-folio io-wf-arrows rise" style="--d:.2s">Assess → Develop → Embed → Measure → Certify</p>
+    <p class="t-lead io-wf-goal rise" style="--d:.28s">The goal is not simply to help people learn more. It's to help them do their best work, every day.</p>
+    <div class="io-wf-btn rise" style="--d:.36s">
+      <a href={LINKS.score} class="btn btn-gold" data-passthrough data-event="assessment_click" data-event-location="workflow">Get Your Company OS Score <Arrow /></a>
+    </div>
+  </div>
+</div>

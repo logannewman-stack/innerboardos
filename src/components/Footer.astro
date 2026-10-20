@@ -1,43 +1,61 @@
 ---
+/**
+ * The colophon (IOS_SPEC 1.7) on the system's markup and classes (BUILD_SPEC
+ * 1.9). Painted linen; it carries data-tone="cream" so the page returns to
+ * cream after the navy close. The IOS wordmark and the brief's closing line,
+ * the founder credit (the one mention in the footer), the three columns, the
+ * legal row.
+ */
 import Wordmark from "./Wordmark.astro";
 import { LINKS, SITE } from "../config/links";
 const year = new Date().getFullYear();
 ---
-<footer class="bg-cream-2 text-ink border-t border-line">
-  <div class="wrap py-20 sm:py-24">
-    <div class="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
-      <div>
-        <Wordmark class="text-navy" />
-        <p class="mt-4 max-w-[380px] text-[15px] text-ink-muted leading-relaxed">
-          The internal operating system for organizations. Self-leadership, measured and installed across your company, so the business stops depending on a few people to hold it together.
-        </p>
-        <p class="mt-5 text-[13px] text-ink-faint">Part of the InnerBoard ecosystem: <a class="underline underline-offset-4" href={LINKS.suite}>InnerBoardSuite.com</a></p>
+<footer class="site-footer" data-tone="cream">
+  <div class="wrap">
+    <div class="ftr-top rise">
+      <div class="ftr-blurb-col">
+        <Wordmark />
+        <p class="ftr-blurb">The people operating system for <span style="white-space:nowrap">high-performing</span> organizations.</p>
       </div>
-      <nav aria-label="Footer">
-        <p class="eyebrow mb-4">On this site</p>
-        <ul class="text-[15px] leading-[2]">
-          <li><a class="hover:underline underline-offset-4" href="/#ios">What IOS is</a></li>
-          <li><a class="hover:underline underline-offset-4" href="/#how-it-works">How it works</a></li>
-          <li><a class="hover:underline underline-offset-4" href="/#book">The book</a></li>
-          <li><a class="hover:underline underline-offset-4" href="/#impact">Impact</a></li>
-          <li><a class="hover:underline underline-offset-4" href="/#partners">Partners</a></li>
+      <p class="ftr-founder">Founded by {SITE.founder}.</p>
+    </div>
+    <div class="ftr-rule rule-draw" aria-hidden="true"></div>
+    <div class="ftr-cols">
+      <nav class="ftr-col" aria-label="Footer, on this site">
+        <p class="eyebrow">On this site</p>
+        <ul>
+          <li><a href="/#ios">What IOS is</a></li>
+          <li><a href="/#how-it-works">How it works</a></li>
+          <li><a href="/#book">The book</a></li>
+          <li><a href="/#impact">Impact</a></li>
+          <li><a href="/#who-its-for">Who it's for</a></li>
+          <li><a href="/#partners">Partners</a></li>
         </ul>
       </nav>
-      <div>
-        <p class="eyebrow mb-4">Contact</p>
-        <ul class="text-[15px] leading-[2]">
-          <li><a class="hover:underline underline-offset-4" href={LINKS.talk} data-event="consultation_click" data-event-location="footer">Talk to our team</a></li>
-          <li><a class="hover:underline underline-offset-4" href={`mailto:${LINKS.contactEmail}`}>{LINKS.contactEmail}</a></li>
-          <li><a class="hover:underline underline-offset-4" href={LINKS.score} data-passthrough data-event="assessment_click" data-event-location="footer">Get your Company OS Score</a></li>
+      <nav class="ftr-col" aria-label="Footer, contact">
+        <p class="eyebrow">Contact</p>
+        <ul>
+          <li><a href={LINKS.talk} data-event="consultation_click" data-event-location="footer">Talk to our team</a></li>
+          <li><a href={`mailto:${LINKS.contactEmail}`}>{LINKS.contactEmail}</a></li>
+          <li><a href={LINKS.score} data-passthrough data-event="assessment_click" data-event-location="footer">Get your Company OS Score</a></li>
         </ul>
-      </div>
+      </nav>
+      <nav class="ftr-col ftr-col-wide" aria-label="Footer, InnerBoard">
+        <p class="eyebrow">InnerBoard</p>
+        <ul>
+          <li><a href={LINKS.suite}>InnerBoardSuite.com</a></li>
+          <li><a href={LINKS.practice}>Practice</a></li>
+          <li><a href={LINKS.academy}>Academy</a></li>
+          <li><a href={LINKS.inq}>INQ Certification</a></li>
+        </ul>
+      </nav>
     </div>
-    <div class="hairline mt-16 pt-6 flex flex-col sm:flex-row gap-3 sm:items-center justify-between text-[12.5px] text-ink-faint">
-      <p>&copy; {year} InnerBoard. All rights reserved. Founded by {SITE.founder}.</p>
-      <div class="flex gap-5">
-        <a class="hover:underline underline-offset-4" href={LINKS.privacy}>Privacy policy</a>
-        <a class="hover:underline underline-offset-4" href={LINKS.terms}>Terms</a>
-      </div>
+    <div class="ftr-legal">
+      <p>&copy; {year} InnerBoard. All rights reserved.</p>
+      <nav aria-label="Legal">
+        <a href={LINKS.privacy}>Privacy policy</a>
+        <a href={LINKS.terms}>Terms</a>
+      </nav>
     </div>
   </div>
 </footer>

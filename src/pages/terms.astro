@@ -3,11 +3,11 @@ import Base from "../layouts/Base.astro";
 import { LINKS } from "../config/links";
 const updated = "October 19, 2026";
 ---
-<Base title="Terms of use · InnerBoard IOS" description="The terms that cover your use of innerboardos.com." path="/terms">
-  <article class="wrap pt-[120px] pb-24 max-w-[760px] prose-ib">
+<Base title="Terms of use · InnerBoard IOS" description="The terms that cover your use of innerboardos.com." path="/terms" theme="cream" navStart="light">
+  <article class="wrap prose-ib io-legal">
     <p class="eyebrow">Terms of use</p>
-    <h1 class="mt-4 text-[38px] sm:text-[48px] text-navy">The terms for this site, in plain words.</h1>
-    <p class="mt-3 text-[14px] text-ink-faint">Last updated {updated}. These terms cover innerboardos.com. Practice by InnerBoard, the app, has its own terms inside the app.</p>
+    <h1 class="t-m">The terms for this site, in plain words.</h1>
+    <p class="t-cap io-legal-date">Last updated {updated}. These terms cover innerboardos.com. Practice by InnerBoard, the app, has its own terms inside the app.</p>
 
     <h2>Using the site</h2>
     <p>You may read, link to and share the pages on this site. You may not copy the frameworks, diagrams, curriculum descriptions or book excerpts for commercial use without written permission from InnerBoard.</p>
@@ -29,11 +29,14 @@ const updated = "October 19, 2026";
 
     <h2>Questions</h2>
     <p>Write to <a href={`mailto:${LINKS.contactEmail}`}>{LINKS.contactEmail}</a>.</p>
-    <p class="text-[14px] text-ink-faint">Written in plain language; to be reviewed by counsel before launch.</p>
+    <p class="t-cap io-legal-note">Written in plain language; to be reviewed by counsel before launch.</p>
   </article>
 </Base>
-<style is:global>
-  .prose-ib h2 { font-size: 24px; margin-top: 40px; color: var(--color-navy); }
-  .prose-ib p { margin-top: 14px; font-size: 16px; line-height: 1.65; color: var(--color-ink-muted); }
-  .prose-ib a { color: var(--color-gold-ink); text-decoration: underline; text-underline-offset: 4px; }
+<style>
+  /* The legal page (IOS_SPEC 2.12): the system's prose rules; only the column and its padding are set here. */
+  .io-legal { max-width: 40em; padding-top: calc(var(--nav-h) + 64px); padding-bottom: var(--sec); }
+  .io-legal h1 { margin-top: 0; }
+  .io-legal p.t-cap { font-size: var(--fs-cap); line-height: 1.45; color: var(--fg-3); }
+  .io-legal-date { margin-top: 12px; }
+  .io-legal-note { margin-top: 28px; }
 </style>

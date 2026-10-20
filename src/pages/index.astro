@@ -1,21 +1,24 @@
 ---
 /**
- * innerboardos.com
+ * innerboardos.com (IOS_SPEC part 2).
  *
  * Built to the InnerBoard IOS Website Development & Copy Handoff (October
  * 15, 2026). The copy below is that document's, section by section, in its
- * order. The visual direction is the approved full-page reference: navy,
- * cream and muted gold, two distinct diagrams, the book, a photograph in the
- * hero and a panorama at the close.
+ * order, on the system the Suite was built on: the Company OS Score as a
+ * real product object in the hero and in the workflow section, the two
+ * diagrams drawn in the system's materials, the page tone cross fading
+ * between navy and cream, numbered eyebrows, one large serif statement per
+ * section, the stacked argument.
  */
 import Base from "../layouts/Base.astro";
 import Arrow from "../components/Arrow.astro";
 import Icon from "../components/Icon.astro";
-import CircleDiagram from "../components/CircleDiagram.astro";
-import WorkflowDiagram from "../components/WorkflowDiagram.astro";
-import AssessmentPhone from "../components/AssessmentPhone.astro";
-import Scorecard from "../components/Scorecard.astro";
-import BookCover from "../components/BookCover.astro";
+import Geo from "../components/Geo.astro";
+import Mark from "../components/Mark.astro";
+import IosHeroPlate from "../components/IosHeroPlate.astro";
+import IosPhilosophy from "../components/IosPhilosophy.astro";
+import IosWorkflow from "../components/IosWorkflow.astro";
+import IosBookStill from "../components/IosBookStill.astro";
 import { LINKS, SITE } from "../config/links";
 
 const title = "InnerBoard IOS · The people operating system";
@@ -23,269 +26,664 @@ const description =
   "Growth doesn't have to depend on you. InnerBoard IOS develops the confidence, capability and ownership of the people you already pay. Start with your Company OS Score.";
 
 const challenges = [
-  { icon: "people", name: "Too Much Depends on Too Few", body: "A handful of people carry the standards, decisions, and responsibility for everyone else." },
-  { icon: "sun", name: "Execution Isn't Consistent", body: "You have the systems. But getting people to follow through shouldn't require constant reminders." },
-  { icon: "bars", name: "Your People Aren't Growing Fast Enough", body: "The business is growing, but your team's judgment and ownership aren't keeping pace." }
+  { icon: "people", name: "Too Much Depends on Too Few.", body: "A handful of people carry the standards, decisions, and responsibility for everyone else." },
+  { icon: "sun", name: "Execution Isn't Consistent.", body: "You have the systems. But getting people to follow through shouldn't require constant reminders." },
+  { icon: "bars", name: "Your People Aren't Growing Fast Enough.", body: "The business is growing, but your team's judgment and ownership aren't keeping pace." }
+];
+
+const costs = [
+  "It shows up in decisions that never get made.",
+  "Problems that keep coming back.",
+  "Opportunities that go unnoticed.",
+  "Leaders who spend their days following up instead of moving the business forward.",
+  "And a founder who remains essential to far too much."
 ];
 
 const outcomes = [
-  { icon: "own", name: "More Ownership", body: "People who understand what's expected and take responsibility for their decisions, actions, and results." },
-  { icon: "check", name: "Stronger Execution", body: "Teams that follow through consistently, solve problems, and turn expectations into daily habits." },
-  { icon: "up", name: "Greater Leadership Capacity", body: "Managers and team members who grow the self-trust and skill to lead themselves and others." },
-  { icon: "door", name: "Less Founder Dependency", body: "People who can make decisions, solve problems, and execute without everything coming back to you." },
-  { icon: "culture", name: "A Stronger Culture", body: "An environment where people understand what's expected, trust one another, and take responsibility for their contribution." },
-  { icon: "diamond", name: "Greater Enterprise Value", body: "The organizational strength, leadership capacity, and consistency that support sustainable growth and long-term business value." }
+  { icon: "own", name: "More Ownership.", body: "People who understand what's expected and take responsibility for their decisions, actions, and results." },
+  { icon: "check", name: "Stronger Execution.", body: "Teams that follow through consistently, solve problems, and turn expectations into daily habits." },
+  { icon: "up", name: "Greater Leadership Capacity.", body: "Managers and team members who grow the self-trust and skill to lead themselves and others." },
+  { icon: "door", name: "Less Founder Dependency.", body: "People who can make decisions, solve problems, and execute without everything coming back to you." },
+  { icon: "culture", name: "A Stronger Culture.", body: "An environment where people understand what's expected, trust one another, and take responsibility for their contribution." },
+  { icon: "diamond", name: "Greater Enterprise Value.", body: "The organizational strength, leadership capacity, and consistency that support sustainable growth and long-term business value." }
 ];
 
 const audiences = [
-  { name: "Founders and Owners", body: "You've built a successful business, but too much still depends on you. You want more freedom, stronger leaders, and a company that can grow without your constant involvement." },
-  { name: "CEOs and Executive Teams", body: "You have ambitious goals, operational systems, and talented people. You want a more consistent way to grow your people's skill, strengthen follow-through, and align everyday behavior with organizational performance." },
-  { name: "Growing Organizations", body: "You're adding people, expanding responsibilities, and increasing complexity. You want to develop the leadership and cultural capacity to grow without losing the standards that made the business successful." },
-  { name: "Organizations Preparing for Their Next Chapter", body: "Whether you're scaling, expanding, strengthening your leadership team, or preparing for a future transition, you want a business built on capability rather than dependency." }
+  { name: "Founders and Owners.", body: "You've built a successful business, but too much still depends on you. You want more freedom, stronger leaders, and a company that can grow without your constant involvement." },
+  { name: "CEOs and Executive Teams.", body: "You have ambitious goals, operational systems, and talented people. You want a more consistent way to grow your people's skill, strengthen follow-through, and align everyday behavior with organizational performance." },
+  { name: "Growing Organizations.", body: "You're adding people, expanding responsibilities, and increasing complexity. You want to develop the leadership and cultural capacity to grow without losing the standards that made the business successful." },
+  { name: "Organizations Preparing for Their Next Chapter.", body: "Whether you're scaling, expanding, strengthening your leadership team, or preparing for a future transition, you want a business built on capability rather than dependency." }
 ];
 ---
-<Base title={title} description={description} path="/">
-  <!-- ── 1. Hero ──────────────────────────────────────────────────────── -->
-  <section id="ios" class="on-navy relative bg-navy text-cream">
-    <div class="wrap relative pt-[128px] sm:pt-[160px] pb-20 sm:pb-28">
-      <div class="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20 lg:items-center">
-        <div class="reveal is-in max-w-[640px]">
-          <p class="eyebrow">InnerBoard Operating System</p>
-          <h1 class="mt-5 text-[46px] sm:text-[64px] lg:text-[72px] leading-[0.98]" data-words>
-            Growth doesn't have to depend <em>on you.</em>
-          </h1>
-          <p class="mt-6 font-display italic text-[21px] leading-[1.3] text-cream">You built the business. Now build the people who can grow it.</p>
-          <p class="mt-5 text-[16.5px] leading-relaxed text-cream-muted max-w-[520px]">
-            Your business has an operating system. Your people need one too. InnerBoard IOS helps you accelerate the value of the people you already pay by developing the confidence, capability, and ownership to do their best work.
-          </p>
-          <div class="mt-8 flex flex-col sm:flex-row gap-3 sm:items-center">
+<Base title={title} description={description} path="/" theme="navy" navStart="dark">
+  <!-- 1. Hero: the navy room, the linen stage, the Company OS Score on it -->
+  <section id="ios" class="io-hero" data-tone="navy">
+    <i class="lamp grain" aria-hidden="true" style="--lx:18%;--ly:0%;--la:.16"></i>
+    <div class="wrap io-hero-wrap">
+      <div class="grid">
+        <div class="io-hero-copy">
+          <p class="eyebrow rise" style="--d:.45s">InnerBoard Operating System</p>
+          <h1 data-lines class="t-xl io-h1"><span class="hl">Growth doesn't have to depend</span> <em class="hl">on you.</em></h1>
+          <p class="t-s-quote io-hero-line rise" style="--d:.5s">You built the business. Now build the people who can grow it.</p>
+          <p class="t-lead io-hero-lead rise" style="--d:.55s">Your business has an operating system. Your people need one too. InnerBoard IOS helps you accelerate the value of the people you already pay by developing the confidence, capability, and ownership to do their best work.</p>
+          <div class="io-btns io-hero-btns rise" style="--d:.6s">
             <a href={LINKS.score} class="btn btn-gold" data-passthrough data-event="assessment_click" data-event-location="hero">Get Your Company OS Score <Arrow /></a>
-            <a href={LINKS.talk} class="btn btn-outline-cream" data-event="consultation_click" data-event-location="hero">Talk to Our Team</a>
+            <a href={LINKS.talk} class="btn btn-line" data-event="consultation_click" data-event-location="hero">Talk to Our Team</a>
           </div>
-          <p class="mt-4 text-[13.5px] text-cream-faint">Take the assessment and receive your Company OS Gap Report.</p>
+          <p class="t-cap-i io-hero-cap rise" style="--d:.65s">Take the assessment and receive your Company OS Gap Report.</p>
         </div>
-        <div class="reveal is-in flex lg:justify-end" style="--d:160ms">
-          <!-- The brief's executive photograph goes here when a licensed image is approved. -->
-          <div class="w-full max-w-[440px]"><Scorecard /></div>
+      </div>
+    </div>
+    <IosHeroPlate />
+  </section>
+
+  <!-- 2. The challenge: the ruled columns and the stacked argument -->
+  <section id="challenge" class="io-challenge" data-tone="cream">
+    <div class="wrap">
+      <div class="grid">
+        <div class="io-ch-head">
+          <p class="eyebrow rise">Section one · The challenge</p>
+          <h2 class="t-l wipe">You've built a successful business. <em>Why does it still need you for everything?</em></h2>
+        </div>
+        <div class="io-ch-paras io-stack">
+          <p class="t-lead rise" style="--d:.2s">You've invested in people, systems, and processes. Yet too many decisions still come back to you.</p>
+          <p class="t-lead rise" style="--d:.27s">You're the one setting the standard, solving the problems, and making sure things get done.</p>
+          <p class="t-lead rise" style="--d:.34s">And as your business grows, so does the weight of carrying it.</p>
+        </div>
+      </div>
+      <ul class="io-cols" role="list">
+        {challenges.map((c, i) => (
+          <li class="rise" style={`--d:${(0.2 + i * 0.09).toFixed(2)}s`}>
+            <span class="io-ring" aria-hidden="true"><Icon name={c.icon} class="io-ring-icon" /></span>
+            <p class="t-title">{c.name}</p>
+            <p class="t-body">{c.body}</p>
+          </li>
+        ))}
+      </ul>
+      <div class="io-cost">
+        <div class="io-cost-in">
+          <p class="eyebrow rise">What it costs</p>
+          <p class="t-s-pull io-cost-pull rise" style="--d:.28s">The cost doesn't always appear as a line item on your financial statements.</p>
+          <ol class="io-stack-ol" data-lit="lines" data-lit-step="260">
+            {costs.map((line) => <li>{line}</li>)}
+          </ol>
+          <div class="io-cost-close-w">
+            <p class="t-l wipe io-cost-close">The opportunity isn't simply to get more out of your people. <em>It's to develop more of what they're capable of bringing to the business.</em></p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── 2. The challenge ─────────────────────────────────────────────── -->
-  <section id="challenge" class="bg-cream">
-    <div class="wrap sec-m">
-      <div class="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-start">
-        <div class="reveal">
-          <p class="eyebrow">Section one · The challenge</p>
-          <h2 class="mt-4 text-[36px] sm:text-[52px] leading-[1.02] text-navy">You've built a successful business. <em>Why does it still need you for everything?</em></h2>
-          <p class="mt-6 text-[16.5px] leading-relaxed text-ink-muted">You've invested in people, systems, and processes. Yet too many decisions still come back to you.</p>
-          <p class="mt-3 text-[16.5px] leading-relaxed text-ink-muted">You're the one setting the standard, solving the problems, and making sure things get done.</p>
-          <p class="mt-3 text-[16.5px] leading-relaxed text-ink-muted">And as your business grows, so does the weight of carrying it.</p>
+  <!-- 3. The solution: the statement, the two columns, diagram 1 -->
+  <section id="solution" class="io-solution" data-tone="navy">
+    <i class="lamp grain" aria-hidden="true" style="--lx:85%;--ly:0%;--la:.16"></i>
+    <Geo class="io-geo-solution" color="#f4efe4" opacity={0.08} />
+    <div class="wrap">
+      <div class="io-sol-head">
+        <p class="eyebrow rise">Section two · The solution</p>
+        <h2 class="t-l wipe io-sol-h2">A people operating system for <em><span class="io-nw">high-performing</span> organizations.</em></h2>
+        <p class="t-state io-sol-state rise" style="--d:.3s">Your business has an operating system. <em>Your people need one too.</em></p>
+      </div>
+      <div class="io-sol-body">
+        <div class="rule-gold" aria-hidden="true"></div>
+        <div class="grid io-sol-grid">
+          <div class="io-sol-col io-sol-col-a">
+            <p class="t-lead rise">You already have systems for how your business operates. InnerBoard IOS gives you a system for how your people operate.</p>
+            <p class="t-lead rise" style="--d:.26s">Most organizations invest heavily in processes, technology, and operational efficiency. But the people responsible for executing those systems are often left to figure out how to lead themselves, manage their emotions, build confidence, take ownership, and work effectively with others.</p>
+            <p class="t-s io-sol-changes rise" style="--d:.32s">InnerBoard IOS changes that.</p>
+            <p class="t-lead rise" style="--d:.38s">Your business systems tell people what needs to happen. InnerBoard IOS develops how people show up to make it happen.</p>
+          </div>
+          <div class="io-sol-col io-sol-col-b">
+            <p class="t-lead rise" style="--d:.24s">Designed to work alongside the systems, training, and leadership development you've already invested in, IOS helps people turn what they know into what they consistently do.</p>
+            <p class="t-lead rise" style="--d:.3s">InnerBoard IOS builds the ownership, judgment, and follow-through of the people you already employ, creating the conditions for stronger execution and better business results.</p>
+            <p class="t-lead rise" style="--d:.36s">It brings people development into the way your organization operates, rather than treating it as another training event.</p>
+            <div class="io-sol-btn rise" style="--d:.42s">
+              <a href="#how-it-works" class="btn btn-gold">See How InnerBoard IOS Works <Arrow /></a>
+            </div>
+          </div>
         </div>
-        <ul class="reveal border-t border-line lg:mt-2" style="--d:120ms">
-          {challenges.map((c) => (
-            <li class="py-6 border-b border-line">
-              <h3 class="text-[24px] leading-[1.15] text-navy">{c.name}</h3>
-              <p class="mt-2 text-[15.5px] leading-relaxed text-ink-muted max-w-[520px]">{c.body}</p>
+      </div>
+      <div class="io-phil">
+        <div class="rule-gold" aria-hidden="true"></div>
+        <div class="grid io-phil-grid">
+          <IosPhilosophy />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. How InnerBoard IOS works: diagram 2 and the window -->
+  <section id="how-it-works" class="io-how" data-tone="cream">
+    <div class="wrap">
+      <div class="grid">
+        <div class="io-how-head">
+          <p class="eyebrow rise">Section three · The InnerBoard IOS workflow</p>
+          <h2 class="t-l wipe">Know where your people are. <em>Build what they're capable of becoming.</em></h2>
+        </div>
+        <p class="t-s-quote io-how-quote rise" style="--d:.26s">You can't develop what you don't understand.</p>
+        <p class="t-lead io-how-para rise" style="--d:.3s">InnerBoard IOS begins by helping organizations identify where their people are today, what their roles require, and where the greatest opportunities for growth exist. From there, it provides a continuous system for building skill, embedding new behaviors, and measuring progress.</p>
+      </div>
+      <div class="io-wf">
+        <IosWorkflow />
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. The thinking behind InnerBoard IOS: the book still life -->
+  <section id="book" class="io-book-sec" data-tone="cream">
+    <div class="wrap io-book-wrap">
+      <div class="grid io-book-grid">
+        <IosBookStill />
+        <div class="io-book-copy">
+          <p class="eyebrow rise">Section four · The thinking behind InnerBoard IOS</p>
+          <h2 class="t-m wipe">The future of your business is <em>already in your people.</em></h2>
+          <p class="t-small io-book-author rise" style="--d:.24s">Replaceable by Leah Roling</p>
+          <div class="io-book-paras io-stack">
+            <p class="t-lead rise" style="--d:.28s">Replaceable explores what happens when organizations develop people who can think, lead, and contribute beyond the limits of their job descriptions.</p>
+            <p class="t-lead rise" style="--d:.34s">It's an invitation to rethink the relationship between leadership, human capability, and the value of a business.</p>
+          </div>
+          <p class="t-s-quote io-book-q rise" style="--d:.38s">What if your greatest opportunity for growth is already on your payroll?</p>
+          <p class="t-lead io-book-p3 rise" style="--d:.42s">You've invested in the people who make your business possible. Replaceable invites you to see what becomes possible when you invest just as intentionally in who they're capable of becoming. InnerBoard IOS provides a way to put that thinking into practice.</p>
+        </div>
+        <div class="io-book-btn rise" style="--d:.46s">
+          <a href={LINKS.book} class="btn btn-gold" data-event="book_click" data-event-location="book">Buy the Book <Arrow /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. The outcome: the lit statement and the six outcomes -->
+  <section id="impact" class="io-impact" data-tone="navy">
+    <i class="lamp grain" aria-hidden="true" style="--lx:12%;--ly:100%;--la:.16"></i>
+    <div class="wrap">
+      <div class="grid">
+        <div class="io-imp-head">
+          <p class="eyebrow rise">Section five · The outcome</p>
+          <h2 class="t-l wipe">Your business becomes stronger when <em>more people can carry it.</em></h2>
+        </div>
+        <p class="t-s-quote io-imp-quote rise" style="--d:.26s">Accelerate the value of the people you already pay.</p>
+        <div class="io-imp-lit" data-lit>
+          <p class="t-state"><b class="lb">You've already invested in your team:</b> their salaries, their benefits, their training, their time. But how much of their potential is your organization actually developing?</p>
+          <p class="t-state"><b class="lb">InnerBoard IOS helps you strengthen the people you already have</b> so they can contribute at a higher level. Not by asking them to work harder. By helping them grow into more.</p>
+          <p class="t-state"><b class="lb">What changes when your people keep their heads under pressure, know their craft, and are all in on doing their best work?</b> Managers who don't wait for you to solve every problem. Employees who understand their responsibilities and own their results. A culture where ownership doesn't have to be demanded. And a business that keeps performing, improving, and growing without your involvement in every decision.</p>
+        </div>
+      </div>
+      <ul class="io-outcomes" role="list">
+        {outcomes.map((o, i) => (
+          <li class="rise" style={`--d:${(0.2 + i * 0.08).toFixed(2)}s`}>
+            <span class="io-ring" aria-hidden="true"><Icon name={o.icon} class="io-ring-icon" /></span>
+            <p class="t-title">{o.name}</p>
+            <p class="t-body">{o.body}</p>
+          </li>
+        ))}
+      </ul>
+      <div class="io-imp-close">
+        <div class="rule-gold" aria-hidden="true"></div>
+        <div class="grid io-imp-close-grid">
+          <div class="io-imp-close-copy">
+            <p class="t-s-quote io-imp-close-q rise">You don't necessarily need more people to create more value. You need to develop more of the potential in the people you already employ.</p>
+            <p class="t-lead io-imp-close-p rise" style="--d:.28s">The business you've built should create opportunity, not become another thing you can never step away from.</p>
+          </div>
+          <div class="io-imp-close-btn rise" style="--d:.34s">
+            <a href={LINKS.talk} class="btn btn-gold" data-event="consultation_click" data-event-location="impact">Talk to Our Team <Arrow /></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Who InnerBoard IOS is for: the ledger -->
+  <section id="who-its-for" class="io-who" data-tone="cream">
+    <div class="wrap">
+      <div class="grid">
+        <div class="io-who-head">
+          <p class="eyebrow rise">Section six · Built for organizations ready to grow</p>
+          <h2 class="t-l wipe">You've built something valuable. <em>Now it's time to make it stronger.</em></h2>
+        </div>
+        <p class="t-lead io-who-para rise" style="--d:.3s">InnerBoard IOS is designed for founders, CEOs, and leadership teams who recognize that their next stage of growth depends on developing the people already inside their organization.</p>
+      </div>
+      <div class="io-ledger-wrap">
+        <i class="rule-draw io-ledger-top" aria-hidden="true"></i>
+        <i class="rule-draw-v io-ledger-v" aria-hidden="true"></i>
+        <ul class="io-ledger" role="list">
+          {audiences.map((a, i) => (
+            <li class="rise" style={`--d:${(0.2 + i * 0.09).toFixed(2)}s`}>
+              <p class="t-title">{a.name}</p>
+              <p class="t-body">{a.body}</p>
             </li>
           ))}
         </ul>
       </div>
-    </div>
-    <div class="wrap border-t border-line">
-      <div class="sec-m mx-auto max-w-[760px] text-center">
-        <p class="reveal eyebrow">What it costs</p>
-        <p class="reveal mt-6 font-display italic text-[21px] sm:text-[24px] leading-[1.35] text-ink-muted" style="--d:80ms">The cost doesn't always appear as a line item on your financial statements.</p>
-        <ol class="stack mt-8" aria-label="Where the cost shows up">
-          {[
-            "It shows up in decisions that never get made.",
-            "Problems that keep coming back.",
-            "Opportunities that go unnoticed.",
-            "Leaders who spend their days following up instead of moving the business forward.",
-            "And a founder who remains essential to far too much."
-          ].map((line, i) => (
-            <li class="reveal font-display text-[24px] sm:text-[30px] leading-[1.22] text-navy" style={`--d:${120 + i * 90}ms`}>{line}</li>
-          ))}
-        </ol>
-        <p class="reveal mt-16 font-display text-[30px] sm:text-[44px] leading-[1.1] text-navy" style="--d:120ms">The opportunity isn't simply to get more out of your people. <em>It's to develop more of what they're capable of bringing to the business.</em></p>
+      <div class="io-who-btn rise" style="--d:.3s">
+        <a href={LINKS.talk} class="btn btn-gold" data-event="consultation_click" data-event-location="who">Let's Talk About Your Organization <Arrow /></a>
       </div>
     </div>
   </section>
 
-  <!-- ── 3. The solution ──────────────────────────────────────────────── -->
-  <section id="solution" class="on-navy bg-navy text-cream">
-    <div class="wrap sec-m">
-      <div class="mx-auto max-w-[900px] text-center">
-        <p class="reveal eyebrow">Section two · The solution</p>
-        <h2 class="reveal mt-5 text-[38px] sm:text-[56px] leading-[1.02]" style="--d:80ms">A people operating system for <em class="text-gold-2">high-performing organizations.</em></h2>
-        <p class="reveal mt-8 font-display text-[22px] sm:text-[28px] leading-[1.3] text-cream" style="--d:160ms">Your business has an operating system. <em>Your people need one too.</em></p>
-      </div>
-      <div class="reveal mt-16 dark-rule pt-12 grid gap-10 lg:grid-cols-2 lg:gap-16" style="--d:120ms">
-        <div class="space-y-4 text-[16.5px] leading-relaxed text-cream-muted">
-          <p>You already have systems for how your business operates. InnerBoard IOS gives you a system for how your people operate.</p>
-          <p>Most organizations invest heavily in processes, technology, and operational efficiency. But the people responsible for executing those systems are often left to figure out how to lead themselves, manage their emotions, build confidence, take ownership, and work effectively with others.</p>
-          <p class="font-display text-[24px] leading-[1.25] text-cream">InnerBoard IOS changes that.</p>
-          <p>Your business systems tell people what needs to happen. InnerBoard IOS develops how people show up to make it happen.</p>
+  <!-- 8. Partners: the margin rule -->
+  <section id="partners" class="io-partners" data-tone="cream">
+    <div class="wrap io-pt-wrap">
+      <div class="grid">
+        <div class="io-pt-head">
+          <p class="eyebrow rise">Section seven · Partners</p>
+          <h2 class="t-m wipe">Your systems help businesses operate. <em>IOS helps their people execute.</em></h2>
         </div>
-        <div class="space-y-4 text-[16.5px] leading-relaxed text-cream-muted">
-          <p>Designed to work alongside the systems, training, and leadership development you've already invested in, IOS helps people turn what they know into what they consistently do.</p>
-          <p>InnerBoard IOS builds the ownership, judgment, and follow-through of the people you already employ, creating the conditions for stronger execution and better business results.</p>
-          <p>It brings people development into the way your organization operates, rather than treating it as another training event.</p>
-          <a href="#how-it-works" class="btn btn-gold mt-4">See How InnerBoard IOS Works <Arrow /></a>
+        <div class="io-pt-paras io-stack">
+          <p class="t-lead rise" style="--d:.24s">InnerBoard IOS is designed to complement the work of consultants, coaches, and business-system implementers by developing the human capability behind organizational performance.</p>
+          <p class="t-lead rise" style="--d:.3s">Let's explore how we might work together to create greater value for the organizations you serve.</p>
         </div>
-      </div>
-      <div class="reveal mt-20 dark-rule pt-12" style="--d:120ms">
-        <p class="mx-auto max-w-[560px] text-center text-[15px] leading-relaxed text-cream-faint">Five links, in one direction. How people lead themselves becomes the culture; the culture produces the behavior; the behavior produces the results; the results set what the business is worth.</p>
-        <div class="mt-10"><CircleDiagram /></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── 4. How it works ──────────────────────────────────────────────── -->
-  <section id="how-it-works" class="bg-cream">
-    <div class="wrap sec-m">
-      <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-        <div class="reveal max-w-[720px]">
-          <p class="eyebrow">Section three · How it works</p>
-          <h2 class="mt-4 text-[36px] sm:text-[52px] leading-[1.02] text-navy">Know where your people are. <em>Build what they're capable of becoming.</em></h2>
-          <p class="mt-6 font-display text-[20px] text-ink">You can't develop what you don't understand.</p>
-          <p class="mt-3 text-[16.5px] leading-relaxed text-ink-muted">InnerBoard IOS begins by helping organizations identify where their people are today, what their roles require, and where the greatest opportunities for growth exist. From there, it provides a continuous system for building skill, embedding new behaviors, and measuring progress.</p>
-        </div>
-      </div>
-      <div class="mt-14"><WorkflowDiagram /></div>
-      <div class="reveal mt-16 grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
-        <div class="flex justify-center lg:justify-start">
-          <AssessmentPhone />
-        </div>
-        <div>
-          <p class="eyebrow">From insight to execution</p>
-          <p class="mt-3 font-display text-[26px] sm:text-[32px] leading-[1.15] text-navy">One connected system. Continuous development. <em>Stronger execution.</em></p>
-          <ul class="mt-5 flex flex-wrap gap-x-5 gap-y-1 text-[13px] font-semibold uppercase tracking-[0.12em] text-ink-faint">{["Assess", "Develop", "Embed", "Measure", "Certify"].map((w) => <li>{w}</li>)}</ul>
-          <p class="mt-5 text-[16.5px] leading-relaxed text-ink-muted max-w-[520px]">The goal is not simply to help people learn more. It's to help them do their best work, every day.</p>
-                    <a href={LINKS.score} class="btn btn-navy mt-6" data-passthrough data-event="assessment_click" data-event-location="workflow">Get Your Company OS Score <Arrow /></a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── 5. The thinking behind IOS ───────────────────────────────────── -->
-  <section id="book" class="bg-cream border-t border-line">
-    <div class="wrap sec-m">
-      <div class="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
-        <div class="reveal flex justify-center lg:justify-start"><BookCover /></div>
-        <div class="reveal" style="--d:120ms">
-          <p class="eyebrow">Section four · The thinking behind InnerBoard IOS</p>
-          <h2 class="mt-4 text-[36px] sm:text-[48px] leading-[1.06] text-navy">The future of your business is <em>already in your people.</em></h2>
-          <p class="mt-5 text-[14px] font-semibold uppercase tracking-[0.14em] text-ink-faint">Replaceable by Leah Roling</p>
-          <p class="mt-5 text-[16.5px] leading-relaxed text-ink-muted max-w-[560px]">Replaceable explores what happens when organizations develop people who can think, lead, and contribute beyond the limits of their job descriptions.</p>
-          <p class="mt-3 text-[16.5px] leading-relaxed text-ink-muted max-w-[560px]">It's an invitation to rethink the relationship between leadership, human capability, and the value of a business.</p>
-          <p class="mt-6 font-display text-[21px] sm:text-[23px] leading-[1.3] text-ink max-w-[560px]">What if your greatest opportunity for growth is already on your payroll?</p>
-          <p class="mt-4 text-[16.5px] leading-relaxed text-ink-muted max-w-[560px]">You've invested in the people who make your business possible. Replaceable invites you to see what becomes possible when you invest just as intentionally in who they're capable of becoming. InnerBoard IOS provides a way to put that thinking into practice.</p>
-          <a href={LINKS.book} class="btn btn-gold mt-8" data-event="book_click" data-event-location="book">Buy the Book <Arrow /></a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── 6. The outcome ───────────────────────────────────────────────── -->
-  <section id="impact" class="on-navy bg-navy text-cream">
-    <div class="wrap sec-m">
-      <div class="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-start">
-        <div class="reveal">
-          <p class="eyebrow">Section five · The outcome</p>
-          <h2 class="mt-4 text-[36px] sm:text-[52px] leading-[1.02]">Your business becomes stronger when <em>more people can carry it.</em></h2>
-          <p class="mt-6 font-display text-[21px] text-cream">Accelerate the value of the people you already pay.</p>
-        </div>
-        <div class="reveal space-y-3 text-[16.5px] leading-relaxed text-cream-muted" style="--d:120ms">
-          <p>You've already invested in your team: their salaries, their benefits, their training, their time. But how much of their potential is your organization actually developing?</p>
-          <p>InnerBoard IOS helps you strengthen the people you already have so they can contribute at a higher level. Not by asking them to work harder. By helping them grow into more.</p>
-          <p>What changes when your people keep their heads under pressure, know their craft, and are all in on doing their best work? Managers who don't wait for you to solve every problem. Employees who understand their responsibilities and own their results. A culture where ownership doesn't have to be demanded. And a business that keeps performing, improving, and growing without your involvement in every decision.</p>
-        </div>
-      </div>
-      <ol class="mt-14 grid gap-x-16 lg:grid-cols-2 dark-rule">
-        {outcomes.map((o, i) => (
-          <li class="reveal grid grid-cols-[40px_1fr] gap-3 py-5 border-b border-cream/12" style={`--d:${i * 60}ms`}>
-            <span class="font-display text-[20px] leading-[1.4] text-gold-2">{i + 1}</span>
-            <div>
-              <h3 class="text-[22px] leading-[1.15] text-cream">{o.name}</h3>
-              <p class="mt-1.5 text-[15px] leading-relaxed text-cream-muted">{o.body}</p>
-            </div>
-          </li>
-        ))}
-      </ol>
-      <div class="reveal mt-12 grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
-        <div>
-          <p class="font-display text-[20px] sm:text-[22px] leading-[1.35] text-cream max-w-[720px]">You don't necessarily need more people to create more value. You need to develop more of the potential in the people you already employ.</p>
-          <p class="mt-3 text-[16px] text-cream-muted max-w-[720px]">The business you've built should create opportunity, not become another thing you can never step away from.</p>
-        </div>
-        <a href={LINKS.talk} class="btn btn-gold" data-event="consultation_click" data-event-location="impact">Talk to Our Team <Arrow /></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── 7. Who it's for ──────────────────────────────────────────────── -->
-  <section id="who-its-for" class="bg-cream">
-    <div class="wrap sec-m">
-      <div class="reveal max-w-[760px]">
-        <p class="eyebrow">Section six · Who it's for</p>
-        <h2 class="mt-4 text-[36px] sm:text-[48px] leading-[1.06] text-navy">You've built something valuable. <em>Now it's time to make it stronger.</em></h2>
-        <p class="mt-5 text-[16.5px] leading-relaxed text-ink-muted">InnerBoard IOS is designed for founders, CEOs, and leadership teams who recognize that their next stage of growth depends on developing the people already inside their organization.</p>
-      </div>
-      <ul class="mt-12 grid gap-x-16 md:grid-cols-2 border-t border-line">
-        {audiences.map((a, i) => (
-          <li class="reveal py-6 border-b border-line" style={`--d:${i * 90}ms`}>
-            <h3 class="text-[24px] leading-[1.15] text-navy">{a.name}</h3>
-            <p class="mt-3 text-[15.5px] leading-relaxed text-ink-muted">{a.body}</p>
-          </li>
-        ))}
-      </ul>
-      <div class="reveal mt-12">
-        <a href={LINKS.talk} class="btn btn-navy" data-event="consultation_click" data-event-location="who">Let's Talk About Your Organization <Arrow /></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── 8. Partners ──────────────────────────────────────────────────── -->
-  <section id="partners" class="bg-cream border-t border-line">
-    <div class="wrap sec-m">
-      <div class="reveal grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
-        <div>
-          <p class="eyebrow">Section seven · Partners</p>
-          <h2 class="mt-4 text-[32px] sm:text-[40px] leading-[1.08] text-navy">Your systems help businesses operate. <em>IOS helps their people execute.</em></h2>
-          <p class="mt-5 text-[16.5px] leading-relaxed text-ink-muted max-w-[600px]">InnerBoard IOS is designed to complement the work of consultants, coaches, and business-system implementers by developing the human capability behind organizational performance.</p>
-          <p class="mt-3 text-[16.5px] leading-relaxed text-ink-muted max-w-[600px]">Let's explore how we might work together to create greater value for the organizations you serve.</p>
-        </div>
-        <div class="lg:justify-self-end">
+        <i class="rule-gold-v rule-draw-v io-pt-rule" aria-hidden="true"></i>
+        <div class="io-pt-btn rise" style="--d:.3s">
           <a href={LINKS.partner} class="btn btn-gold" data-event="partner_inquiry_click" data-event-location="partners">Explore a Partnership <Arrow /></a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── 9. Your next step ────────────────────────────────────────────── -->
-  <section id="next-step" class="on-navy bg-navy text-cream">
-    <!-- The brief's panoramic mountain photograph goes behind this section when a licensed image is approved. -->
-    <div class="wrap sec-l">
-      <div class="mx-auto max-w-[880px] text-center">
-        <p class="reveal eyebrow">Section eight · Your next step</p>
-        <h2 class="reveal mt-5 text-[40px] sm:text-[64px] leading-[1.0]" style="--d:80ms">You don't have to keep carrying <em class="text-gold-2">the business you've built.</em></h2>
-        <p class="reveal mx-auto mt-8 max-w-[600px] text-[17px] leading-relaxed text-cream-muted" style="--d:160ms">You've worked hard to create something valuable. When the people around you can help carry it, the business moves forward without needing you in every room.</p>
-        <p class="reveal mx-auto mt-6 max-w-[640px] font-display text-[22px] sm:text-[26px] leading-[1.3] text-cream" style="--d:200ms">Stronger people. Stronger execution. Less dependency on you. A business positioned to grow in value.</p>
-        <p class="reveal mx-auto mt-6 max-w-[600px] text-[17px] leading-relaxed text-cream-muted" style="--d:240ms">You built the business. Now build the people who can grow it. Let's explore what InnerBoard IOS could make possible for your organization.</p>
-        <div class="reveal mt-10 flex flex-col sm:flex-row gap-3 justify-center" style="--d:280ms">
+  <!-- 9. Your next step, and the closing brand statement -->
+  <section id="next-step" class="io-next" data-tone="navy">
+    <i class="lamp grain" aria-hidden="true" style="--lx:50%;--ly:100%;--la:.2"></i>
+    <!-- The brief's panoramic mountain photograph: when an image is approved for use it becomes this element's background-image and nothing else changes. Until then the close is flat navy with the horizon lamp. -->
+    <div class="io-panorama" aria-hidden="true"></div>
+    <Geo class="io-geo-next" color="#f4efe4" opacity={0.06} />
+    <div class="wrap">
+      <div class="io-next-in">
+        <p class="eyebrow rise">Section eight · Let's build what's next</p>
+        <h2 class="t-l wipe">You don't have to keep carrying <em>the business you've built.</em></h2>
+        <p class="t-lead io-next-lead rise" style="--d:.28s">You've worked hard to create something valuable. When the people around you can help carry it, the business moves forward without needing you in every room.</p>
+        <p class="t-s io-next-line" data-lit="lines" data-lit-step="220"><span class="lw">Stronger people.</span> <span class="lw">Stronger execution.</span> <span class="lw">Less dependency on you.</span> <span class="lw">A business positioned to grow in value.</span></p>
+        <p class="t-lead io-next-p1 rise" style="--d:.3s">You built the business. Now build the people who can grow it.</p>
+        <p class="t-lead io-next-p2 rise" style="--d:.34s">Let's explore what InnerBoard IOS could make possible for your organization.</p>
+        <div class="io-btns io-next-btns rise" style="--d:.4s">
           <a href={LINKS.talk} class="btn btn-gold" data-event="consultation_click" data-event-location="next-step">Talk to Our Team <Arrow /></a>
-          <a href={LINKS.score} class="btn btn-outline-cream" data-passthrough data-event="assessment_click" data-event-location="next-step">Get your Company OS Score</a>
+          <a href={LINKS.score} class="btn btn-line" data-passthrough data-event="assessment_click" data-event-location="next-step">Get your Company OS Score</a>
         </div>
       </div>
-      <blockquote class="reveal mx-auto mt-20 max-w-[720px] dark-rule pt-12 text-center" style="--d:120ms">
-        <p class="font-display text-[26px] sm:text-[34px] leading-[1.15]">"When people learn to lead themselves, <em>everything else changes."</em></p>
-        <footer class="mt-5 text-[14px] text-cream-muted"><span class="font-semibold text-cream">{SITE.founder}</span>, {SITE.founderTitle}</footer>
-        <p class="mt-12 text-[12px] font-semibold uppercase tracking-[0.2em] text-gold-2 leading-[2]">A more capable team. A stronger culture. A more valuable business.</p>
-        <p class="mt-5 font-display text-[22px] text-cream">InnerBoard IOS</p>
-        <p class="mt-1 text-[14px] text-cream-muted">The people operating system for high-performing organizations.</p>
-      </blockquote>
+      <div class="rule-gold io-close-rule" aria-hidden="true"></div>
+      <div class="io-close">
+        <blockquote class="quote-hang io-quote-block rise">
+          <p class="io-quote">"When people learn to lead themselves, <em>everything else changes."</em></p>
+          <footer class="t-cap io-quote-by"><b>{SITE.founder}</b>, {SITE.founderTitle}</footer>
+        </blockquote>
+        <p class="io-brand-line" data-lit="lines" data-lit-step="200"><span class="lw">A more capable team.</span> <span class="lw">A stronger culture.</span> <span class="lw">A more valuable business.</span></p>
+        <p class="io-brand-mark rise"><Mark class="io-brand-mark-svg" /><span>InnerBoard IOS</span></p>
+        <p class="t-cap-i io-brand-tag rise" style="--d:.26s">The people operating system for <span class="io-nw">high-performing</span> organizations.</p>
+      </div>
     </div>
   </section>
 </Base>
 
+<style is:global>
+  /* The homepage layout (IOS_SPEC part 2). Every number is from the spec; the
+   * system's tokens, classes and components do the rest. Prefixed io- so the
+   * rules never reach a shared component. Every text colour is a role token,
+   * so the overlap of a tone cross fade reads correctly. */
+
+  .io-btns { display: flex; flex-wrap: wrap; gap: 12px; }
+  .io-stack > p + p { margin-top: 1em; }
+  .io-nw { white-space: nowrap; }
+  .io-ring { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; box-shadow: inset 0 0 0 1px var(--line-strong); color: var(--accent); flex: none; }
+  .io-ring-icon { width: 20px; height: 20px; }
+
+  /* ── 2.1 Hero ─────────────────────────────────────────────────────── */
+  .io-hero { min-height: max(640px, min(100svh, 980px)); padding-top: var(--nav-h); overflow: visible; }
+  /* The lamp and its grain fade out over the last 96 px, so the cross fade below has no seam. */
+  .io-hero > .lamp { z-index: 0; -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 96px), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 96px), transparent); }
+  .io-hero-wrap { position: relative; z-index: 2; }
+  .io-hero-copy { grid-column: 1 / span 7; padding-top: 90px; padding-bottom: 56px; }
+  .io-h1 { max-width: 7.8em; margin: 0; }
+  .io-hero-line { margin-top: 24px; color: var(--fg); }
+  .io-hero-lead { margin-top: 20px; color: var(--fg-2); }
+  .io-hero-btns { margin-top: 32px; }
+  .io-hero-cap { margin-top: 14px; }
+  .io-plate, .io-hero-phone { --plate-l: calc(var(--edge) + 8 * (var(--colw) + var(--gap))); }
+  .io-plate { position: absolute; top: 120px; bottom: 0; left: var(--plate-l); right: 0; border-radius: var(--r-lg) 0 0 var(--r-lg); z-index: 1; }
+  /* The phone's bottom lands 72 px under the plate's bottom edge (the section's bottom) at every height:
+   * 300 from the top at 1440 x 900, centred on the plate's visible width (x 1187 at 1440). */
+  .io-hero-phone { --pw: clamp(240px, min(21vw, 40vh), 340px); position: absolute; z-index: 3;
+    top: max(200px, calc(max(640px, min(100svh, 980px)) + 72px - var(--pw) * 2.224));
+    left: calc(var(--plate-l) + (100% - var(--plate-l)) / 2 - var(--pw) * .53); }
+
+  /* ── 2.2 The challenge ────────────────────────────────────────────── */
+  .io-challenge { padding-top: calc(var(--sec) + 72px); padding-bottom: var(--sec); }
+  .io-ch-head { grid-column: 1 / span 7; }
+  .io-ch-paras { grid-column: 9 / span 4; align-self: end; color: var(--fg-2); }
+  /* Three ruled columns on the column lines 1, 5 and 9, the hairlines in the two gaps (x 516 and 924). */
+  .io-cols { list-style: none; margin: var(--head-gap) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--gap); border-top: 1px solid var(--line); }
+  .io-cols > li { position: relative; padding: 32px 32px 32px 0; }
+  .io-cols > li + li::before { content: ""; position: absolute; left: calc(-1 * var(--gap) / 2); top: 0; bottom: 0; width: 1px; background: var(--line); }
+  .io-cols .t-title { margin-top: 20px; color: var(--fg); }
+  .io-cols .t-body { margin-top: 10px; color: var(--fg-2); }
+  /* The statement moment: the stacked argument, centred in columns 3 to 10, one sentence at a time with a thread of hairline between. */
+  .io-cost { margin-top: 120px; border-top: 1px solid var(--line); padding-top: var(--sec-l); text-align: center; }
+  .io-cost-in { max-width: calc(8 * var(--colw) + 7 * var(--gap)); margin-inline: auto; }
+  .io-cost-pull { margin-inline: auto; color: var(--fg-2); }
+  .io-stack-ol { list-style: none; margin: 40px auto 0; padding: 0; }
+  .io-stack-ol > li { position: relative; font-family: var(--font-display); font-size: var(--fs-m); font-weight: 400; letter-spacing: -.018em; line-height: 1.04; text-wrap: balance; color: var(--fg); }
+  .io-stack-ol > li + li { padding-top: 44px; }
+  .io-stack-ol > li + li::before { content: ""; position: absolute; left: 50%; top: 10px; width: 1px; height: 24px; background: var(--line); }
+  .io-cost-close-w { margin-top: 72px; }
+  .io-cost-close { margin-inline: auto; }
+
+  /* ── 2.3 The solution ─────────────────────────────────────────────── */
+  .io-solution { padding-block: var(--sec-l); overflow: hidden; }
+  .io-geo-solution { right: -320px; top: -200px; z-index: 0; }
+  /* The heading block is centred in columns 3 to 10; the h2's two lines (each wider than 792 at Display L)
+   * take columns 2 to 11. */
+  .io-sol-head { max-width: calc(10 * var(--colw) + 9 * var(--gap)); margin-inline: auto; text-align: center; }
+  .io-sol-h2 { max-width: none; margin-inline: auto; }
+  .io-sol-state { max-width: calc(8 * var(--colw) + 7 * var(--gap)); margin: 28px auto 0; color: var(--fg); }
+  .io-sol-body { margin-top: 72px; }
+  .io-sol-grid { padding-top: 48px; }
+  .io-sol-col-a { grid-column: 1 / span 6; }
+  .io-sol-col-b { grid-column: 7 / span 6; }
+  .io-sol-col > .t-lead { color: var(--fg-2); }
+  .io-sol-col > .t-lead + .t-lead { margin-top: 1em; }
+  .io-sol-changes { margin-block: 20px; color: var(--fg); }
+  .io-sol-btn { margin-top: var(--btn-gap); }
+  .io-phil { margin-top: 96px; }
+  .io-phil-grid { padding-top: 64px; }
+  .io-phil-draw { grid-column: 1 / span 5; align-self: center; }
+  .io-phil-legend { grid-column: 7 / span 6; }
+  .io-phil-line { color: var(--accent); }
+  .io-phil-rows { list-style: none; margin: 20px 0 0; padding: 0; }
+  .io-phil-rows > li { position: relative; padding-block: 20px; }
+  .io-phil-rows > li::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--line-gold) 12% 88%, transparent); }
+  .io-phil-rows .t-title { color: var(--fg); }
+  .io-phil-rows .t-body { margin-top: 6px; color: var(--fg-2); }
+  .js .io-phil-rows > li:not(.on) .t-title, .js .io-phil-rows > li:not(.on) .t-body { color: inherit; }
+  .io-phil-rows .t-title, .io-phil-rows .t-body { transition: color .4s var(--ease); }
+
+  /* ── 2.4 How InnerBoard IOS works ─────────────────────────────────── */
+  .io-how { padding-block: var(--sec); }
+  .io-how-head { grid-column: 1 / span 8; grid-row: 1; }
+  .io-how-quote { grid-column: 1 / span 7; grid-row: 2; margin-top: 20px; color: var(--fg); }
+  .io-how-para { grid-column: 9 / span 4; grid-row: 1 / span 2; align-self: end; color: var(--fg-2); }
+  .io-wf { margin-top: calc(var(--head-gap) + 24px); }
+  .io-wf-prog { position: relative; }
+  .io-wf-line-wrap { position: relative; height: 40px; z-index: 0; }
+  .io-wf-svg { position: absolute; left: 0; top: 0; display: block; width: 100%; height: 400px; overflow: visible; pointer-events: none; }
+  .io-wf-steps { position: relative; z-index: 1; }
+  .io-wf-svg .draw-line { fill: none; stroke: #b3934f; stroke-opacity: .55; }
+  .io-wf-h { stroke-width: 1.25; }
+  /* The phone's vertical stroke, in user units of the 1200 x 400 box squashed to 24 px wide (1.25 px rendered); hidden on desktop. */
+  .io-wf-v { stroke-width: 62.5; visibility: hidden; }
+  .io-wf-dot { fill: #b3934f; }
+  /* Five columns on the column lines of a five column grid (x 120, 364.6, 609.2, 853.8, 1098.4 at 1440).
+   * The Develop step spans columns two to five as a subgrid: its own column holds the step, its second
+   * row holds the sub row, so the sub row belongs to Develop and the later steps sit over its first row. */
+  .io-wf-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: var(--gap); }
+  .io-wf-steps > li { grid-row: 1; min-width: 0; }
+  .io-wf-steps > li:nth-child(1) { grid-column: 1; }
+  .io-wf-steps > li:nth-child(3) { grid-column: 3; }
+  .io-wf-steps > li:nth-child(4) { grid-column: 4; }
+  .io-wf-steps > li:nth-child(5) { grid-column: 5; }
+  .io-wf-steps > li.io-wf-has-sub { grid-column: 2 / span 4; grid-row: 1 / span 2; display: grid; grid-template-columns: subgrid; grid-template-rows: subgrid; }
+  .io-wf-has-sub > .io-wf-main { grid-column: 1; grid-row: 1; }
+  .io-wf-main { padding-top: 20px; }
+  .io-wf-label { color: var(--fg-3); transition: color .4s var(--ease); }
+  .io-wf-lead { margin-top: 12px; color: var(--fg); transition: color .4s var(--ease); }
+  .io-wf-body { margin-top: 8px; color: var(--fg-2); transition: color .4s var(--ease); }
+  .js .io-wf-steps > li:not(.on) :is(.io-wf-label, .io-wf-lead, .io-wf-body, .io-wf-dev-label, .io-wf-dev-name, .io-wf-dev-body) { color: inherit; }
+  .io-wf-steps > li.on .io-wf-label { color: var(--accent); }
+  .io-wf-develop { grid-column: 1 / -1; grid-row: 2; position: relative; margin-top: 40px; padding-top: 24px; }
+  .io-wf-tick { position: absolute; left: 0; top: -24px; height: 24px; display: block; }
+  .io-wf-dev-rule { position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--line); display: block; }
+  .io-wf-dev-grid { display: grid; grid-template-columns: 160px minmax(0, 1fr) minmax(0, 1fr); column-gap: var(--gap); }
+  .io-wf-dev-label { color: var(--fg-3); padding-top: 6px; transition: color .4s var(--ease); }
+  .io-wf-dev-name { color: var(--fg); transition: color .4s var(--ease); }
+  .io-wf-dev-body { margin-top: 8px; color: var(--fg-2); transition: color .4s var(--ease); }
+  /* The companion product: the window in columns 1 to 8 with its captions and pager in a second row of a
+   * subgrid, so the statement in columns 9 to 12 ends on the window's bottom edge. */
+  .io-wf-product { margin-top: 80px; }
+  .io-wf-desk { grid-column: 1 / span 8; grid-row: 1 / span 2; display: grid; grid-template-rows: subgrid; grid-template-columns: minmax(0, 1fr); }
+  .io-wf-win { grid-row: 1; }
+  .io-wf-under { grid-row: 2; }
+  .io-wf-state { grid-column: 9 / span 4; grid-row: 1; align-self: end; }
+  .io-wf-arrows { margin-top: 20px; color: var(--accent); }
+  .io-wf-goal { margin-top: 20px; color: var(--fg-2); }
+  .io-wf-btn { margin-top: var(--btn-gap); }
+
+  /* ── 2.5 The book ─────────────────────────────────────────────────── */
+  .io-book-wrap { border-top: 1px solid var(--line); padding-block: var(--sec); }
+  .io-book-grid { align-items: start; }
+  .io-bookmat { grid-column: 1 / span 5; grid-row: 1 / span 2; align-self: center; height: 560px; }
+  .io-book-floor { position: absolute; left: 50%; bottom: 28px; width: 340px; height: 64px; margin-left: -170px; border-radius: 50%; pointer-events: none;
+    background: radial-gradient(50% 50% at 50% 50%, rgba(31,29,26,var(--floor-a, .3)), transparent 70%); filter: blur(10px); }
+  .io-book { position: absolute; left: 50%; bottom: 48px; width: 300px; height: 450px; margin: 0 0 0 -150px; transform: perspective(1200px) rotateY(-12deg) rotateX(1deg); transform-style: preserve-3d; transition: transform 600ms var(--ease); }
+  .io-book-face { position: absolute; inset: 0; display: block; border-radius: 4px 12px 12px 4px; overflow: hidden; background: #0d1a2d; box-shadow: var(--sh-object), inset 6px 0 12px -8px rgba(0,0,0,.6); }
+  .io-book-face img { width: 100%; height: 100%; object-fit: cover; }
+  .io-book-spine { position: absolute; left: -14px; top: 4px; bottom: 4px; width: 14px; display: block; background: linear-gradient(to right, rgba(0,0,0,.4), transparent), #132440; transform: rotateY(-90deg); transform-origin: right; border-radius: 3px 0 0 3px; }
+  @media (hover: hover) and (pointer: fine) { .io-bookmat:hover .io-book { transform: perspective(1200px) rotateY(-6deg) rotateX(1deg); } }
+  /* The book arrives 160 ms after the mat, from a deeper turn; the floor fades in under it. */
+  .js .io-bookmat .io-book { opacity: 0; }
+  .js .io-bookmat.in .io-book { opacity: 1; animation: io-book-in 1.2s var(--slow) .46s backwards; }
+  @keyframes io-book-in { from { opacity: 0; transform: perspective(1200px) translateY(16px) rotateY(-18deg) rotateX(1deg); } to { opacity: 1; transform: perspective(1200px) rotateY(-12deg) rotateX(1deg); } }
+  .js .io-book-floor { opacity: 0; transition: opacity 1.2s var(--slow) .6s; }
+  .js .io-bookmat.in .io-book-floor { opacity: 1; }
+  .io-book-copy { grid-column: 7 / span 6; grid-row: 1; }
+  .io-book-author { margin-top: 18px; line-height: 1.3; color: var(--fg-3); }
+  .io-book-paras { margin-top: var(--lead-gap); color: var(--fg-2); }
+  .io-book-q { margin-top: 28px; color: var(--fg); }
+  .io-book-p3 { margin-top: 16px; color: var(--fg-2); }
+  .io-book-btn { grid-column: 7 / span 6; grid-row: 2; margin-top: var(--btn-gap); }
+
+  /* ── 2.6 The outcome ──────────────────────────────────────────────── */
+  .io-impact { padding-top: var(--sec-l); padding-bottom: var(--sec); }
+  .io-imp-head { grid-column: 1 / span 8; }
+  .io-imp-quote { grid-column: 1 / span 7; margin-top: 20px; color: var(--fg); }
+  .io-imp-lit { grid-column: 1 / span 9; margin-top: var(--head-gap); }
+  .io-imp-lit p { max-width: 23em; }
+  .io-imp-lit p + p { margin-top: 1em; }
+  /* Six outcomes on three column lines (x 120, 512.3, 904.6), a faded gold rule above each. */
+  .io-outcomes { list-style: none; margin: 80px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--gap); row-gap: 40px; }
+  .io-outcomes > li { position: relative; padding-top: 24px; }
+  .io-outcomes > li::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--line-gold) 12% 88%, transparent); }
+  .io-outcomes .io-ring { box-shadow: inset 0 0 0 1px var(--line-gold); }
+  .io-outcomes .t-title { margin-top: 18px; color: var(--fg); }
+  .io-outcomes .t-body { margin-top: 8px; color: var(--fg-2); }
+  .io-imp-close { margin-top: 72px; }
+  .io-imp-close-grid { padding-top: 48px; }
+  .io-imp-close-copy { grid-column: 1 / span 8; }
+  .io-imp-close-q { color: var(--fg); }
+  .io-imp-close-p { margin-top: 16px; color: var(--fg-2); }
+  .io-imp-close-btn { grid-column: 10 / span 3; align-self: end; justify-self: end; }
+
+  /* ── 2.7 Who it's for ─────────────────────────────────────────────── */
+  .io-who { padding-block: var(--sec); }
+  .io-who-head { grid-column: 1 / span 8; }
+  .io-who-para { grid-column: 9 / span 4; align-self: end; color: var(--fg-2); }
+  /* The ledger: two columns (1 to 6, 7 to 12) with a vertical hairline at x 720, the centre of the gap. */
+  .io-ledger-wrap { position: relative; margin-top: var(--head-gap); }
+  .io-ledger-top { position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--line); display: block; }
+  .io-ledger-v { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--line); display: block; }
+  .io-ledger { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gap); }
+  .io-ledger > li { position: relative; padding: 32px 0; }
+  .io-ledger > li:nth-child(odd) { padding-right: 40px; }
+  .io-ledger > li:nth-child(even) { padding-left: 40px; }
+  .io-ledger > li:nth-child(3)::before { content: ""; position: absolute; left: 0; right: calc(-100% - var(--gap)); top: 0; height: 1px; background: var(--line); }
+  .io-ledger .t-title { color: var(--fg); }
+  .io-ledger .t-body { margin-top: 10px; color: var(--fg-2); }
+  .io-who-btn { margin-top: 48px; }
+
+  /* ── 2.8 Partners ─────────────────────────────────────────────────── */
+  .io-pt-wrap { border-top: 1px solid var(--line); padding-block: var(--sec-s); }
+  .io-pt-head { grid-column: 1 / span 7; grid-row: 1; }
+  .io-pt-paras { grid-column: 1 / span 6; grid-row: 2; margin-top: var(--lead-gap); color: var(--fg-2); }
+  /* The margin rule in the gap before column 10 (x 1025), from the eyebrow's top to the paragraphs' bottom. */
+  .io-pt-rule { grid-column: 9 / span 1; grid-row: 1 / span 2; justify-self: end; align-self: stretch; display: block; margin-right: calc(-1 * var(--gap) / 2 - .5px); }
+  .io-pt-btn { grid-column: 10 / span 3; grid-row: 1 / span 2; align-self: end; justify-self: end; }
+
+  /* ── 2.9 Your next step and 2.10 the close ────────────────────────── */
+  .io-next { padding-top: var(--sec-l); padding-bottom: 120px; overflow: hidden; }
+  .io-geo-next { right: -320px; bottom: -300px; z-index: 0; }
+  .io-panorama { position: absolute; inset: 0; z-index: 0; opacity: .5; background-size: cover; background-position: center; pointer-events: none;
+    -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 70%); mask-image: linear-gradient(to top, #000 0%, transparent 70%); }
+  .io-next-in { max-width: calc(8 * var(--colw) + 7 * var(--gap)); margin-inline: auto; text-align: center; }
+  .io-next-in .t-l { margin-inline: auto; }
+  .io-next-lead { margin: var(--lead-gap) auto 0; color: var(--fg-2); }
+  .io-next-line { margin: 32px auto 0; color: var(--fg); }
+  .io-next-p1 { margin: 24px auto 0; color: var(--fg); }
+  .io-next-p2 { margin: 8px auto 0; color: var(--fg-2); }
+  .io-next-btns { justify-content: center; margin-top: var(--btn-gap); }
+  .io-close-rule { margin-top: 96px; }
+  .io-close { padding-top: 64px; max-width: calc(8 * var(--colw) + 7 * var(--gap)); margin-inline: auto; text-align: center; }
+  .io-quote-block { margin: 0; }
+  .io-quote { font-family: var(--font-display); font-size: var(--fs-m); font-weight: 400; letter-spacing: -.018em; line-height: 1.08; text-wrap: balance; max-width: 18em; margin: 0 auto; color: var(--fg); }
+  .io-quote em { font-style: italic; font-weight: 400; color: var(--accent); }
+  .io-quote-by { margin-top: 20px; color: var(--fg-2); max-width: none; }
+  .io-quote-by b { font-weight: 500; color: var(--fg); }
+  /* The brand line in eyebrow style; its three sentences light in the accent (gold-2 on navy). */
+  .io-brand-line { margin: 56px auto 0; font-family: var(--font-sans); font-size: 12.5px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; line-height: 2; color: var(--accent); }
+  .js p.io-brand-line > .lw.on { color: var(--accent); }
+  .io-brand-mark { display: inline-flex; align-items: center; gap: 10px; margin: 24px auto 0; font-family: var(--font-display); font-size: 22px; font-weight: 500; letter-spacing: -.012em; line-height: 1; color: var(--fg); }
+  .io-brand-mark-svg { width: 26px; height: 26px; color: var(--accent); }
+  .io-brand-tag { margin: 8px auto 0; }
+
+  /* ── Reduced motion: the book at rest, the brand line lit ─────────── */
+  @media (prefers-reduced-motion: reduce) {
+    .js .io-bookmat .io-book, .js .io-bookmat.in .io-book { opacity: 1; animation: none; }
+    .js .io-book-floor { opacity: 1; transition: none; }
+    .js p.io-brand-line > .lw { color: var(--accent); }
+  }
+  @media (prefers-contrast: more) { .js p.io-brand-line > .lw { color: var(--accent) !important; } }
+
+  /* ── Tablet (735 to 1068) ─────────────────────────────────────────── */
+  @media (max-width: 1068px) {
+    .io-ch-head { grid-column: 1 / span 9; }
+    .io-ch-paras { grid-column: 1 / -1; margin-top: 28px; max-width: 34em; }
+    .io-cols > li { padding-right: 20px; }
+    .io-cost-in { max-width: calc(10 * var(--colw) + 9 * var(--gap)); }
+    .io-sol-head { max-width: none; }
+    .io-sol-col-a, .io-sol-col-b { grid-column: 1 / -1; }
+    .io-sol-col-b { margin-top: 1em; }
+    .io-phil-draw { grid-column: 3 / span 8; align-self: start; }
+    .io-phil-legend { grid-column: 1 / -1; margin-top: 48px; }
+    .io-how-head, .io-how-quote { grid-column: 1 / -1; }
+    .io-how-para { grid-column: 1 / -1; grid-row: 3; margin-top: 24px; max-width: 34em; }
+    .io-wf-steps { column-gap: 16px; }
+    .io-wf-dev-grid { grid-template-columns: 112px minmax(0, 1fr) minmax(0, 1fr); }
+    .io-wf-desk { grid-column: 1 / -1; }
+    .io-wf-state { grid-column: 1 / -1; grid-row: 3; margin-top: 48px; max-width: 36em; }
+    .io-imp-head, .io-imp-quote { grid-column: 1 / -1; }
+    .io-imp-lit { grid-column: 1 / -1; }
+    .io-outcomes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .io-imp-close-copy { grid-column: 1 / -1; }
+    .io-imp-close-btn { grid-column: 1 / -1; justify-self: start; margin-top: 28px; }
+    .io-who-head { grid-column: 1 / -1; }
+    .io-who-para { grid-column: 1 / -1; margin-top: 24px; max-width: 34em; }
+    .io-pt-head { grid-column: 1 / -1; }
+    .io-pt-paras { grid-column: 1 / -1; max-width: 34em; }
+    .io-pt-rule { display: none; }
+    .io-pt-btn { grid-column: 1 / -1; grid-row: 3; justify-self: start; margin-top: 32px; }
+    .io-next-in, .io-close { max-width: 40em; }
+  }
+
+  /* Below 900 the hero stacks (the plate becomes a band under the copy), the workflow turns vertical and
+   * the book stacks: copy, then the still life, then the button. */
+  @media (max-width: 899px) {
+    .io-hero { min-height: 0; padding-bottom: 0; overflow-x: clip; }
+    .io-hero-copy { grid-column: 1 / span 10; padding-top: 48px; padding-bottom: 0; }
+    .io-plate { position: relative; top: auto; left: auto; right: auto; bottom: auto; margin: 32px 0 0; height: 600px; border-radius: 0; }
+    .io-hero-phone { --pw: 272px; position: absolute; top: auto; bottom: -56px; left: calc(50% - var(--pw) * .53); }
+    .io-challenge { padding-top: calc(var(--sec) + 56px); }
+    .io-wf { margin-top: var(--head-gap); }
+    .io-wf-line-wrap { position: absolute; left: 0; top: 0; width: 24px; height: 100%; }
+    .io-wf-svg { width: 24px; height: 100%; }
+    .io-wf-h, .io-wf-dot { visibility: hidden; }
+    .io-wf-v { visibility: visible; }
+    .io-wf-steps { display: block; padding-left: 40px; }
+    .io-wf-steps > li, .io-wf-steps > li.io-wf-has-sub { display: block; position: relative; padding: 0 0 32px; }
+    .io-wf-steps > li:last-child { padding-bottom: 8px; }
+    .io-wf-steps > li::before { content: ""; position: absolute; left: -32px; top: 2px; width: 8px; height: 8px; border-radius: 50%; background: #b3934f; }
+    .io-wf-main { padding-top: 0; }
+    .io-wf-develop { margin-top: 28px; padding-top: 24px; }
+    .io-wf-tick { display: none; }
+    .io-wf-dev-grid { grid-template-columns: minmax(0, 1fr); row-gap: 18px; }
+    .io-wf-dev-label { padding-top: 0; }
+    .io-wf-product { margin-top: 64px; }
+    .io-book-grid { row-gap: 0; }
+    .io-book-copy { grid-column: 1 / -1; grid-row: 1; }
+    .io-bookmat { grid-column: 1 / -1; grid-row: 2; height: 520px; margin-top: 48px; }
+    .io-book-btn { grid-column: 1 / -1; grid-row: 3; }
+  }
+
+  /* ── Phone (390) ──────────────────────────────────────────────────── */
+  @media (max-width: 734px) {
+    /* Long eyebrows wrap on a phone; give the second line room. */
+    main .eyebrow { line-height: 1.5; }
+    .io-btns { flex-direction: column; gap: 10px; }
+    .io-btns .btn { width: 100%; }
+    .io-hero-copy { grid-column: 1 / -1; padding-top: 40px; }
+    .io-hero-line { margin-top: 22px; }
+    .io-hero-lead { margin-top: 20px; }
+    .io-hero-btns { margin-top: 32px; }
+    .io-hero-cap { margin-top: 16px; }
+    .io-plate { margin-top: 32px; height: 496px; }
+    .io-hero-phone { --pw: 234px; }
+    .io-ch-head { grid-column: 1 / -1; }
+    .io-cols { grid-template-columns: minmax(0, 1fr); }
+    .io-cols > li { padding: 24px 0; }
+    .io-cols > li + li { border-top: 1px solid var(--line); }
+    .io-cols > li + li::before { display: none; }
+    .io-cols .t-title { margin-top: 16px; }
+    .io-cost { margin-top: 88px; padding-top: var(--sec); }
+    .io-cost-in { max-width: none; }
+    .io-stack-ol { margin-top: 32px; }
+    .io-stack-ol > li + li { padding-top: 32px; }
+    .io-stack-ol > li + li::before { top: 6px; height: 20px; }
+    .io-cost-close-w { margin-top: 48px; }
+    .io-solution { padding-block: var(--sec); }
+    /* The geo's centre sits off the right edge so its dot never meets the heading; its ring crosses the top corner. */
+    .io-geo-solution { --geo-size: 720px !important; --geo-o: .06 !important; right: -420px; top: -300px; }
+    .io-sol-state { max-width: none; }
+    .io-sol-body { margin-top: 56px; }
+    .io-sol-grid { padding-top: 40px; }
+    .io-sol-btn .btn { width: 100%; }
+    .io-phil { margin-top: 72px; }
+    .io-phil-grid { padding-top: 48px; }
+    .io-phil-draw { grid-column: 1 / -1; }
+    .io-phil-legend { margin-top: 32px; }
+    .io-phil-rows > li { padding-block: 18px; }
+    .io-how-quote { margin-top: 16px; }
+    .io-wf-product { margin-top: 56px; }
+    .io-wf-state { margin-top: 40px; }
+    .io-wf-btn .btn { width: 100%; }
+    .io-book-copy { margin-top: 0; }
+    .io-bookmat { height: 440px; margin-top: 40px; margin-inline: calc(-1 * var(--gutter)); border-radius: 0; }
+    .io-book { width: 220px; height: 330px; margin-left: -110px; bottom: 40px; }
+    .io-book-floor { width: 250px; margin-left: -125px; bottom: 24px; height: 48px; }
+    .io-book-btn { margin-top: 32px; }
+    .io-book-btn .btn { width: 100%; }
+    .io-impact { padding-top: var(--sec); }
+    .io-imp-quote { margin-top: 16px; }
+    .io-imp-lit { margin-top: 36px; }
+    .io-outcomes { grid-template-columns: minmax(0, 1fr); row-gap: 28px; margin-top: 56px; }
+    .io-imp-close { margin-top: 56px; }
+    .io-imp-close-grid { padding-top: 36px; }
+    .io-imp-close-btn { width: 100%; }
+    .io-imp-close-btn .btn { width: 100%; }
+    .io-ledger { grid-template-columns: minmax(0, 1fr); }
+    .io-ledger-v { display: none; }
+    .io-ledger > li, .io-ledger > li:nth-child(odd), .io-ledger > li:nth-child(even) { padding: 24px 0; }
+    .io-ledger > li + li { border-top: 1px solid var(--line); }
+    .io-ledger > li:nth-child(3)::before { display: none; }
+    .io-who-btn { margin-top: 36px; }
+    .io-who-btn .btn { width: 100%; }
+    /* The margin rule becomes a 48 px horizontal gold rule above the full width button. */
+    .io-pt-rule { display: block; grid-column: 1 / -1; grid-row: 3; width: 48px; height: 1px; margin: 36px 0 0; justify-self: start; align-self: auto;
+      background: linear-gradient(90deg, var(--line-gold), var(--line-gold) 70%, transparent); transform-origin: left; }
+    .js .io-pt-rule { transform: scaleX(0); }
+    .js .io-pt-rule.in, .js .in .io-pt-rule { transform: scaleX(1); }
+    .io-pt-btn { grid-row: 4; margin-top: 24px; width: 100%; }
+    .io-pt-btn .btn { width: 100%; }
+    .io-next { padding-top: 101px; padding-bottom: 96px; }
+    .io-geo-next { --geo-size: 720px !important; --geo-o: .06 !important; right: -300px; bottom: -260px; }
+    .io-next-in, .io-close { max-width: none; }
+    .io-next-line { margin-top: 28px; }
+    .io-close-rule { margin-top: 72px; }
+    .io-close { padding-top: 48px; }
+    .io-brand-line { margin-top: 44px; }
+  }
+</style>

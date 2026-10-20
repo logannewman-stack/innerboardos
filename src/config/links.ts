@@ -32,7 +32,7 @@ export const SITE = {
   name: "InnerBoard IOS",
   url: "https://innerboardos.com",
   description:
-    "InnerBoard IOS is the internal operating system for organizations: measure self-leadership across your company, install it one module at a time, and keep it running after the launch.",
+    "Growth doesn't have to depend on you. InnerBoard IOS develops the confidence, capability and ownership of the people you already pay. Start with your Company OS Score.",
   founder: "Leah Roling",
   /** The founder's title under the closing quote is still to be confirmed. */
   founderTitle: "Founder, InnerBoard"

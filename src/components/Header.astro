@@ -1,56 +1,46 @@
 ---
+/**
+ * The header (IOS_SPEC 1.6) on the system's markup and classes (BUILD_SPEC
+ * 1.8): fixed, transparent at the top, frosted after 24 px, dark over navy
+ * (1.7.6), hidden on scroll down. The IOS wordmark, the five anchor links
+ * (no sub labels), the gold Company OS Score pill. Below 1069 px the links
+ * collapse to the burger and a full screen sheet (rendered after the header
+ * so neither the blur nor the hide transform contains it) with the two
+ * full width buttons at its foot.
+ */
 import Wordmark from "./Wordmark.astro";
 import Arrow from "./Arrow.astro";
 import { LINKS } from "../config/links";
 const nav = [
-  { href: "/#ios", label: "IOS" },
-  { href: "/#how-it-works", label: "How It Works" },
+  { href: "/#ios", label: "What IOS is" },
+  { href: "/#how-it-works", label: "How it works" },
+  { href: "/#book", label: "The book" },
   { href: "/#impact", label: "Impact" },
-  { href: "/#who-its-for", label: "Who It's For" },
   { href: "/#partners", label: "Partners" }
 ];
 ---
-<header data-header class="site-header on-navy fixed inset-x-0 top-0 z-50">
+<header data-header class="site-header">
   <div class="wrap">
-    <div class="flex items-center justify-between h-[72px]">
-      <Wordmark class="text-cream" />
-      <nav aria-label="Primary" class="hidden lg:flex items-center gap-7">
-        {nav.map((item) => (
-          <a href={item.href} class="text-[15px] font-medium text-cream/85 hover:text-cream transition-colors">{item.label}</a>
-        ))}
-        <a href={LINKS.talk} class="btn btn-sm btn-gold" data-event="consultation_click" data-event-location="header">Talk to Our Team <Arrow /></a>
+    <div class="hdr-row">
+      <Wordmark />
+      <nav aria-label="Primary" class="hdr-links">
+        {nav.map((item) => <a href={item.href} class="hdr-link">{item.label}</a>)}
+        <a href={LINKS.score} class="btn btn-sm btn-gold hdr-cta" data-passthrough data-event="assessment_click" data-event-location="header">Get Your Company OS Score <Arrow /></a>
       </nav>
-      <button
-        type="button"
-        class="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-full text-cream border border-navy-line-strong"
-        data-menu-button
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-        aria-label="Open menu"
-      >
-        <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path class="bar-1" d="M4 7h16"/><path class="bar-2" d="M4 12h16"/><path class="bar-3" d="M4 17h16"/></svg>
-      </button>
+      <button type="button" class="hdr-burger" data-menu-button aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><i></i><i></i></button>
     </div>
   </div>
-  <div id="mobile-menu" data-menu-panel class="menu-panel lg:hidden absolute inset-x-0 top-full bg-navy border-t border-navy-line shadow-float">
-    <nav aria-label="Primary, mobile" class="wrap py-4 flex flex-col">
-      {nav.map((item) => (
-        <a href={item.href} class="py-3.5 text-[17px] font-medium text-cream border-b border-navy-line last:border-0">{item.label}</a>
-      ))}
-      <a href={LINKS.talk} class="btn btn-gold mt-4" data-event="consultation_click" data-event-location="mobile-menu">Talk to Our Team <Arrow /></a>
-    </nav>
-  </div>
 </header>
+<div id="mobile-menu" data-menu-panel class="menu-panel">
+  <nav aria-label="Primary, mobile" class="wrap menu-nav">
+    {nav.map((item, i) => <a href={item.href} class="menu-link" style={`--i:${i}`}>{item.label}</a>)}
+    <div class="menu-cta menu-link" style="--i:5">
+      <a href={LINKS.talk} class="btn btn-line" data-event="consultation_click" data-event-location="mobile-menu">Talk to Our Team</a>
+      <a href={LINKS.score} class="btn btn-gold" data-passthrough data-event="assessment_click" data-event-location="mobile-menu">Get Your Company OS Score <Arrow /></a>
+    </div>
+  </nav>
+</div>
 <style>
-  .site-header { transition: background-color 240ms var(--ease-out), box-shadow 240ms var(--ease-out); }
-  .site-header.is-scrolled, :global(.menu-open) .site-header {
-    background: rgba(13, 26, 45, 0.86);
-    -webkit-backdrop-filter: blur(14px);
-    backdrop-filter: blur(14px);
-    box-shadow: 0 1px 0 var(--color-navy-line);
-  }
-  [data-menu-button][aria-expanded="true"] .bar-1 { transform: translateY(5px) rotate(45deg); }
-  [data-menu-button][aria-expanded="true"] .bar-2 { opacity: 0; }
-  [data-menu-button][aria-expanded="true"] .bar-3 { transform: translateY(-5px) rotate(-45deg); }
-  [data-menu-button] path { transform-origin: center; transition: transform 200ms var(--ease-out), opacity 150ms; }
+  /* The sheet's two full width buttons sit 10 px apart (the system's .menu-cta stacks them with the link gap of 6). */
+  .menu-cta { gap: 10px; }
 </style>
