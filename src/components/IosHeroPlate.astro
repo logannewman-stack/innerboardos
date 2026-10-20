@@ -1,32 +1,44 @@
 ---
 /**
- * The hero's object: the Company OS Score in a drawn phone, alone on the navy
- * in a warm halo (the linen plate that stood behind it sat where a photograph
- * used to be and is gone by the client's direction), scoring itself (the ring presses
- * the app's own "See what ... means" button, the result appears, the statements come back; no camera move onto the
- * sample score) and hanging past the fold onto the page. Both are siblings of the copy inside
- * the hero section, which positions them; the CSS lives in index.astro.
- * The phone arrives on load through the reveal gate (data-reveal-at="1": the
- * hero's centre is always inside the first viewport), so it rises even on a
- * phone, where only its top clears the fold.
+ * The hero's object (SCROLL_SPEC S9): the Company OS Score in a drawn phone,
+ * alone on the navy in a warm halo, as the device of the hero's scroll story.
+ * Nothing moves on its own: as the reader scrolls through the hero's three
+ * beats the later statements come in scored, the ring presses the app's own
+ * "See what ... means" bar and the result wipes up from it, then the result
+ * scrolls inside the phone until the three lowest statements and their
+ * chapters are at the top and the sample score has left the screen. There is
+ * no camera move anywhere in it, so the score is never zoomed or centred.
+ * Without the pin (no script, reduced motion, a short or landscape screen)
+ * it rests on the scored statements, as the hero has always shown it.
+ *
+ * The wrapper is the narrow layout's anchor (the phone sticks 12 px under
+ * the header there, the copy above it masked); the entrance lives on an
+ * inner wrapper so the anchor is measured where it really sits. The arrival
+ * keeps its reveal gate (data-reveal-at="1"), measured on the stage, whose
+ * centre is inside the first viewport (the section is now the stage plus the
+ * run, three viewports tall). The section's CSS (index.astro) places it.
  */
 import PhoneFrame from "./PhoneFrame.astro";
 ---
-<div class="io-hero-phone rise-obj floor-on" style="--d:.3s" data-reveal-at="1">
-  <i class="io-halo" aria-hidden="true"></i>
-  <PhoneFrame
-    id="hero-phone"
-    width={380}
-    style="--pw:inherit"
-    eager
-    shadow="dark"
-    tilt={3}
-    parallax={-36}
-    loop={2400}
-    flow='[["hold",1200],["tap",50,95.6],["state",1,320],["hold",6400],["state",0,320],["end"]]'
-    screens={[
-      { name: "score-upstream-scored", alt: "The Company OS Score on a phone: four of its statements scored on the ten point scale, and the button that shows what the score means.", w: 780, h: 1688 },
-      { name: "score-upstream-result", alt: "The Company OS Score result: the score, its reading, and the lowest statements with the chapter that answers each.", w: 780, h: 1688 }
-    ]}
-  />
+<div class="io-hero-phone" data-story-anchor="narrow">
+  <div class="io-hero-device rise-obj floor-on" style="--d:.3s" data-reveal-at="1" data-reveal-host=".io-hero-story .story-stage">
+    <i class="io-halo" aria-hidden="true"></i>
+    <PhoneFrame
+      id="hero-phone"
+      device="hero"
+      width={400}
+      style="--pw:inherit"
+      eager
+      shadow="dark"
+      tilt={3}
+      label="The Company OS Score on a phone."
+      screens={[
+        { name: "score-upstream-scored", alt: "The Company OS Score on a phone: four of its statements scored on the ten point scale, and the button that shows what the score means.", w: 780, h: 1688 },
+        { name: "score-upstream-scored-2", alt: "The Company OS Score on a phone: the last statements scored on the ten point scale.", w: 780, h: 1688 },
+        { name: "score-upstream-result", alt: "The Company OS Score result: the score, its reading, and the lowest statements with the chapter that answers each.", w: 780, h: 1688,
+          strip: { next: "score-upstream-result-2", at: 89.23, head: 6.2 } }
+      ]}
+    />
+  </div>
+  <span class="story-bar io-hero-bar" aria-hidden="true"><i></i></span>
 </div>

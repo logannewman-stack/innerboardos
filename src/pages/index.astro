@@ -56,25 +56,37 @@ const audiences = [
 ];
 ---
 <Base title={title} description={description} path="/" theme="navy" navStart="dark">
-  <!-- 1. Hero: the navy room, the linen stage, the Company OS Score on it -->
+  <!-- 1. Hero: three scroll beats (SCROLL_SPEC S9). The copy and the phone are the first screen; as the reader
+       scrolls, the later statements come in scored, the ring presses the app's own bar, the result wipes up and
+       scrolls to the three lowest; then the page continues. No camera move: the sample score is never the focus. -->
   <section id="ios" class="io-hero" data-tone="navy">
-    <i class="lamp grain" aria-hidden="true" style="--lx:18%;--ly:0%;--la:.16"></i>
-    <div class="wrap io-hero-wrap">
-      <div class="grid">
-        <div class="io-hero-copy">
-          <p class="eyebrow rise" style="--d:.45s">InnerBoard Operating System</p>
-          <h1 data-lines class="t-xl io-h1"><span class="hl">Growth doesn't have to depend</span> <em class="hl">on you.</em></h1>
-          <p class="t-s-quote io-hero-line rise" style="--d:.5s">You built the business. Now build the people who can grow it.</p>
-          <p class="t-lead io-hero-lead rise" style="--d:.55s">Your business has an operating system. Your people need one too. InnerBoard IOS helps you accelerate the value of the people you already pay by developing the confidence, capability, and ownership to do their best work.</p>
-          <div class="io-btns io-hero-btns rise" style="--d:.6s">
-            <a href={LINKS.score} class="btn btn-gold" data-passthrough data-event="assessment_click" data-event-location="hero">Get Your Company OS Score <Arrow /></a>
-            <a href={LINKS.talk} class="btn btn-line" data-event="consultation_click" data-event-location="hero">Talk to Our Team</a>
+    <div class="story io-hero-story" data-story="ios-hero" data-story-static="device" style="--story-w:3;--step-l:60svh;--step-l-n:60svh;--story-top:0px;--story-gap:0px">
+      <div class="story-track">
+        <div class="story-stage">
+          <i class="lamp grain io-hero-lamp" aria-hidden="true" style="--lx:18%;--ly:0%;--la:.16"></i>
+          <div class="wrap io-hero-wrap">
+            <div class="grid">
+              <div class="io-hero-copy">
+                <p class="eyebrow rise" style="--d:.45s">InnerBoard Operating System</p>
+                <h1 data-lines class="t-xl io-h1"><span class="hl">Growth doesn't have to depend</span> <em class="hl">on you.</em></h1>
+                <p class="t-s-quote io-hero-line rise" style="--d:.5s">You built the business. Now build the people who can grow it.</p>
+                <p class="t-lead io-hero-lead rise" style="--d:.55s">Your business has an operating system. Your people need one too. InnerBoard IOS helps you accelerate the value of the people you already pay by developing the confidence, capability, and ownership to do their best work.</p>
+                <div class="io-btns io-hero-btns rise" style="--d:.6s">
+                  <a href={LINKS.score} class="btn btn-gold" data-passthrough data-event="assessment_click" data-event-location="hero">Get Your Company OS Score <Arrow /></a>
+                  <a href={LINKS.talk} class="btn btn-line" data-event="consultation_click" data-event-location="hero">Talk to Our Team</a>
+                </div>
+                <p class="t-cap-i io-hero-cap rise" style="--d:.65s">Take the assessment and receive your Company OS Gap Report.</p>
+              </div>
+            </div>
           </div>
-          <p class="t-cap-i io-hero-cap rise" style="--d:.65s">Take the assessment and receive your Company OS Gap Report.</p>
+          <IosHeroPlate />
+          <i class="story-beat" aria-hidden="true" data-step="0" data-act='{"hero":{"f":0,"next":[.3,1]}}'></i>
+          <i class="story-beat" aria-hidden="true" data-step="1" data-act='{"hero":{"tap":[50,95.6,.5],"next":[.54,2]}}'></i>
+          <i class="story-beat" aria-hidden="true" data-step="2" data-act='{"hero":{"scroll":[.18,.76,0,89.23]}}'></i>
         </div>
+        <div class="story-run" aria-hidden="true"></div>
       </div>
     </div>
-    <IosHeroPlate />
   </section>
 
   <!-- 2. The challenge: the ruled columns and the stacked argument -->
@@ -166,6 +178,18 @@ const audiences = [
       </div>
       <div class="io-wf">
         <IosWorkflow />
+      </div>
+      <!-- The statement, the goal and the button follow the story once the stage releases. -->
+      <div class="grid io-wf-after">
+        <div class="io-wf-state">
+          <p class="t-m wipe io-wf-statement"><span class="io-wf-sl">One connected system.</span> <span class="io-wf-sl">Continuous development.</span> <em class="io-wf-sl">Stronger execution.</em></p>
+        </div>
+        <div class="io-wf-close">
+          <p class="t-lead io-wf-goal rise" style="--d:.2s">The goal is not simply to help people learn more. It's to help them do their best work, every day.</p>
+          <div class="io-wf-btn rise" style="--d:.28s">
+            <a href={LINKS.score} class="btn btn-gold" data-passthrough data-event="assessment_click" data-event-location="workflow">Get Your Company OS Score <Arrow /></a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -318,7 +342,10 @@ const audiences = [
   /* The homepage layout (IOS_SPEC part 2). Every number is from the spec; the
    * system's tokens, classes and components do the rest. Prefixed io- so the
    * rules never reach a shared component. Every text colour is a role token,
-   * so the overlap of a tone cross fade reads correctly. */
+   * so the overlap of a tone cross fade reads correctly. The two app
+   * demonstrations (the hero and the workflow) are scroll stories
+   * (SCROLL_SPEC S9 and S10): static by default, pinned only under the story
+   * engine's media queries, at the end of this block. */
 
   /* The system's wipe parks its mask at 100%, where the 1% ramp still shows the heading's first few
    * pixels before it arrives; parked at 102% the unrevealed heading is fully hidden (same transition). */
@@ -331,10 +358,16 @@ const audiences = [
   .io-ring { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; box-shadow: inset 0 0 0 1px var(--line-strong); color: var(--accent); flex: none; }
   .io-ring-icon { width: 20px; height: 20px; }
 
-  /* ── 2.1 Hero ─────────────────────────────────────────────────────── */
-  .io-hero { min-height: max(640px, min(100svh, 980px)); padding-top: var(--nav-h); overflow: visible; }
-  /* The lamp and its grain fade out over the last 96 px, so the cross fade below has no seam. */
-  .io-hero > .lamp { z-index: 0; -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 96px), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 96px), transparent); }
+  /* ── 2.1 Hero (SCROLL_SPEC S9) ────────────────────────────────────── */
+  /* Static (no script, reduced motion, a landscape phone, a short laptop window): the hero as it always was,
+   * the copy at the left and the phone at the right on the scored statements, its foot hanging past the fold.
+   * The section's padding lives on the stage, so the stage is the first screen in every layout. */
+  .io-hero { --hero-h: max(640px, min(100svh, 980px)); padding: 0; overflow-x: clip; }
+  .io-hero-story .story-stage { min-height: var(--hero-h); padding-top: var(--nav-h); }
+  /* The lamp is in the stage, so the light stays with the pinned copy; it fades in with the navy theme and
+   * out over its last 96 px, so the hero has no seam. */
+  .io-hero-lamp { z-index: 0; opacity: 0; transition: opacity .5s var(--ease); -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 96px), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 96px), transparent); }
+  html[data-theme="navy"] .io-hero-lamp { opacity: 1; }
   .io-hero-wrap { position: relative; z-index: 2; }
   .io-hero-copy { grid-column: 1 / span 7; padding-top: 90px; padding-bottom: 56px; }
   .io-h1 { max-width: 7.8em; margin: 0; }
@@ -344,14 +377,22 @@ const audiences = [
   .io-hero-cap { margin-top: 14px; }
   /* The product is the hero's object: the phone alone on the navy, about 380 wide at 1440, right aligned
    * to the grid, in a warm halo with a deep shadow, its foot hanging past the fold onto the next section. */
-  .io-hero { overflow-x: clip; }
-  .io-hero-phone { --pw: clamp(280px, min(26.5vw, 48vh), 400px); position: absolute; z-index: 3;
-    top: max(108px, calc(max(640px, min(100svh, 980px)) + 56px - var(--pw) * 2.224));
+  .io-hero-phone { --pw: clamp(280px, min(26.5vw, 48vh), 400px); position: absolute; z-index: 3; width: calc(var(--pw) * 1.06);
+    top: max(108px, calc(var(--hero-h) + 56px - var(--pw) * 2.224));
     left: calc(100% - var(--edge) - var(--pw) * 1.06); }
+  .io-hero-device { position: relative; }
   .io-halo { position: absolute; z-index: -1; pointer-events: none; left: 50%; top: 40%; width: 200%; aspect-ratio: 1; transform: translate(-50%, -50%);
     border-radius: 50%; background: radial-gradient(closest-side, rgba(201,171,102,.26), rgba(201,171,102,.1) 50%, rgba(201,171,102,0) 100%); }
   .io-hero-phone .phone { box-shadow: inset 0 0 0 .55em #0c0b09, inset 0 0 0 .9em rgba(255,255,255,.08), 0 0 0 1px rgba(201,171,102,.28),
     0 2px 4px rgba(0,0,0,.35), 0 24px 44px -14px rgba(0,0,0,.55), 0 90px 120px -40px rgba(0,0,0,.65); }
+  /* The story's one bar, under the phone's floor, gold on navy, filling with the three beats. */
+  .io-hero-bar { margin-top: 26px; }
+  .io-hero-bar > i { background: #c9ab66; }
+  /* A laptop window under 760 tall (audit 2, P2 7): the caption ends inside the first screen. */
+  @media (min-width: 900px) and (max-height: 760px) {
+    .io-hero-copy { padding-top: 56px; }
+    .io-hero-btns { margin-top: 24px; }
+  }
 
   /* ── 2.2 The challenge ────────────────────────────────────────────── */
   .io-challenge { padding-top: calc(var(--sec) + 72px); padding-bottom: var(--sec); }
@@ -403,54 +444,49 @@ const audiences = [
   .js .io-phil-rows > li:not(.on) .t-title, .js .io-phil-rows > li:not(.on) .t-body { color: inherit; }
   .io-phil-rows .t-title, .io-phil-rows .t-body { transition: color .4s var(--ease); }
 
-  /* ── 2.4 How InnerBoard IOS works ─────────────────────────────────── */
+  /* ── 2.4 How InnerBoard IOS works (SCROLL_SPEC S10) ───────────────── */
   .io-how { padding-block: var(--sec); }
   .io-how-head { grid-column: 1 / span 8; grid-row: 1; }
   .io-how-quote { grid-column: 1 / span 7; grid-row: 2; margin-top: 20px; color: var(--fg); }
   .io-how-para { grid-column: 9 / span 4; grid-row: 1 / span 2; align-self: end; color: var(--fg-2); }
   .io-wf { margin-top: calc(var(--head-gap) + 24px); }
-  .io-wf-prog { position: relative; }
-  .io-wf-line-wrap { position: relative; height: 40px; z-index: 0; }
-  .io-wf-svg { position: absolute; left: 0; top: 0; display: block; width: 100%; height: 400px; overflow: visible; pointer-events: none; }
-  .io-wf-steps { position: relative; z-index: 1; }
-  .io-wf-svg .draw-line { fill: none; stroke: #b3934f; stroke-opacity: .55; }
-  .io-wf-h { stroke-width: 1.25; }
-  /* The phone's vertical stroke, in user units of the 1200 x 400 box squashed to 24 px wide (1.25 px rendered); hidden on desktop. */
-  .io-wf-v { stroke-width: 62.5; visibility: hidden; }
-  .io-wf-dot { fill: #b3934f; }
-  /* Five columns on the column lines of a five column grid (x 120, 364.6, 609.2, 853.8, 1098.4 at 1440).
-   * The Develop step spans columns two to five as a subgrid: its own column holds the step, its second
-   * row holds the sub row, so the sub row belongs to Develop and the later steps sit over its first row. */
-  .io-wf-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: var(--gap); }
-  .io-wf-steps > li { grid-row: 1; min-width: 0; }
-  .io-wf-steps > li:nth-child(1) { grid-column: 1; }
-  .io-wf-steps > li:nth-child(3) { grid-column: 3; }
-  .io-wf-steps > li:nth-child(4) { grid-column: 4; }
-  .io-wf-steps > li:nth-child(5) { grid-column: 5; }
-  .io-wf-steps > li.io-wf-has-sub { grid-column: 2 / span 4; grid-row: 1 / span 2; display: grid; grid-template-columns: subgrid; grid-template-rows: subgrid; }
-  .io-wf-has-sub > .io-wf-main { grid-column: 1; grid-row: 1; }
-  .io-wf-main { padding-top: 20px; }
-  .io-wf-label { color: var(--fg-3); transition: color .4s var(--ease); }
-  .io-wf-lead { margin-top: 12px; color: var(--fg); transition: color .4s var(--ease); }
-  .io-wf-body { margin-top: 8px; color: var(--fg-2); transition: color .4s var(--ease); }
-  .js .io-wf-steps > li:not(.on) :is(.io-wf-label, .io-wf-lead, .io-wf-body, .io-wf-dev-label, .io-wf-dev-name, .io-wf-dev-body) { color: inherit; }
-  .io-wf-steps > li.on .io-wf-label { color: var(--accent); }
-  .io-wf-develop { grid-column: 1 / -1; grid-row: 2; position: relative; margin-top: 40px; padding-top: 24px; }
-  .io-wf-tick { position: absolute; left: 0; top: -24px; height: 24px; display: block; }
+  /* Static: the locked line, then the five steps stacked, each with its own screen (the step's end frame): a
+   * window above 734, a phone at 734 and below; Develop's two items under its text. */
+  .io-wf-arrows { color: var(--accent); }
+  .io-wf-arrows-static { margin: 0 0 24px; line-height: 1.5; }
+  .io-wf-steps > li { padding-block: 40px; border-top: 1px solid var(--line); }
+  .io-wf-steps > li:last-child { border-bottom: 1px solid var(--line); }
+  .io-wf-label { color: var(--accent); }
+  .io-wf-lead { margin-top: 12px; color: var(--fg); }
+  .io-wf-body { margin-top: 8px; color: var(--fg-2); }
+  .io-wf-develop { position: relative; margin-top: 28px; padding-top: 24px; }
   .io-wf-dev-rule { position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--line); display: block; }
-  .io-wf-dev-grid { display: grid; grid-template-columns: 160px minmax(0, 1fr) minmax(0, 1fr); column-gap: var(--gap); }
-  .io-wf-dev-label { color: var(--fg-3); padding-top: 6px; transition: color .4s var(--ease); }
-  .io-wf-dev-name { color: var(--fg); transition: color .4s var(--ease); }
-  .io-wf-dev-body { margin-top: 8px; color: var(--fg-2); transition: color .4s var(--ease); }
-  /* The companion product: the window in columns 1 to 8 with its captions and pager in a second row of a
-   * subgrid, so the statement in columns 9 to 12 ends on the window's bottom edge. */
-  .io-wf-product { margin-top: 80px; }
-  .io-wf-desk { grid-column: 1 / span 8; grid-row: 1 / span 2; display: grid; grid-template-rows: subgrid; grid-template-columns: minmax(0, 1fr); }
-  .io-wf-win { grid-row: 1; }
-  .io-wf-under { grid-row: 2; }
-  .io-wf-state { grid-column: 9 / span 4; grid-row: 1; align-self: end; }
-  .io-wf-arrows { margin-top: 20px; color: var(--accent); }
-  .io-wf-goal { margin-top: 20px; color: var(--fg-2); }
+  .io-wf-dev-label { color: var(--fg-3); }
+  .io-wf-dev-item { margin-top: 18px; }
+  .io-wf-dev-name { color: var(--fg); }
+  .io-wf-dev-body { margin-top: 8px; color: var(--fg-2); }
+  .io-wf-fig { margin-top: 28px; }
+  .io-wf-fig-cap { margin-top: 14px; }
+  /* Tablets: Personal Power and Social Influence side by side under Develop (audit 2, P2 11). */
+  @media (min-width: 735px) and (max-width: 1068px) {
+    .io-wf-develop { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: var(--gap); }
+    .io-wf-dev-label { grid-column: 1 / -1; }
+  }
+  /* Laptops: each step's text in columns 1 to 5, its window in 7 to 12. */
+  @media (min-width: 1069px) {
+    .io-wf-steps > li { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); align-items: start; }
+    .io-wf-steps > li > .io-wf-text { grid-column: 1 / span 5; grid-row: 1; }
+    .io-wf-steps > li > .io-wf-develop { grid-column: 1 / span 5; grid-row: 2; }
+    .io-wf-steps > li > .io-wf-fig { grid-column: 7 / span 6; grid-row: 1 / span 2; margin-top: 0; }
+  }
+  /* After the story: the statement in columns 1 to 7 (three short lines, audit 2, P2 15), the goal and the
+   * button in 9 to 12. */
+  .io-wf-after { margin-top: 72px; align-items: end; }
+  .io-wf-state { grid-column: 1 / span 7; }
+  .io-wf-statement { font-size: min(var(--fs-m), 44px); max-width: none; }
+  .io-wf-sl { display: block; }
+  .io-wf-close { grid-column: 9 / span 4; }
+  .io-wf-goal { color: var(--fg-2); }
   .io-wf-btn { margin-top: var(--btn-gap); }
 
   /* ── 2.5 The book ─────────────────────────────────────────────────── */
@@ -576,19 +612,19 @@ const audiences = [
   @media (max-width: 1068px) {
     .io-ch-head { grid-column: 1 / span 9; }
     .io-ch-paras { grid-column: 1 / -1; margin-top: 28px; max-width: 34em; }
-    .io-cols > li { padding-right: 20px; }
+    /* Three columns from 900 (audit 2, P2 12): a tighter right padding. */
+    .io-cols > li { padding-right: 12px; }
+    .io-cost { margin-top: 72px; }
     .io-cost-in { max-width: calc(10 * var(--colw) + 9 * var(--gap)); }
     .io-sol-head { max-width: none; }
-    .io-sol-col-a, .io-sol-col-b { grid-column: 1 / -1; }
-    .io-sol-col-b { margin-top: 1em; }
-    .io-phil-draw { grid-column: 3 / span 8; align-self: start; }
-    .io-phil-legend { grid-column: 1 / -1; margin-top: 48px; }
+    /* The diagram and its legend stay a pair down to 900 (audit 2, P2 9), the legend in seven columns. */
+    .io-phil { margin-top: 64px; }
+    .io-phil-draw { grid-column: 1 / span 5; }
+    .io-phil-legend { grid-column: 6 / span 7; }
     .io-how-head, .io-how-quote { grid-column: 1 / -1; }
     .io-how-para { grid-column: 1 / -1; grid-row: 3; margin-top: 24px; max-width: 34em; }
-    .io-wf-steps { column-gap: 16px; }
-    .io-wf-dev-grid { grid-template-columns: 112px minmax(0, 1fr) minmax(0, 1fr); }
-    .io-wf-desk { grid-column: 1 / -1; }
-    .io-wf-state { grid-column: 1 / -1; grid-row: 3; margin-top: 48px; max-width: 36em; }
+    .io-wf-state, .io-wf-close { grid-column: 1 / -1; }
+    .io-wf-close { margin-top: 28px; max-width: 36em; }
     .io-imp-head, .io-imp-quote { grid-column: 1 / -1; }
     .io-imp-lit { grid-column: 1 / -1; }
     .io-outcomes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -603,33 +639,36 @@ const audiences = [
     .io-next-in, .io-close { max-width: 40em; }
   }
 
-  /* Below 900 the hero stacks (the plate becomes a band under the copy), the workflow turns vertical and
-   * the book stacks: copy, then the still life, then the button. */
+  /* Below 900 the hero stacks (the phone stands under the copy, centred), the solution's two columns become
+   * one, the diagram stacks over its legend and the book stacks: copy, then the still life, then the button. */
   @media (max-width: 899px) {
-    .io-hero { min-height: 0; padding-bottom: 0; overflow-x: clip; }
+    .io-hero-story .story-stage { min-height: 0; padding-bottom: 72px; }
     .io-hero-copy { grid-column: 1 / span 10; padding-top: 48px; padding-bottom: 0; }
-    .io-hero { padding-bottom: 72px; }
     .io-hero-phone { --pw: 300px; position: relative; top: auto; left: auto; width: calc(var(--pw) * 1.06); margin: 48px auto 0; }
+    /* The hero copy is the first paint on a phone (audit 2, P1 3): it is never held back by a fade. */
+    .js .io-hero-copy .rise { opacity: 1; transform: none; transition: none; }
     .io-challenge { padding-top: var(--sec); }
-    .io-wf { margin-top: var(--head-gap); }
-    .io-wf-line-wrap { position: absolute; left: 0; top: 0; width: 24px; height: 100%; }
-    .io-wf-svg { width: 24px; height: 100%; }
-    .io-wf-h, .io-wf-dot { visibility: hidden; }
-    .io-wf-v { visibility: visible; }
-    .io-wf-steps { display: block; padding-left: 40px; }
-    .io-wf-steps > li, .io-wf-steps > li.io-wf-has-sub { display: block; position: relative; padding: 0 0 32px; }
-    .io-wf-steps > li:last-child { padding-bottom: 8px; }
-    .io-wf-steps > li::before { content: ""; position: absolute; left: -32px; top: 2px; width: 8px; height: 8px; border-radius: 50%; background: #b3934f; }
-    .io-wf-main { padding-top: 0; }
-    .io-wf-develop { margin-top: 28px; padding-top: 24px; }
-    .io-wf-tick { display: none; }
-    .io-wf-dev-grid { grid-template-columns: minmax(0, 1fr); row-gap: 18px; }
-    .io-wf-dev-label { padding-top: 0; }
-    .io-wf-product { margin-top: 64px; }
+    .io-sol-col-a, .io-sol-col-b { grid-column: 1 / -1; }
+    .io-sol-col-b { margin-top: 1em; }
+    .io-phil-draw { grid-column: 3 / span 8; align-self: start; }
+    .io-phil-legend { grid-column: 1 / -1; margin-top: 48px; }
+    /* The drawing always fits the screen's height, a landscape phone's too. */
+    .io-phil .io-phil-draw .io-phil-box { width: min(100%, calc(100vh - 160px)); width: min(100%, calc(100svh - 160px)); margin-inline: auto; }
     .io-book-grid { row-gap: 0; }
     .io-book-copy { grid-column: 1 / -1; grid-row: 1; }
     .io-bookmat { grid-column: 1 / -1; grid-row: 2; height: 520px; margin-top: 48px; }
     .io-book-btn { grid-column: 1 / -1; grid-row: 3; }
+  }
+  /* 735 to 899 (audit 2, P2 10 and 12): the solution's single column centred under the centred head; the
+   * challenge's three columns become three rows, ring, title and body side by side under a hairline. */
+  @media (min-width: 735px) and (max-width: 899px) {
+    .io-sol-col { max-width: 34em; margin-inline: auto; }
+    .io-cols { grid-template-columns: minmax(0, 1fr); border-top: 0; }
+    .io-cols > li { display: grid; grid-template-columns: 44px minmax(0, 1fr) minmax(0, 1.4fr); column-gap: var(--gap); align-items: start; padding: 28px 0; border-top: 1px solid var(--line); }
+    .io-cols > li + li::before { display: none; }
+    .io-cols .t-title, .io-cols .t-body { margin-top: 0; }
+    .io-cols .t-title { padding-top: 10px; }
+    .io-cols .t-body { padding-top: 10px; }
   }
 
   /* ── Phone (390) ──────────────────────────────────────────────────── */
@@ -638,24 +677,32 @@ const audiences = [
     main .eyebrow { line-height: 1.5; }
     .io-btns { flex-direction: column; gap: 10px; }
     .io-btns .btn { width: 100%; }
+    .io-hero-story .story-stage { padding-bottom: 40px; }
     .io-hero-copy { grid-column: 1 / -1; padding-top: 40px; }
     .io-hero-line { margin-top: 22px; }
     .io-hero-lead { margin-top: 20px; }
     .io-hero-btns { margin-top: 32px; }
     .io-hero-cap { margin-top: 16px; }
     .io-hero-phone { --pw: min(286px, calc(100vw - 88px)); margin-top: 40px; }
+    .io-challenge { padding-top: 64px; }
     .io-ch-head { grid-column: 1 / -1; }
     .io-cols { grid-template-columns: minmax(0, 1fr); }
     .io-cols > li { padding: 24px 0; }
     .io-cols > li + li { border-top: 1px solid var(--line); }
     .io-cols > li + li::before { display: none; }
-    .io-cols .t-title { margin-top: 16px; }
-    .io-cost { margin-top: 88px; padding-top: var(--sec); }
+    /* Rings beside their titles (audit 2, P1 4): the ring in a 44 px column spanning the title and the body. */
+    .io-cols > li, .io-outcomes > li { display: grid; grid-template-columns: 44px minmax(0, 1fr); column-gap: 16px; align-items: start; }
+    .io-cols > li > .io-ring, .io-outcomes > li > .io-ring { grid-column: 1; grid-row: 1 / span 2; }
+    .io-cols > li > .t-title, .io-outcomes > li > .t-title, .io-cols > li > .t-body, .io-outcomes > li > .t-body { grid-column: 2; }
+    .io-cols .t-title, .io-outcomes .t-title { margin-top: 0; padding-top: 10px; }
+    .io-cost { margin-top: 48px; padding-top: 56px; }
     .io-cost-in { max-width: none; }
     .io-stack-ol { margin-top: 32px; }
     .io-stack-ol > li + li { padding-top: 32px; }
     .io-stack-ol > li + li::before { top: 6px; height: 20px; }
     .io-cost-close-w { margin-top: 48px; }
+    /* Six lines at the statement size, so the balance applies and no word is left alone (audit 2, P2 14). */
+    .io-cost-close { font-size: var(--fs-m); max-width: none; }
     .io-solution { padding-block: var(--sec); }
     /* The geo's centre sits off the right edge so its dot never meets the heading; its ring crosses the top corner. */
     .io-geo-solution { --geo-size: 720px !important; --geo-o: .06 !important; right: -420px; top: -300px; }
@@ -663,16 +710,15 @@ const audiences = [
     .io-sol-body { margin-top: 56px; }
     .io-sol-grid { padding-top: 40px; }
     .io-sol-btn .btn { width: 100%; }
-    .io-phil { margin-top: 72px; }
-    .io-phil-grid { padding-top: 48px; }
+    .io-phil { margin-top: 48px; }
+    .io-phil-grid { padding-top: 32px; }
     .io-phil-draw { grid-column: 1 / -1; }
     .io-phil-legend { margin-top: 32px; }
     .io-phil-rows > li { padding-block: 18px; }
     .io-how-quote { margin-top: 16px; }
-    .io-wf-product { margin-top: 56px; }
-    /* The longest caption takes two lines at 350; the pager sits under both. */
-    .io-wf-caps { min-height: 2.8em; }
-    .io-wf-state { margin-top: 40px; }
+    .io-wf-steps > li { padding-block: 32px; }
+    .io-wf-after { margin-top: 48px; }
+    .io-wf-close { margin-top: 24px; }
     .io-wf-btn .btn { width: 100%; }
     .io-book-copy { margin-top: 0; }
     .io-bookmat { height: 440px; margin-top: 40px; margin-inline: calc(-1 * var(--gutter)); border-radius: 0; }
@@ -683,8 +729,10 @@ const audiences = [
     .io-impact { padding-top: var(--sec); }
     .io-imp-quote { margin-top: 16px; }
     .io-imp-lit { margin-top: 36px; }
+    /* The lit statement at a reading size (audit 2, P2 13). */
+    .io-imp-lit p { font-size: clamp(20px, 5.4vw, 23px); line-height: 1.3; }
     .io-outcomes { grid-template-columns: minmax(0, 1fr); row-gap: 28px; margin-top: 56px; }
-    .io-imp-close { margin-top: 56px; }
+    .io-imp-close { margin-top: 40px; }
     .io-imp-close-grid { padding-top: 36px; }
     .io-imp-close-btn { width: 100%; }
     .io-imp-close-btn .btn { width: 100%; }
@@ -702,12 +750,128 @@ const audiences = [
     .js .io-pt-rule.in, .js .in .io-pt-rule { transform: scaleX(1); }
     .io-pt-btn { grid-row: 4; margin-top: 24px; width: 100%; }
     .io-pt-btn .btn { width: 100%; }
-    .io-next { padding-top: 101px; padding-bottom: 96px; }
+    .io-next { padding-top: 72px; padding-bottom: 64px; }
     .io-geo-next { --geo-size: 720px !important; --geo-o: .06 !important; right: -400px; bottom: -330px; }
     .io-next-in, .io-close { max-width: none; }
     .io-next-line { margin-top: 28px; }
-    .io-close-rule { margin-top: 72px; }
-    .io-close { padding-top: 48px; }
+    .io-close-rule { margin-top: 48px; }
+    .io-close { padding-top: 32px; }
     .io-brand-line { margin-top: 44px; }
+  }
+
+  /* A phone in landscape (audit 2, P1 5): the hero's copy in two columns (the headline at the left, the lead,
+   * the buttons and the caption at the right) so both buttons are in the first screen; the phone under it is
+   * sized by the height. Landscape phones always get the static layout (too short to pin). */
+  @media (max-width: 1068px) and (max-height: 500px) and (orientation: landscape) {
+    .io-hero-copy { grid-column: 1 / -1; padding-top: 20px; columns: 2; column-gap: var(--gap); }
+    .io-hero-copy > * { break-inside: avoid; }
+    .io-h1 { font-size: 36px; }
+    .io-hero-lead { margin-top: 0; break-before: column; }
+    .io-hero-btns { margin-top: 16px; }
+    .io-hero-btns .btn { height: 44px; }
+    .io-hero-phone { --pw: calc((100vh - 80px) / 2.22); --pw: calc((100svh - 80px) / 2.22); }
+  }
+
+  /* ── The two stories, pinned (SCROLL_SPEC S9, S10) ────────────────────
+   * Only under the story engine's queries and only while it has bound the story (.js ...:not(.static)); every
+   * other case keeps the static layout above. */
+  @media (prefers-reduced-motion: no-preference) and (min-width: 1069px) and (min-height: 600px),
+         (prefers-reduced-motion: no-preference) and (max-width: 1068px) and (min-height: 560px) {
+    .js .io-wf-story:not(.static) .io-wf-arrows-static { display: none; }
+    .js .io-wf-story:not(.static) .io-wf-steps > li { padding: 0; border: 0; }
+    .js .io-wf-story:not(.static) .io-wf-marks .story-words { font-size: 13px; letter-spacing: .05em; }
+    /* Each word is a 44 px target without moving the line; the arrows keep their spaces (the compressed markup
+     * of the shared StoryMarks drops the spaces around them). */
+    .js .io-wf-story:not(.static) .io-wf-marks .story-words > button { padding-block: 14px; margin-block: -8px; }
+    .js .io-wf-story:not(.static) .io-wf-marks .story-words > span { margin-inline: .5em; }
+  }
+  /* Wide and side (900 and up): the hero is the first screen, the copy at the left and the phone sized to the
+   * screen at the right, centred between the header line and the bottom, so it no longer hangs past the fold. */
+  @media (prefers-reduced-motion: no-preference) and (min-width: 1069px) and (min-height: 600px),
+         (prefers-reduced-motion: no-preference) and (min-width: 900px) and (max-width: 1068px) and (min-height: 560px) {
+    .js .io-hero-story:not(.static) .story-stage { display: block; height: 100vh; height: 100svh; min-height: 0; z-index: 1; }
+    .js .io-hero-story:not(.static) .io-hero-copy { padding-top: clamp(24px, 6vh, 90px); padding-top: clamp(24px, 6svh, 90px); padding-bottom: 0; }
+    .js .io-hero-story:not(.static) .io-hero-phone { --pw: clamp(240px, min(26.5vw, calc((100svh - var(--nav-h) - 96px) / 2.224)), 400px);
+      top: max(calc(var(--nav-h) + 16px), calc(var(--nav-h) + (100svh - var(--nav-h) - var(--pw) * 2.224 - 40px) / 2)); }
+    html:has(.io-hero-story.is-live) .io-challenge { padding-top: var(--sec); }
+  }
+  /* Wide (1069 and up): the words line across the top, the window in columns 1 to 8 with its caption, the
+   * current step's text in 9 to 12 (Develop's two items under its text, the current one lit). */
+  @media (prefers-reduced-motion: no-preference) and (min-width: 1069px) and (min-height: 600px) {
+    /* The words line and the window are one group, centred in the stage: the window's row grows to the
+     * window's own height (its width is at most eight columns, 792 at 1440 and 888 from 1800) before the space
+     * above and below. */
+    .js .io-wf-story:not(.static) .story-stage { --wf-h: calc(min(888px, 8 * var(--colw) + 7 * var(--gap)) * .657 + 44px);
+      grid-template-rows: minmax(0, 1fr) auto minmax(0, var(--wf-h)) minmax(0, 1fr); }
+    .js .io-wf-story:not(.static) .io-wf-marks { grid-column: 1 / -1; grid-row: 2; justify-self: start; margin: 0 0 24px; }
+    .js .io-wf-story:not(.static) .io-wf-box { grid-column: 1 / span 8; grid-row: 3; align-self: stretch; place-items: center start; }
+    .js .io-wf-story:not(.static) .io-wf-phone { display: none; }
+    .js .io-wf-story:not(.static) .io-wf-win { --cap-h: 44px; }
+    .js .io-wf-story:not(.static) .io-wf-steps { grid-column: 9 / span 4; grid-row: 3; align-self: center; }
+    /* The static laptop layout (text beside its window) never reaches the pinned slot. */
+    .js .io-wf-story:not(.static) .io-wf-steps > li { display: block; }
+    .js .io-wf-story:not(.static) .io-wf-develop { margin-top: 22px; padding-top: 18px; }
+    .js .io-wf-story:not(.static) .io-wf-dev-item { margin-top: 14px; }
+    .js .io-wf-story:not(.static) .io-wf-dev-body { margin-top: 4px; }
+    /* Develop's own text stays lit while its two items light in turn. */
+    .js .io-wf-story:not(.static) .io-wf-has-sub.is-current > .io-wf-text { opacity: 1; }
+    html:has(.io-wf-story.is-live) .io-wf-after { margin-top: 24px; }
+  }
+  /* Narrow (1068 and down): the words line, the phone, then the current step; Develop shows its text, then
+   * Personal Power, then Social Influence, one at a time under the folio "02. Develop". */
+  @media (prefers-reduced-motion: no-preference) and (max-width: 1068px) and (min-height: 560px) {
+    .js .io-wf-story:not(.static) .io-wf-win { display: none; }
+    .js .io-wf-story:not(.static) .io-wf-phone { --pw-max: 240px; }
+    .js .io-wf-story:not(.static) .io-wf-marks { order: 0; margin: 0 auto 12px; gap: 6px; }
+    /* The words line holds one line from 360 up. */
+    .js .io-wf-story:not(.static) .io-wf-marks .story-words { font-size: clamp(11px, 3.1vw, 13px); white-space: nowrap; }
+    .js .io-wf-story:not(.static) .io-wf-steps { width: 100%; max-width: 36em; margin-inline: auto; }
+    .js .io-wf-story:not(.static) .io-wf-develop { display: contents; }
+    .js .io-wf-story:not(.static) .io-wf-dev-rule { display: none; }
+    .js .io-wf-story:not(.static) .io-wf-dev-label { grid-area: 1 / 1; align-self: start; opacity: 0; transition: opacity .14s var(--ease); }
+    .js .io-wf-story:not(.static) .io-wf-has-sub:has(.io-wf-dev-item.is-current) .io-wf-dev-label { opacity: 1; transition: opacity .26s var(--ease) .11s; }
+    .js .io-wf-story:not(.static) .io-wf-dev-item { margin: 0; padding-top: 22px; }
+    .js .io-wf-story:not(.static) .io-wf-lead { margin-top: 8px; }
+    .js .io-wf-story:not(.static) .io-wf-body, .js .io-wf-story:not(.static) .io-wf-dev-body { margin-top: 6px; }
+    html:has(.io-wf-story.is-live) .io-wf-after { margin-top: 32px; }
+  }
+  /* Short laptop windows: Develop's two items a step smaller, so the slot fits a 1366 x 657 window. */
+  @media (prefers-reduced-motion: no-preference) and (min-width: 1069px) and (min-height: 600px) and (max-height: 820px) {
+    .js .io-wf-story:not(.static) .io-wf-dev-body { font-size: 15px; line-height: 1.45; }
+    .js .io-wf-story:not(.static) .io-wf-develop { margin-top: 16px; padding-top: 14px; }
+    .js .io-wf-story:not(.static) .io-wf-dev-item { margin-top: 10px; }
+  }
+  /* A real phone's small viewport (about 660 tall): the slot a step tighter, so the phone keeps a readable size. */
+  @media (prefers-reduced-motion: no-preference) and (max-width: 734px) and (min-height: 560px) and (max-height: 720px) {
+    .io-wf-story { --story-gap: 10px; }
+    .js .io-wf-story:not(.static) .io-wf-marks { margin-bottom: 8px; }
+    .js .io-wf-story:not(.static) .io-wf-steps { margin-top: 8px; padding-bottom: 8px; }
+    .js .io-wf-story:not(.static) .io-wf-steps :is(.io-wf-lead, .io-wf-dev-name) { font-size: 17px; }
+  }
+  /* Tablets: a larger phone, the screen has the room. */
+  @media (prefers-reduced-motion: no-preference) and (min-width: 735px) and (max-width: 1068px) and (min-height: 560px) {
+    .js .io-wf-story:not(.static) .io-wf-phone { --pw-max: 280px; }
+  }
+  /* Side (900 to 1068, a landscape tablet): the words line across the top, the phone at the left, the step at
+   * the right. */
+  @media (prefers-reduced-motion: no-preference) and (min-width: 900px) and (max-width: 1068px) and (min-height: 560px) {
+    .js .io-wf-story:not(.static) .story-stage { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: auto minmax(0, 1fr); column-gap: var(--gap); align-items: center; }
+    .js .io-wf-story:not(.static) .io-wf-marks { grid-column: 1 / -1; grid-row: 1; justify-self: start; margin: 0 0 16px; }
+    .js .io-wf-story:not(.static) .io-wf-box { grid-column: 1 / span 6; grid-row: 2; align-self: stretch; max-height: none; }
+    .js .io-wf-story:not(.static) .io-wf-phone { --pw-max: 280px; }
+    .js .io-wf-story:not(.static) .io-wf-steps { grid-column: 7 / span 6; grid-row: 2; margin: 0; padding: 0; align-self: center; }
+  }
+  /* Column (899 and down): the hero stacks and its phone sticks 12 px under the header (the copy above it
+   * masked) for the three beats. */
+  @media (prefers-reduced-motion: no-preference) and (max-width: 899px) and (min-height: 560px) {
+    .js .io-hero-story:not(.static) .story-stage { display: block; height: auto; min-height: 0; padding-bottom: 32px; z-index: 1; }
+    .js .io-hero-story:not(.static) .io-hero-phone { --pw: min(400px, calc(100vw * .46), calc((100svh - var(--nav-h) - 96px) / 2.224)); }
+    /* The stuck stage ends 32 px under the bar, so the phone's long hanging shadow is shortened to end inside it. */
+    .js .io-hero-story:not(.static) .io-hero-phone .phone { box-shadow: inset 0 0 0 .55em #0c0b09, inset 0 0 0 .9em rgba(255,255,255,.08), 0 0 0 1px rgba(201,171,102,.28),
+      0 2px 4px rgba(0,0,0,.35), 0 24px 44px -14px rgba(0,0,0,.55); }
+    html:has(.io-hero-story.is-live) .io-challenge { padding-top: var(--sec); }
+  }
+  @media (prefers-reduced-motion: no-preference) and (max-width: 734px) and (min-height: 560px) {
+    .js .io-hero-story:not(.static) .io-hero-phone { --pw: min(286px, calc(100vw - 88px), calc((100svh - var(--nav-h) - 72px) / 2.224)); }
   }
 </style>

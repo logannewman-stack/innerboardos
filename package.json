@@ -9,7 +9,8 @@
     "preview": "astro preview",
     "check": "astro check",
     "sweep": "node scripts/sweep.mjs",
-    "desk2x": "node scripts/desk2x.mjs"
+    "desk2x": "node scripts/desk2x.mjs",
+    "small": "node scripts/small.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",

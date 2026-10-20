@@ -37,7 +37,8 @@ const updated = "October 19, 2026";
   /* The legal page (IOS_SPEC 2.12): the system's prose rules; only the column and its padding are set here. */
   .io-legal { max-width: 40em; padding-top: calc(var(--nav-h) + 64px); padding-bottom: var(--sec); }
   .io-legal h1 { margin-top: 0; }
-  .io-legal p.t-cap { font-size: var(--fs-cap); line-height: 1.45; color: var(--fg-3); }
+  /* The date line and the closing note at 14 px (audit 2, P2 21). */
+  .io-legal p.t-cap { font-size: 14px; line-height: 1.45; color: var(--fg-3); }
   /* The eyebrow keeps its own size and colour against the prose paragraph rule. */
   .io-legal p.eyebrow { margin-top: 0; font-size: var(--fs-eyebrow); line-height: 1; color: var(--fg-3); }
   .io-legal-date { margin-top: 12px; }

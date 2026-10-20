@@ -1,106 +1,135 @@
 ---
 /**
- * Diagram 2, the workflow (IOS_SPEC 2.4): five points on one drawn line,
- * Assess to Certify, lit as the reader scrolls (1.7.14, scroll mode). The
- * The engine measures a scroll line's progress over the svg's own height, so
- * on a desk the svg is a 400 px transparent box laid over the steps with the
- * line 20 px into its 40 px slot: the line draws over 400 px of scrolling and
- * lights the steps one by one, rather than all at once in 40 px. On a phone
- * the same svg runs down the list's left edge and its vertical path draws.
- * The Develop sub row (Personal Power, Social Influence) belongs to the Develop
- * step, so it lives inside that step's list item: on a desk it hangs from the
- * Develop column under a gold tick across columns two to five (a subgrid of
- * the five column list), on a phone it stacks under Develop. Then the
- * companion product: the Company OS Score on a desk in a browser window,
- * scoring itself, with the Track and the Role Blueprint behind it. Hovering
- * Assess, Develop or Embed shows the screen that does that step (1.7.13);
- * the pager pages it on touch and by keyboard. Drawn on cream so it never
- * reads as the same figure as diagram 1. The page carries the layout CSS.
+ * Diagram 2, the workflow, as a scroll story (SCROLL_SPEC S10). The five
+ * steps of the workflow are the story's steps: while the reader scrolls, the
+ * stage stays under the header and the app does each step. On a laptop a
+ * browser window: the cursor clicks the Company OS Score's "See what ...
+ * means" bar and the result wipes up (Assess), clicks InnerBoard OS in the
+ * rail and rests on the Personal and then the Social leadership modules of
+ * the Track, lighting Personal Power and Social Influence in turn (Develop),
+ * clicks Tools for the Role Blueprint filled in for one role (Embed), and
+ * goes back to the Track's status column (Measure); Certify holds. On
+ * tablets and phones a phone does the same story. The locked line
+ * "Assess → Develop → Embed → Measure → Certify" is the progress marks: each
+ * word a button, the arrows text, a gold rule filling with the scroll. The
+ * statement, the goal and the button follow the story (the page places them).
+ *
+ * The window is eight columns wide: 792 up to 1799 px, and the system's zoom
+ * (1.12) above, where the eight columns are 888.
+ *
+ * Static (no script, reduced motion, a landscape phone, a short laptop
+ * window): the line, then the five steps in order, each with its own screen
+ * (a window above 734, a phone below), Develop's two items under it.
  */
 import WindowFrame from "./WindowFrame.astro";
-import Arrow from "./Arrow.astro";
-import { LINKS } from "../config/links";
+import PhoneFrame from "./PhoneFrame.astro";
+import StoryMarks from "./StoryMarks.astro";
 
-const steps = [
-  { label: "01. Assess.", lead: "Understand your people and where the opportunities exist.", body: "Identify current strengths, development opportunities, role expectations, and what influences performance. Create greater clarity about where your team is today and what needs to develop next.", preview: 0 },
-  { label: "02. Develop.", lead: "Build the self-leadership skills and capacity your business needs.", body: "Give people practical development that strengthens how they think, communicate, solve problems, take ownership, and lead themselves. Help every person grow into the demands and opportunities of their role.", preview: 2 },
-  { label: "03. Embed.", lead: "Turn learning into everyday behavior.", body: "Development doesn't create value simply because someone completes a course. It creates value when people apply what they've learned. InnerBoard IOS brings development into daily work through intentional practice, clear expectations, and consistent application.", preview: 3 },
-  { label: "04. Measure.", lead: "Track curriculum progress through module completion.", body: "Leaders can see how many modules each person has completed. Individual answers, reflections, and written responses remain private.", preview: undefined },
-  { label: "05. Certify.", lead: "Develop leaders who can sustain and scale the work.", body: "Build internal strength through trained and certified leaders who can reinforce the methodology, support their teams, and help sustain a culture of development.", preview: undefined }
-];
-// The five column starts of a five column grid with a 23 px gap in 1200.
-const dots = [0, 244.6, 489.2, 733.8, 978.4];
 const caps = [
   "The Company OS Score, scored on a desk.",
   "What the score means: the reading, and the chapters that answer the lowest statements.",
   "The Track inside Practice: the modules under Personal leadership and Social leadership.",
   "The Role Blueprint, filled in for one role."
 ];
+const win = [
+  { name: "desk-score-upstream-scored", alt: caps[0], x2: true },
+  { name: "desk-score-upstream-result", alt: caps[1], x2: true },
+  { name: "desk-track-home", alt: caps[2], x2: true },
+  { name: "desk-leader-blueprint", alt: caps[3], x2: true }
+];
+const phone = [
+  { name: "score-upstream-scored", alt: "The Company OS Score on a phone: statements scored on the ten point scale, and the button that shows what the score means.", w: 780, h: 1688 },
+  { name: "score-upstream-result", alt: "What the score means on a phone: the three lowest statements and the chapter that answers each.", w: 780, h: 1688,
+    strip: { next: "score-upstream-result-2", at: 89.23, head: 6.2 } },
+  { name: "track-home", alt: "The Track on a phone: the modules under Personal leadership and Social leadership.", w: 780, h: 1688 },
+  { name: "leader-blueprint", alt: "The Role Blueprint on a phone, filled in for one role.", w: 780, h: 1688 }
+] as const;
+const labels = ["Assess", "Develop", "Embed", "Measure", "Certify"];
+const steps = [
+  { label: "01. Assess.", lead: "Understand your people and where the opportunities exist.", body: "Identify current strengths, development opportunities, role expectations, and what influences performance. Create greater clarity about where your team is today and what needs to develop next.",
+    w: 1.2, win: 1, phone: 1, off: 89.23,
+    alt: "The Company OS Score scored on a desk; the cursor opens what the score means, and rests on the three lowest statements and the chapters that answer them.",
+    act: '{"win":{"f":0,"cur":[[.08,40,60],[.34,58.6,95.7],[.6,58.6,95.7],[.82,52,47]],"click":.42,"next":[.46,1]},"phone":{"f":0,"tap":[50,95.6,.36],"next":[.4,1],"scroll":[.56,.86,0,89.23]}}' },
+  { label: "02. Develop.", lead: "Build the self-leadership skills and capacity your business needs.", body: "Give people practical development that strengthens how they think, communicate, solve problems, take ownership, and lead themselves. Help every person grow into the demands and opportunities of their role.",
+    w: 1.6, win: 2, phone: 2,
+    alt: "The Track: the modules under Personal leadership, then the modules under Social leadership.",
+    act: '{"win":{"cur":[[.06,52,47],[.22,5,23.6],[.3,5,23.6],[.42,45,24.5],[.6,45,24.5],[.72,45,69.5]],"click":.26,"next":[.3,2],"sub":[[.42,1],[.72,2]]},"phone":{"f":2,"cam":[[.1,1,50,50],[.3,1.06,50,34],[.58,1.06,50,34],[.74,1.06,50,74],[.9,1,50,50]],"sub":[[.42,1],[.72,2]]}}' },
+  { label: "03. Embed.", lead: "Turn learning into everyday behavior.", body: "Development doesn't create value simply because someone completes a course. It creates value when people apply what they've learned. InnerBoard IOS brings development into daily work through intentional practice, clear expectations, and consistent application.",
+    w: 1, win: 3, phone: 3,
+    alt: "The Role Blueprint, filled in for one role: what the role is paid to produce.",
+    act: '{"win":{"cur":[[.08,45,69.5],[.28,5,33.3],[.46,5,33.3],[.7,50,59.5]],"click":.36,"next":[.4,3]},"phone":{"f":3,"cam":[[.12,1,50,50],[.38,1.06,50,76],[.7,1.06,50,76],[.88,1,50,50]]}}' },
+  { label: "04. Measure.", lead: "Track curriculum progress through module completion.", body: "Leaders can see how many modules each person has completed. Individual answers, reflections, and written responses remain private.",
+    w: 1, win: null, phone: null,
+    alt: "The Track again, with each module's own status: up next, or take it.",
+    act: '{"win":{"cur":[[.08,50,59.5],[.28,5,23.6],[.46,5,23.6],[.7,81,24.5]],"click":.36,"next":[.4,2]},"phone":{"f":2}}' },
+  { label: "05. Certify.", lead: "Develop leaders who can sustain and scale the work.", body: "Build internal strength through trained and certified leaders who can reinforce the methodology, support their teams, and help sustain a culture of development.",
+    w: 1, win: null, phone: null,
+    alt: "The Track holds.",
+    act: '{"win":{},"phone":{}}' }
+];
 ---
-<div class="io-wf-prog">
-  <div class="io-wf-line-wrap rise" style="--d:.1s">
-    <svg id="wf-line" class="io-wf-svg" viewBox="0 0 1200 400" preserveAspectRatio="none" data-draw="scroll" data-draw-rows="5" data-draw-for="#wf-steps" aria-hidden="true" focusable="false">
-      <path class="draw-line io-wf-h" d="M0 20H1200"></path>
-      <path class="draw-line io-wf-v" d="M600 0V400"></path>
-      {dots.map((x, i) => <circle class="draw-pop io-wf-dot" cx={x} cy="20" r="5" style={`--d:${i * 120}ms`}></circle>)}
-    </svg>
-  </div>
-  <ol id="wf-steps" class="loop-rows io-wf-steps">
-    {steps.map((s, i) => (
-      <li class={`loop-row${i === 1 ? " io-wf-has-sub" : ""}`} data-preview={s.preview} data-preview-target={s.preview !== undefined ? "#wf-win" : undefined}>
-        <div class="io-wf-main">
-          <p class="t-folio io-wf-label">{s.label}</p>
-          <p class="t-title io-wf-lead">{s.lead}</p>
-          <p class="t-body io-wf-body">{s.body}</p>
-        </div>
-        {i === 1 && (
-          <div class="io-wf-develop rise" style="--d:.2s">
-            <i class="rule-gold-v rule-draw-v io-wf-tick" aria-hidden="true"></i>
-            <i class="rule-draw io-wf-dev-rule" aria-hidden="true" style="--d:.25s"></i>
-            <div class="io-wf-dev-grid">
-              <p class="t-folio io-wf-dev-label">02. Develop</p>
-              <div class="io-wf-dev-item">
-                <p class="t-title io-wf-dev-name">Personal Power</p>
-                <p class="t-body io-wf-dev-body">How we lead ourselves. Build the awareness, confidence, and emotional capacity to make intentional choices, take ownership, and follow through.</p>
-              </div>
-              <div class="io-wf-dev-item">
-                <p class="t-title io-wf-dev-name">Social Influence</p>
-                <p class="t-body io-wf-dev-body">How we co-create results with and through other people. Strengthen communication, trust, collaboration, and the ability to positively influence shared outcomes.</p>
-              </div>
-            </div>
+<div class="story io-wf-story" data-story="workflow" data-warm style="--story-w:5.8;--step-l:80svh;--step-l-n:68svh">
+  <p class="t-folio io-wf-arrows io-wf-arrows-static">Assess → Develop → Embed → Measure → Certify</p>
+  <div class="story-track">
+    <div class="story-stage">
+      <StoryMarks variant="words" class="io-wf-marks" labels={labels} label="The InnerBoard IOS workflow, step by step" />
+      <div class="story-device-box io-wf-box">
+        <div class="story-win io-wf-win">
+          <WindowFrame device="win" ww={888} label="InnerBoard IOS on a desk, step by step." screens={win} />
+          <div class="win-caps io-wf-caps">
+            {caps.map((c, i) => <p class={`win-cap t-cap-i${i === 0 ? " on" : ""}`} data-cap={i}>{c}</p>)}
           </div>
-        )}
-      </li>
-    ))}
-  </ol>
-</div>
-<div class="grid io-wf-product" data-warm>
-  <div class="io-wf-desk">
-    <WindowFrame id="wf-win" ww={792} loop={5000} class="io-wf-win rise-obj"
-      flow='[["start",40,60],["hold",1200],["move",58.6,95.7,1300],["click"],["state",1,320],["hold",2600],["cam",1.2,50,22,1300],["hold",2200],["cam",1,50,50,1100],["move",40,60,900],["hold",600],["state",0,320],["end"]]'
-      screens={[
-        { name: "desk-score-upstream-scored", alt: caps[0], x2: true },
-        { name: "desk-score-upstream-result", alt: caps[1], x2: true },
-        { name: "desk-track-home", alt: caps[2], x2: true },
-        { name: "desk-leader-blueprint", alt: caps[3], x2: true }
-      ]} />
-    <div class="io-wf-under">
-      <div class="win-caps io-wf-caps">
-        {caps.map((c, i) => <p class={`win-cap t-cap-i${i === 0 ? " on" : ""}`} data-cap={i}>{c}</p>)}
+        </div>
+        <div class="story-phone io-wf-phone">
+          <PhoneFrame device="phone" width={240} style="--pw:inherit" label="InnerBoard IOS on a phone, step by step." screens={[...phone]} />
+        </div>
       </div>
-      <div class="win-pager io-wf-pager" role="tablist" data-preview-target="#wf-win" aria-label="The screens on the desk">
-        {caps.map((c, i) => <button type="button" role="tab" data-go={i} aria-selected={i === 0 ? "true" : "false"} tabindex={i === 0 ? 0 : -1} aria-label={c}><i></i></button>)}
-      </div>
+      <ol class="story-steps io-wf-steps" data-story-text="slot">
+        {steps.map((s, i) => (
+          <li class={`story-step${i === 1 ? " io-wf-has-sub" : ""}`} data-step={i} data-w={s.w !== 1 ? s.w : undefined} data-act={s.act}>
+            {i === 1 ? (
+              <Fragment>
+                <div class="story-sub io-wf-text" data-sub="0">
+                  <p class="t-folio io-wf-label">{s.label}</p>
+                  <p class="t-title io-wf-lead">{s.lead}</p>
+                  <p class="t-body io-wf-body">{s.body}</p>
+                </div>
+                <div class="story-subs io-wf-develop">
+                  <i class="io-wf-dev-rule" aria-hidden="true"></i>
+                  <p class="t-folio io-wf-dev-label">02. Develop</p>
+                  <div class="story-sub io-wf-dev-item" data-sub="1">
+                    <p class="t-title io-wf-dev-name">Personal Power</p>
+                    <p class="t-body io-wf-dev-body">How we lead ourselves. Build the awareness, confidence, and emotional capacity to make intentional choices, take ownership, and follow through.</p>
+                  </div>
+                  <div class="story-sub io-wf-dev-item" data-sub="2">
+                    <p class="t-title io-wf-dev-name">Social Influence</p>
+                    <p class="t-body io-wf-dev-body">How we co-create results with and through other people. Strengthen communication, trust, collaboration, and the ability to positively influence shared outcomes.</p>
+                  </div>
+                </div>
+              </Fragment>
+            ) : (
+              <div class="io-wf-text">
+                <p class="t-folio io-wf-label">{s.label}</p>
+                <p class="t-title io-wf-lead">{s.lead}</p>
+                <p class="t-body io-wf-body">{s.body}</p>
+              </div>
+            )}
+            <span class="sr-only story-alt">{s.alt}</span>
+            {s.win !== null && (
+              <div class="story-static io-wf-fig">
+                <div class="static-desk">
+                  <WindowFrame ww={640} screens={[win[s.win]]} />
+                  <p class="t-cap-i io-wf-fig-cap">{caps[s.win]}</p>
+                </div>
+                <div class="static-phone">
+                  <PhoneFrame width={180} screens={[phone[s.phone!]]} off={s.off} />
+                </div>
+              </div>
+            )}
+          </li>
+        ))}
+      </ol>
     </div>
-  </div>
-  <div class="io-wf-state">
-    <div class="io-wf-statement-w">
-      <p class="t-m wipe io-wf-statement">One connected system. Continuous development. <em>Stronger execution.</em></p>
-    </div>
-    <p class="t-folio io-wf-arrows rise" style="--d:.2s">Assess → Develop → Embed → Measure → Certify</p>
-    <p class="t-lead io-wf-goal rise" style="--d:.28s">The goal is not simply to help people learn more. It's to help them do their best work, every day.</p>
-    <div class="io-wf-btn rise" style="--d:.36s">
-      <a href={LINKS.score} class="btn btn-gold" data-passthrough data-event="assessment_click" data-event-location="workflow">Get Your Company OS Score <Arrow /></a>
-    </div>
+    <div class="story-run" aria-hidden="true"></div>
   </div>
 </div>

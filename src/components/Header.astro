@@ -6,7 +6,10 @@
  * (no sub labels), the gold Company OS Score pill. Below 1069 px the links
  * collapse to the burger and a full screen sheet (rendered after the header
  * so neither the blur nor the hide transform contains it) with the two
- * full width buttons at its foot.
+ * full width buttons at its foot. The sheet paints cream on every page tone,
+ * so it carries the light surface's tokens (data-surface="light"). Without
+ * the script the burger cannot open it: the same two lines are then a link
+ * to the footer's list of the site's sections.
  */
 import Wordmark from "./Wordmark.astro";
 import Arrow from "./Arrow.astro";
@@ -28,10 +31,11 @@ const nav = [
         <a href={LINKS.score} class="btn btn-sm btn-gold hdr-cta" data-passthrough data-event="assessment_click" data-event-location="header">Get Your Company OS Score <Arrow /></a>
       </nav>
       <button type="button" class="hdr-burger" data-menu-button aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><i></i><i></i></button>
+      <a href="#site-nav" class="hdr-burger hdr-nojs" aria-label="Menu: the site's sections, in the footer"><i></i><i></i></a>
     </div>
   </div>
 </header>
-<div id="mobile-menu" data-menu-panel class="menu-panel">
+<div id="mobile-menu" data-menu-panel class="menu-panel" data-surface="light">
   <nav aria-label="Primary, mobile" class="wrap menu-nav">
     {nav.map((item, i) => <a href={item.href} class="menu-link" style={`--i:${i}`}>{item.label}</a>)}
     <div class="menu-cta menu-link" style="--i:5">
