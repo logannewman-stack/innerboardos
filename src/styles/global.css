@@ -96,7 +96,8 @@
   /* Body copy is 16 px from 360 to about 1330 and reaches 18 at about 2000; button labels hold 14 (audit 2, P1 1). */
   --fs-body: clamp(16px, .3vw + 12px, 18px);
   --fs-small: clamp(14px, .25vw + 11px, 15px);
-  --fs-eyebrow: clamp(11px, .15vw + 9.5px, 12.5px);
+  /* Eyebrows never set under 12 px (the launch QA's floor for readable type on tablets and laptops). */
+  --fs-eyebrow: clamp(12px, .15vw + 10px, 12.5px);
   --fs-cap: 13px;
   --fs-cap-i: 14px;
   --fs-folio: 12px;
@@ -324,6 +325,10 @@
   .panel-navy { position: relative; overflow: clip; background: #071b30; border-radius: var(--r-lg); box-shadow: inset 0 1px 0 rgba(255,255,255,.07); }
 
   /* ── Lamp, grain ─────────────────────────────────────────────────────── */
+  /* Every <i> on the site is a drawn element (lamps, rules, halos, rail fills, the burger's bars), never copy (the
+   * copy's italics are <em>): upright, so their empty line boxes do not fetch Instrument Sans italic (31 KB), which
+   * no text uses. */
+  i { font-style: normal; }
   .lamp { position: absolute; inset: 0; pointer-events: none; border-radius: inherit; z-index: 0;
     background: radial-gradient(55% 60% at var(--lx, 18%) var(--ly, 0%), rgba(228,182,118,var(--la, .16)), transparent 70%); }
   .lamp-cream { background: radial-gradient(50% 45% at var(--lx, 50%) var(--ly, 0%), rgba(255,255,255,.75), transparent 72%), linear-gradient(to top, rgba(143,98,48,.08), transparent 30%); animation: lights 2.2s var(--ease) both; }
@@ -591,7 +596,8 @@
    * 66ch is the width of 66 zeros, which in Instrument Sans still set 80 to 91 characters a line; 33em sets 64 to 74). */
   .prose-ib h2 { font-size: var(--fs-title); margin-top: 40px; }
   .prose-ib p { margin-top: 14px; font-size: var(--fs-body); line-height: 1.65; color: var(--fg-2); max-width: 33em; }
-  .prose-ib a { color: var(--accent); text-decoration: underline; text-underline-offset: 4px; }
+  /* A link in the legal prose is a 44 px touch target: vertical padding on the inline box grows its hit area, not the line. */
+  .prose-ib a { color: var(--accent); text-decoration: underline; text-underline-offset: 4px; padding-block: 12px; }
 }
 
 /* IOS */
@@ -599,11 +605,6 @@
 [data-theme="navy"] .eyebrow, [data-surface="dark"] .eyebrow { color: var(--accent); }
 /* BRAND_FIX I4: every h1 at the brand book's 300, whatever its size role (the legal pages' h1 is a .t-m). */
 h1:is(.t-l, .t-m, .t-s) { font-weight: 300; }
-/* The hero's stage: linen, lit from its top centre; it carries data-surface="light". */
-.plate-linen { position: relative; overflow: hidden; background: #ebe4d5; border-radius: var(--r-lg);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.6), inset 0 0 0 1px rgba(31,29,26,.05); }
-.plate-linen > .lamp { background: radial-gradient(50% 45% at var(--lx, 50%) var(--ly, 0%), rgba(255,255,255,.75), transparent 72%),
-  linear-gradient(to top, rgba(143,98,48,.08), transparent 30%); animation: lights 2.2s var(--ease) both; }
 .t-s-quote em, .t-s-pull em { font-style: italic; font-weight: inherit; color: var(--accent); }
 /* An italic word in a lit statement lights to the accent on either tone (the IOS italic is always gold). */
 .js em.lw.on, .js [data-lit="lines"] > em.lw.on { color: var(--accent); }

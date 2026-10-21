@@ -838,7 +838,7 @@ class StoryRun {
   /* Story v2 (STORY_V2 1.7): the rail's counter, "01" and " / 05", rewritten on bind and at every step change. */
   countK: HTMLElement | null = null; countN: HTMLElement | null = null;
   subs: HTMLElement[][] = []; subIdx: number[] = []; gEls: HTMLElement[] = [];
-  stick = 0; D = 0; navH = 72; svh = 0; k = -1; G = 0; p = 0; pinned = false; visible = false; ok = false; lastGs = "";
+  stick = 0; D = 0; navH = 72; svh = 0; k = -1; G = 0; p = 0; pinned = false; visible = false; ok = false; lastGs = ""; warmK = -1;
   off: Array<() => void> = []; c: Cache = new Map();
   day: { skies: (HTMLElement | null)[]; caps: HTMLElement[]; section: HTMLElement | null; base: string; mat: HTMLElement | null; phone: HTMLElement | null } | null = null;
   constructor(root: HTMLElement, idx: number) {
@@ -1124,8 +1124,13 @@ class StoryRun {
     const top = window.scrollY + (r.top - this.stick) + (this.D * (this.cum[k] + 0.3 * this.w[k])) / this.W;
     window.scrollTo({ top: Math.round(top), behavior: reduced() ? "auto" : "smooth" });
   }
-  /* Warm the frames of steps k to k + 2 for every device: eager, and decoded before they are needed. */
+  /* Warm the frames of steps k to k + 2 for every device: eager, and decoded before they are needed. IOS edit: only
+   * once the track is within two screens of the viewport (write() runs a deferred warm when it gets there), so a
+   * story far down the page does not fetch its frames with the first screen. */
   warm(k: number) {
+    const r = this.track.getBoundingClientRect();
+    if (r.bottom < -this.svh || r.top > 2 * this.svh) { this.warmK = k; return; }
+    this.warmK = -1;
     for (const d of this.devs) {
       for (let j = Math.max(0, k); j <= Math.min(this.n - 1, k + 2); j++) {
         d.warm[j]?.forEach((fi) => {
@@ -1154,6 +1159,7 @@ class StoryRun {
     const wasVisible = this.visible;
     this.visible = r.bottom > 0 && r.top < this.svh * 1.2;
     const near = r.bottom > -this.svh && r.top < 2 * this.svh;
+    if (near && this.warmK >= 0) this.warm(this.warmK);
     const G = smooth(this.key, Graw, 0.07);
     const Gs = G.toFixed(4);
     const pinned = p > 0 && p < 1;

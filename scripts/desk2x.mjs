@@ -18,7 +18,7 @@ const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const srcDir = process.argv[2] || "/tmp/claude-0/-home-user/a157628b-2577-5461-b68b-7ff8d5b4dbd2/scratchpad/appdemo2";
 const pairs = [
   ["desktop-score-upstream-scored.png", "desk-score-upstream-scored"],
-  ["desktop-score-upstream-result.png", "desk-score-upstream-result"],
+  ["desktop-score-upstream-result-3.png", "desk-score-upstream-lowest"],
   ["desktop-track-home.png", "desk-track-home"],
   ["desktop-leader-blueprint-filled.png", "desk-leader-blueprint"]
 ];

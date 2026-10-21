@@ -23,8 +23,9 @@ import StoryMarks from "../components/StoryMarks.astro";
 import { LINKS, SITE } from "../config/links";
 
 const title = "InnerBoard IOS · The people operating system";
+/* The meta description is three of the page's own sentences: the h1, the solution's h2 and the outcome's line. */
 const description =
-  "Growth doesn't have to depend on you. InnerBoard IOS develops the confidence, capability and ownership of the people you already pay. Start with your Company OS Score.";
+  "Growth doesn't have to depend on you. A people operating system for high-performing organizations. Accelerate the value of the people you already pay.";
 
 /* The hero's three steps, by their headlines (the rail's names, STORY_V2 3.6): each is the hero's own copy. */
 const heroSteps = [
@@ -64,13 +65,19 @@ const audiences = [
 ];
 ---
 <Base title={title} description={description} path="/" theme="navy" navStart="dark">
+  <!-- The hero's first screen, preloaded with the srcset and sizes of its <img> (PhoneFrame) where the phone stands
+       in the first screen beside the h1 (the pinned hero, from 1069 wide), so it is fetched with the fonts rather
+       than after the stylesheet. No fetchpriority here: the h1 is the laptop's LCP and its font comes first (on a
+       throttled network a high priority preload delayed it by about 100 ms); the <img> carries fetchpriority="high".
+       On phones the phone is under the copy and its own fetchpriority is enough. -->
+  <link slot="head" rel="preload" as="image" href="/app/score-upstream-scored.webp" imagesrcset="/app/score-upstream-scored-390.webp 390w, /app/score-upstream-scored.webp 780w" imagesizes="400px" type="image/webp" media="(min-width: 1069px)" />
   <!-- 1. Hero (SCROLL_SPEC S9, STORY_V2 3.6). On laptops the hero itself is the step layout: the phone pinned at
        the right with the rail and its "01 / 03" counter beside it, the hero's copy split across the three steps at
        the left (step 1 is the h1), both buttons pinned under it. Each step has its own screen: the scored
        statements (the later ones come in scored); as the copy slides to the lead the ring presses the app's own
-       bar and the result wipes up, then scrolls until the score has left and the reading and the three lowest
-       rest; as the copy slides to the caption the Assessments page of InnerBoard OS comes in. No camera move: the
-       sample score is never the focus. Under 1069 wide (and without the pin) it is today's static hero: the eyebrow, the h1, the
+       bar and the result wipes up and at once scrolls until the score has left, so the reading ("In transition"
+       under the header) and the three lowest rest for most of the step; as the copy slides to the caption the
+       Assessments page of InnerBoard OS comes in. No camera move: the sample score is never the focus. Under 1069 wide (and without the pin) it is today's static hero: the eyebrow, the h1, the
        line, the lead as one paragraph, the buttons, the caption, the phone on the scored statements. -->
   <section id="ios" class="io-hero" data-tone="navy">
     <div class="story io-hero-story" data-story="ios-hero" data-story-ui="steps" data-side="right" data-kind="hero" data-story-layouts="wide" data-story-static="device" style="--story-w:3;--step-l:60svh;--story-top:0px;--story-gap:0px">
@@ -88,7 +95,7 @@ const audiences = [
                 <h1 data-lines class="t-xl io-h1 story-h"><span class="hl">Growth doesn't have to depend</span> <em class="hl">on you.</em></h1>
                 <p class="t-s-quote io-hero-line story-body rise" style="--d:.5s">You built the business. Now build the people who can grow it.</p>
               </li>
-              <li class="story-step" data-step="1" data-act='{"hero":{"f":2,"in":[50,95.6],"scroll":[.3,.66,0,31]}}'>
+              <li class="story-step" data-step="1" data-act='{"hero":{"f":2,"in":[50,95.6],"scroll":[.08,.4,0,35]}}'>
                 <p class="eyebrow story-eyebrow story-only" aria-hidden="true">The Company OS Score</p>
                 <p class="t-lead io-hero-lead rise" style="--d:.55s"><span class="story-h">Your business has an operating system. Your people need one too.</span> <span class="story-body">InnerBoard IOS helps you accelerate the value of the people you already pay by developing the confidence, capability, and ownership to do their best work.</span></p>
               </li>
@@ -399,6 +406,9 @@ const audiences = [
   .io-hero-steps > .io-hero-capstep { order: 2; }
   .io-hero-devcol { order: 1; }
   .io-h1 { max-width: 7.8em; margin: 0; }
+  /* The line rise clips each line to its box; the italic "y" of "on you." runs deeper than a .96 line box, so the
+   * clip reaches .2em under the line here (the rise starts each word at 110% of its height, still out of sight). */
+  .js .io-h1.lines-ready .l { padding-bottom: .2em; margin-bottom: -.2em; }
   .io-hero-line { margin-top: 24px; color: var(--fg); }
   .io-hero-lead { margin-top: 20px; color: var(--fg-2); }
   .io-hero-btns { margin-top: 32px; }
@@ -409,10 +419,27 @@ const audiences = [
     top: max(108px, calc(var(--hero-h) + 56px - var(--pw) * 2.224));
     left: calc(100% - var(--edge) - var(--pw) * 1.06); }
   .io-hero-device { position: relative; }
+  /* Wherever the hero is static (under 1069 wide, a short window, reduced motion, no script, or static by the fit
+   * guard) the phone only ever shows its first screen: the other three are not laid out, so their lazy images are
+   * never fetched (about 250 KB a phone does not need). */
+  @media (max-width: 1068px), (max-height: 599px), (prefers-reduced-motion: reduce) {
+    .io-hero-phone .cam > .ds:not(.on) { display: none; }
+  }
+  .no-js .io-hero-phone .cam > .ds:not(.on), .io-hero-story.static .io-hero-phone .cam > .ds:not(.on) { display: none; }
   .io-halo { position: absolute; z-index: -1; pointer-events: none; left: 50%; top: 40%; width: 200%; aspect-ratio: 1; transform: translate(-50%, -50%);
     border-radius: 50%; background: radial-gradient(closest-side, rgba(228,182,118,.26), rgba(228,182,118,.1) 50%, rgba(228,182,118,0) 100%); }
   .io-hero-phone .phone { box-shadow: inset 0 0 0 .55em #0c0b09, inset 0 0 0 .9em rgba(255,255,255,.08), 0 0 0 1px rgba(228,182,118,.28),
     0 2px 4px rgba(0,0,0,.35), 0 24px 44px -14px rgba(0,0,0,.55), 0 90px 120px -40px rgba(0,0,0,.65); }
+  /* Captures whose foot cuts a line of the app's text fade to the app's ivory (the screen's own ground) just above
+   * that line, so no letter is cut at a screen's edge: the Assessments page (the hero's third screen) above the
+   * first of the seven scores, the Role Blueprint above its second answer, the desk Track above its last card. The
+   * hero's result strip rests at 35 em, "In transition" just under the app's header, and its foot fades the same
+   * way over the card the screen's edge would cut. */
+  .phone-screen img[src="/app/os-assessments.webp"], .phone-screen img[src="/app/leader-blueprint.webp"] {
+    -webkit-mask-image: linear-gradient(to bottom, #000 94.9%, transparent 97.9%); mask-image: linear-gradient(to bottom, #000 94.9%, transparent 97.9%); }
+  .win-screen img[src="/app/desk-track-home.webp"] {
+    -webkit-mask-image: linear-gradient(to bottom, #000 97.4%, transparent 98.9%); mask-image: linear-gradient(to bottom, #000 97.4%, transparent 98.9%); }
+  #hero-phone .ds-strip { -webkit-mask-image: linear-gradient(to bottom, #000 93%, transparent 97.5%); mask-image: linear-gradient(to bottom, #000 93%, transparent 97.5%); }
   /* A laptop window under 760 tall (audit 2, P2 7): the caption ends inside the first screen. */
   @media (min-width: 900px) and (max-height: 760px) {
     .io-hero-copy { padding-top: 56px; }
@@ -802,6 +829,11 @@ const audiences = [
     .io-hero-btns { margin-top: 16px; }
     .io-hero-btns .btn { height: 44px; }
     .io-hero-phone { --pw: calc((100vh - 80px) / 2.22); --pw: calc((100svh - 80px) / 2.22); }
+    /* Diagram 1 beside its legend, as wide as the screen is tall under the header, so its names stay readable
+     * (IosPhilosophy sets them at 23 units here: 12 px and more at 314 px). */
+    .io-phil-draw { grid-column: 1 / span 6; align-self: start; }
+    .io-phil-legend { grid-column: 7 / span 6; margin-top: 0; }
+    .io-phil .io-phil-draw .io-phil-box { width: min(100%, calc(100vh - 76px)); width: min(100%, calc(100svh - 76px)); }
   }
 
   /* ── The two stories, pinned (STORY_V2 3.6, 3.7) ──────────────────────

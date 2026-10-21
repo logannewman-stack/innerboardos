@@ -1,0 +1,55 @@
+---
+/**
+ * The not found page. Vercel serves dist/404.html, with a 404 status, for any
+ * path the site does not have (a static build's own 404 page; vercel.json
+ * adds no rewrite that could hide it). The site's shell (header, footer,
+ * first paint on navy), the brand mark in the accent over the page's one
+ * line, and two ways on: the homepage and the Company OS Score. The line and
+ * the homepage button's label are the only words written for this page; the
+ * score button is the site's own. Kept out of search results and the sitemap
+ * (the sitemap integration leaves 404 pages out).
+ */
+import Base from "../layouts/Base.astro";
+import Arrow from "../components/Arrow.astro";
+import Geo from "../components/Geo.astro";
+import Mark from "../components/Mark.astro";
+import { LINKS } from "../config/links";
+
+const title = "This page isn't here · InnerBoard IOS";
+/* Built from this page's own words: its line, the footer's closing line, the two contact links. */
+const description = "This page isn't here. The people operating system for high-performing organizations. Get Your Company OS Score. Talk to our team.";
+---
+<Base title={title} description={description} path="/404" theme="navy" navStart="dark" noindex>
+  <section class="io-404" data-tone="navy">
+    <i class="lamp grain" aria-hidden="true" style="--lx:50%;--ly:0%;--la:.18"></i>
+    <Geo class="io-404-geo" color="#f4efe4" opacity={0.07} cx="50%" cy="50%" ringsOnly />
+    <div class="wrap io-404-in">
+      <span class="io-404-mark rise" aria-hidden="true"><Mark class="io-404-mark-svg" /></span>
+      <h1 class="t-l io-404-h rise" style="--d:.08s">This page isn't here.</h1>
+      <div class="io-404-btns rise" style="--d:.16s">
+        <a href="/" class="btn btn-gold">Go to the homepage <Arrow /></a>
+        <a href={LINKS.score} class="btn btn-line" data-passthrough data-event="assessment_click" data-event-location="not-found">Get Your Company OS Score</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style is:global>
+  /* One centred moment on the navy, as the site's close: the mark in the accent, the line at Display L, the two
+   * buttons under it. The section is at least the first screen less the header, so the linen footer starts below
+   * the fold on a laptop and the page never reads as a stub. */
+  .io-404 { position: relative; overflow: clip; display: grid; align-items: center; min-height: max(520px, 100svh); padding-block: calc(var(--nav-h) + 48px) 96px; }
+  /* The mark's ring, drawn large behind the line (rings only: no hairline crosses the words; the section clips it). */
+  .io-404-geo { z-index: 0; }
+  .io-404-in { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .io-404-mark { display: block; color: var(--accent); }
+  .io-404-mark-svg { display: block; width: 56px; height: 56px; }
+  .io-404-h { margin: 28px auto 0; max-width: 12em; color: var(--fg); }
+  .io-404-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: var(--btn-gap); }
+  @media (max-width: 734px) {
+    .io-404 { min-height: max(480px, 100svh); padding-block: calc(var(--nav-h) + 40px) 72px; }
+    .io-404-mark-svg { width: 48px; height: 48px; }
+    .io-404-btns { flex-direction: column; align-self: stretch; gap: 10px; }
+    .io-404-btns .btn { width: 100%; }
+  }
+</style>

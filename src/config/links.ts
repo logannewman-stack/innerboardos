@@ -31,8 +31,9 @@ export const LINKS = {
 export const SITE = {
   name: "InnerBoard IOS",
   url: "https://innerboardos.com",
+  /** The default meta description: the homepage's, three of its own sentences. */
   description:
-    "Growth doesn't have to depend on you. InnerBoard IOS develops the confidence, capability and ownership of the people you already pay. Start with your Company OS Score.",
+    "Growth doesn't have to depend on you. A people operating system for high-performing organizations. Accelerate the value of the people you already pay.",
   founder: "Leah Roling",
   /** The founder's title under the closing quote is still to be confirmed. */
   founderTitle: "Founder, InnerBoard"

@@ -10,7 +10,9 @@
     "check": "astro check",
     "sweep": "node scripts/sweep.mjs",
     "desk2x": "node scripts/desk2x.mjs",
-    "small": "node scripts/small.mjs"
+    "small": "node scripts/small.mjs",
+    "capture": "node scripts/capture.mjs",
+    "encode": "node scripts/encode.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",

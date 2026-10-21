@@ -22,13 +22,15 @@ const f = (n: number) => n.toFixed(1);
 // Leadership at the top, then clockwise: -90, -18, 54, 126, 198 degrees.
 const angles = [-90, -18, 54, 126, 198];
 const rings = angles.map((a) => ({ x: cx + R * Math.cos(rad(a)), y: cy + R * Math.sin(rad(a)) }));
-// Each name sits inside its ring, toward the outside, clear of the overlaps.
+// Each name sits inside its ring where it keeps the most room from every ring's stroke and the centre disc
+// (measured with the names at their phone size, 22 units with .12em tracking: at least 23 units clear of any
+// line; 21 at the landscape phone size, 23 units), so at every width no letter touches a ring.
 const labels = [
-  [280, 72],
-  [482, 220],
-  [404, 452],
-  [156, 452],
-  [78, 220]
+  [280, 110],
+  [439, 253],
+  [391, 411],
+  [169, 411],
+  [123, 254]
 ];
 // The orbit: radius 282 about the centre, from -119 to 227 degrees clockwise,
 // 18 px outside the rings' outer edge; the five ring angles fall at 8, 29, 50,
@@ -85,7 +87,9 @@ const head = [
   /* The names take the page's text colour (cream on navy), so when the page cross fades to cream with
    * the drawing's foot still in view they turn ink instead of vanishing. The centre word sits on the
    * navy disc and stays cream. */
-  .ring-name { font-family: var(--font-sans); font-size: 14px; font-weight: 600; letter-spacing: .14em; fill: var(--fg); transition: fill .5s var(--ease); }
+  /* The names in user units, sized per layout so they render at 12 px or more: the drawing is 5 columns wide on
+   * laptops (477 to 542 px), 5 of a tablet's (381), 8 of a narrow tablet's (464) and the full phone column (335 to 390). */
+  .ring-name { font-family: var(--font-sans); font-size: 15.5px; font-weight: 600; letter-spacing: .12em; fill: var(--fg); transition: fill .5s var(--ease); }
   .io-core-word { font-family: var(--font-display); font-size: 34px; font-weight: 360; fill: #f4efe4; }
   .io-phil-orbit .draw-line { fill: none; stroke: #e4b676; stroke-width: 1; stroke-linecap: round; }
   .io-phil-orbit .draw-head { fill: #e4b676; }
@@ -93,5 +97,8 @@ const head = [
   :global(.js) .ring-name { opacity: 0; transition: opacity .4s var(--ease) calc(var(--d, 0s) + 1.2s), fill .5s var(--ease); }
   :global(.js) .io-phil-svg.in .ring-name { opacity: 1; }
   @media (prefers-reduced-motion: reduce) { :global(.js) .ring-name { opacity: 1; transition: none; } }
-  @media (max-width: 734px) { .ring-name { font-size: 17px; } .io-core-word { font-size: 40px; } }
+  @media (max-width: 1068px) { .ring-name { font-size: 20px; } }
+  @media (max-width: 899px) { .ring-name { font-size: 16px; } }
+  @media (max-width: 734px) { .ring-name { font-size: 22px; } .io-core-word { font-size: 40px; } }
+  @media (max-width: 1068px) and (max-height: 500px) and (orientation: landscape) { .ring-name { font-size: 23px; } }
 </style>

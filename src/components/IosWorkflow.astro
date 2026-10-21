@@ -7,7 +7,8 @@
  * label (as the eyebrow), lead (the headline) and body show at a time at the
  * right, changing with the screen. On a laptop a browser window: the cursor
  * clicks the Company OS Score's "See what ... means" bar and the result
- * wipes up (Assess), clicks InnerBoard OS in the rail and rests on the
+ * comes in already scrolled past the score, on the reading and the three
+ * lowest (Assess), clicks InnerBoard OS in the rail and rests on the
  * Personal and then the Social leadership modules of the Track while
  * Develop's text gives way to Personal Power and then Social Influence (the
  * group label "02. Develop" stays as their eyebrow), clicks Tools for the
@@ -16,8 +17,11 @@
  * (Measure), and clicks Get Certified for the certifications hub (Certify).
  * Every step has its own screen, captured from the live app; the Get
  * Certified capture fades to the app's ivory above the cards' availability
- * notes. On tablets and phones a phone does the same story (the Curriculum
- * scrolls from its top to the crew row). The locked line "Assess → Develop → Embed → Measure → Certify" is
+ * notes. On tablets and phones a phone does the same story with no camera
+ * move (a zoom would crop the app's text at the screen's edges): the result
+ * scrolls past the score as soon as it is in, and the Curriculum scrolls from
+ * its top to the crew row, resting where no line meets the app's header or
+ * the screen's foot. The locked line "Assess → Develop → Embed → Measure → Certify" is
  * no longer the progress control: the page sets it under the statement that
  * follows the story.
  *
@@ -42,7 +46,7 @@ const caps = [
 ];
 const win = [
   { name: "desk-score-upstream-scored", alt: caps[0], x2: true },
-  { name: "desk-score-upstream-result", alt: caps[1], x2: true },
+  { name: "desk-score-upstream-lowest", alt: caps[1], x2: true },
   { name: "desk-track-home", alt: caps[2], x2: true },
   { name: "desk-leader-blueprint", alt: caps[3], x2: true },
   { name: "desk-os-curriculum", alt: caps[4], x2: true },
@@ -62,23 +66,23 @@ const steps = [
   { label: "01. Assess.", lead: "Understand your people and where the opportunities exist.", body: "Identify current strengths, development opportunities, role expectations, and what influences performance. Create greater clarity about where your team is today and what needs to develop next.",
     w: 1.2, win: 1, phone: 1, off: 89.23,
     alt: "The Company OS Score scored on a desk; the cursor opens what the score means, and rests on the three lowest statements and the chapters that answer them.",
-    act: '{"win":{"f":0,"cur":[[.08,40,60],[.34,58.6,95.7],[.6,58.6,95.7],[.82,52,47]],"click":.42,"next":[.46,1]},"phone":{"f":0,"tap":[50,95.6,.36],"next":[.4,1],"scroll":[.56,.86,0,89.23]}}' },
+    act: '{"win":{"f":0,"cur":[[.08,40,60],[.34,58.6,95.7],[.6,58.6,95.7],[.82,52,47]],"click":.42,"next":[.46,1]},"phone":{"f":0,"tap":[50,95.6,.2],"next":[.24,1],"scroll":[.3,.6,0,89.23]}}' },
   { label: "02. Develop.", lead: "Build the self-leadership skills and capacity your business needs.", body: "Give people practical development that strengthens how they think, communicate, solve problems, take ownership, and lead themselves. Help every person grow into the demands and opportunities of their role.",
     w: 1.6, win: 2, phone: 2,
     alt: "The Track: the modules under Personal leadership, then the modules under Social leadership.",
-    act: '{"win":{"cur":[[.06,52,47],[.22,5,23.6],[.3,5,23.6],[.42,45,24.5],[.6,45,24.5],[.72,45,69.5]],"click":.26,"next":[.3,2],"sub":[[.42,1],[.72,2]]},"phone":{"f":2,"cam":[[.1,1,50,50],[.3,1.06,50,34],[.58,1.06,50,34],[.74,1.06,50,74],[.9,1,50,50]],"sub":[[.42,1],[.72,2]]}}' },
+    act: '{"win":{"cur":[[.06,52,47],[.22,5,23.6],[.3,5,23.6],[.42,45,24.5],[.6,45,24.5],[.72,45,69.5]],"click":.26,"next":[.3,2],"sub":[[.42,1],[.72,2]]},"phone":{"f":2,"sub":[[.42,1],[.72,2]]}}' },
   { label: "03. Embed.", lead: "Turn learning into everyday behavior.", body: "Development doesn't create value simply because someone completes a course. It creates value when people apply what they've learned. InnerBoard IOS brings development into daily work through intentional practice, clear expectations, and consistent application.",
     w: 1, win: 3, phone: 3,
     alt: "The Role Blueprint, filled in for one role: what the role is paid to produce.",
-    act: '{"win":{"cur":[[.08,45,69.5],[.28,5,33.3],[.46,5,33.3],[.7,50,59.5]],"click":.36,"next":[.4,3]},"phone":{"f":3,"cam":[[.12,1,50,50],[.38,1.06,50,76],[.7,1.06,50,76],[.88,1,50,50]]}}' },
+    act: '{"win":{"cur":[[.08,45,69.5],[.28,5,33.3],[.46,5,33.3],[.7,50,59.5]],"click":.36,"next":[.4,3]},"phone":{"f":3}}' },
   { label: "04. Measure.", lead: "Track curriculum progress through module completion.", body: "Leaders can see how many modules each person has completed. Individual answers, reflections, and written responses remain private.",
-    w: 1, win: 4, phone: 4, off: 75.64,
+    w: 1, win: 4, phone: 4, off: 73.5,
     alt: "The Curriculum inside InnerBoard OS: the modules in order, each opened by the proof before it, and a crew's progress in counts only, never a name or anybody's words.",
-    act: '{"win":{"cur":[[.06,50,59.5],[.22,5,23.6],[.3,5,23.6],[.56,45,92.4]],"click":.26,"next":[.3,4]},"phone":{"f":4,"scroll":[.32,.82,0,75.64]}}' },
+    act: '{"win":{"cur":[[.06,50,59.5],[.22,5,23.6],[.3,5,23.6],[.56,45,92.4]],"click":.26,"next":[.3,4]},"phone":{"f":4,"scroll":[.32,.82,0,73.5]}}' },
   { label: "05. Certify.", lead: "Develop leaders who can sustain and scale the work.", body: "Build internal strength through trained and certified leaders who can reinforce the methodology, support their teams, and help sustain a culture of development.",
     w: 1, win: 5, phone: 5,
     alt: "Get Certified: the certification that fits the work, INQ to use the method with clients, OS Certification to use it with a team or organization.",
-    act: '{"win":{"cur":[[.06,45,92.4],[.22,5,28.6],[.3,5,28.6],[.56,75.5,29.8]],"click":.26,"next":[.3,5]},"phone":{"f":5,"cam":[[.12,1,50,50],[.38,1.06,50,30],[.7,1.06,50,30],[.88,1,50,50]]}}' }
+    act: '{"win":{"cur":[[.06,45,92.4],[.22,5,28.6],[.3,5,28.6],[.56,75.5,29.8]],"click":.26,"next":[.3,5]},"phone":{"f":5}}' }
 ];
 ---
 <div class="story io-wf-story" data-story="workflow" data-story-ui="steps" data-side="left" data-kind="win" data-story-h="s" data-warm style="--story-w:5.8;--step-l:64svh;--step-l-n:58svh">
