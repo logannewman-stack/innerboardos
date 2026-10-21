@@ -14,7 +14,6 @@ import Base from "../layouts/Base.astro";
 import Arrow from "../components/Arrow.astro";
 import Icon from "../components/Icon.astro";
 import Geo from "../components/Geo.astro";
-import Mark from "../components/Mark.astro";
 import IosHeroPlate from "../components/IosHeroPlate.astro";
 import IosPhilosophy from "../components/IosPhilosophy.astro";
 import IosWorkflow from "../components/IosWorkflow.astro";
@@ -358,7 +357,7 @@ const audiences = [
           <footer class="t-cap io-quote-by"><b>{SITE.founder}</b>, {SITE.founderTitle}</footer>
         </blockquote>
         <p class="io-brand-line" data-lit="lines" data-lit-step="200"><span class="lw">A more capable team.</span> <span class="lw">A stronger culture.</span> <span class="lw">A more valuable business.</span></p>
-        <p class="io-brand-mark rise"><Mark class="io-brand-mark-svg" /><span>InnerBoard IOS</span></p>
+        <p class="io-brand-mark rise"><img class="io-brand-mark-svg" src="/brand/logo.png" width="442" height="442" alt="" aria-hidden="true" loading="lazy" decoding="async" /><span>InnerBoard IOS</span></p>
         <p class="t-cap-i io-brand-tag rise" style="--d:.26s">The people operating system for <span class="io-nw">high-performing</span> organizations.</p>
       </div>
     </div>
@@ -643,7 +642,7 @@ const audiences = [
   .io-brand-line { margin: 56px auto 0; font-family: var(--font-sans); font-size: 12.5px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; line-height: 2; color: var(--accent); }
   .js p.io-brand-line > .lw.on { color: var(--accent); }
   .io-brand-mark { display: inline-flex; align-items: center; gap: 10px; margin: 24px auto 0; font-family: var(--font-display); font-size: 22px; font-weight: 400; letter-spacing: -.012em; line-height: 1; color: var(--fg); }
-  .io-brand-mark-svg { width: 26px; height: 26px; color: var(--accent); }
+  .io-brand-mark-svg { width: 56px; height: 56px; display: block; }
   .io-brand-tag { margin: 8px auto 0; }
 
   /* ── Reduced motion: the book at rest, the brand line lit ─────────── */

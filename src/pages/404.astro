@@ -12,7 +12,6 @@
 import Base from "../layouts/Base.astro";
 import Arrow from "../components/Arrow.astro";
 import Geo from "../components/Geo.astro";
-import Mark from "../components/Mark.astro";
 import { LINKS } from "../config/links";
 
 const title = "This page isn't here · InnerBoard IOS";
@@ -24,7 +23,7 @@ const description = "This page isn't here. The people operating system for high-
     <i class="lamp grain" aria-hidden="true" style="--lx:50%;--ly:0%;--la:.18"></i>
     <Geo class="io-404-geo" color="#f4efe4" opacity={0.07} cx="50%" cy="50%" ringsOnly />
     <div class="wrap io-404-in">
-      <span class="io-404-mark rise" aria-hidden="true"><Mark class="io-404-mark-svg" /></span>
+      <span class="io-404-mark rise" aria-hidden="true"><img class="io-404-mark-svg" src="/brand/logo.png" width="442" height="442" alt="" /></span>
       <h1 class="t-l io-404-h rise" style="--d:.08s">This page isn't here.</h1>
       <div class="io-404-btns rise" style="--d:.16s">
         <a href="/" class="btn btn-gold">Go to the homepage <Arrow /></a>
@@ -43,12 +42,12 @@ const description = "This page isn't here. The people operating system for high-
   .io-404-geo { z-index: 0; }
   .io-404-in { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
   .io-404-mark { display: block; color: var(--accent); }
-  .io-404-mark-svg { display: block; width: 56px; height: 56px; }
+  .io-404-mark-svg { display: block; width: 140px; height: 140px; }
   .io-404-h { margin: 28px auto 0; max-width: 12em; color: var(--fg); }
   .io-404-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: var(--btn-gap); }
   @media (max-width: 734px) {
     .io-404 { min-height: max(480px, 100svh); padding-block: calc(var(--nav-h) + 40px) 72px; }
-    .io-404-mark-svg { width: 48px; height: 48px; }
+    .io-404-mark-svg { width: 116px; height: 116px; }
     .io-404-btns { flex-direction: column; align-self: stretch; gap: 10px; }
     .io-404-btns .btn { width: 100%; }
   }

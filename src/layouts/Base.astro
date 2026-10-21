@@ -34,9 +34,15 @@ interface Props {
 const { title, description = SITE.description, path = "/", image = "/og-image.png", theme = "cream", navStart = "light", noindex = false } = Astro.props;
 const color = theme === "navy" ? "#071b30" : "#f4efe4";
 const canonical = new URL(path, SITE.url).toString();
-const imageUrl = new URL(image, SITE.url).toString();
+/* The link preview (Open Graph, Twitter) must load from the host that serves this build: on Vercel that is the
+ * project's production URL (its vercel.app address until the domain is attached, then the domain), or the branch
+ * URL for previews. Without Vercel it falls back to the site's own domain. */
+const host = process.env.VERCEL_ENV === "production" ? process.env.VERCEL_PROJECT_PRODUCTION_URL : (process.env.VERCEL_BRANCH_URL || process.env.VERCEL_URL);
+const origin = host ? `https://${host}` : SITE.url;
+const imageUrl = new URL(image, origin).toString();
+const shareUrl = new URL(path, origin).toString();
 /* The share card's description, as its alt text (the card is public/og-image.png, IOS_SPEC 1.10). */
-const imageAlt = "InnerBoard IOS: Growth doesn't have to depend on you. The Company OS Score on a phone.";
+const imageAlt = "The InnerBoard IOS logo.";
 ---
 <!doctype html>
 <html lang="en" class="no-js" data-theme={theme}>
@@ -48,13 +54,15 @@ const imageAlt = "InnerBoard IOS: Growth doesn't have to depend on you. The Comp
     {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
     <meta name="theme-color" content={color} />
     <meta name="nav-start" content={navStart} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" href="/brand/icon-32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/brand/icon-48.png" type="image/png" sizes="48x48" />
+    <link rel="icon" href="/brand/icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" sizes="180x180" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    {!noindex && <meta property="og:url" content={canonical} />}
+    {!noindex && <meta property="og:url" content={shareUrl} />}
     <meta property="og:locale" content="en_US" />
     <meta property="og:image" content={imageUrl} />
     <meta property="og:image:type" content="image/png" />
