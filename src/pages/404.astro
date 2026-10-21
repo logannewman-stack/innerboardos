@@ -11,7 +11,7 @@
  */
 import Base from "../layouts/Base.astro";
 import Arrow from "../components/Arrow.astro";
-import Geo from "../components/Geo.astro";
+import OsArc from "../components/OsArc.astro";
 import { LINKS } from "../config/links";
 
 const title = "This page isn't here · InnerBoard IOS";
@@ -21,7 +21,7 @@ const description = "This page isn't here. The people operating system for high-
 <Base title={title} description={description} path="/404" theme="navy" navStart="dark" noindex>
   <section class="io-404" data-tone="navy">
     <i class="lamp grain" aria-hidden="true" style="--lx:50%;--ly:0%;--la:.18"></i>
-    <Geo class="io-404-geo" color="#f4efe4" opacity={0.07} cx="50%" cy="50%" ringsOnly />
+    <OsArc class="io-404-arc" size={1100} cx="50%" cy="50%" opacity={0.3} weight={0.16} />
     <div class="wrap io-404-in">
       <span class="io-404-mark rise" aria-hidden="true"><img class="io-404-mark-svg" src="/brand/logo.png" width="442" height="442" alt="" /></span>
       <h1 class="t-l io-404-h rise" style="--d:.08s">This page isn't here.</h1>
@@ -38,8 +38,8 @@ const description = "This page isn't here. The people operating system for high-
    * buttons under it. The section is at least the first screen less the header, so the linen footer starts below
    * the fold on a laptop and the page never reads as a stub. */
   .io-404 { position: relative; overflow: clip; display: grid; align-items: center; min-height: max(520px, 100svh); padding-block: calc(var(--nav-h) + 48px) 96px; }
-  /* The mark's ring, drawn large behind the line (rings only: no hairline crosses the words; the section clips it). */
-  .io-404-geo { z-index: 0; }
+  /* The logo's open arc, drawn large in the honey behind the line (the section clips it). */
+  .io-404-arc { z-index: 0; }
   .io-404-in { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
   .io-404-mark { display: block; color: var(--accent); }
   .io-404-mark-svg { display: block; width: 140px; height: 140px; }

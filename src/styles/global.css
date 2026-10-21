@@ -85,6 +85,7 @@
   --pop: cubic-bezier(.2, .9, .25, 1.15);
   --spring: cubic-bezier(.34, 1.25, .64, 1);
   --hover: cubic-bezier(0, 0, .58, 1);
+  --turn: cubic-bezier(.65, 0, .35, 1);
 
   --fs-xl: clamp(44px, min(6.1vw, 10.4vh), 112px);
   --fs-l: clamp(34px, min(4.3vw, 7.2vh), 80px);
@@ -188,7 +189,9 @@
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
     overflow-x: clip;
-    transition: background-color .5s var(--ease), color .5s var(--ease);
+    /* The page's turn between tones: .4 s, eased in and out, so the half way colour (where neither ink nor ivory
+     * reads) passes quickly. */
+    transition: background-color .4s var(--turn), color .4s var(--turn);
   }
   /* BRAND_FIX I4: the InnerBoard OS brand book's Fraunces Light (the app's rule: h1 300, h2 and h3 360). */
   h1, h2, h3, .display {
@@ -226,11 +229,14 @@
   /* ── Tone floors (1.7.5) ────────────────────────────────────────────
    * Every section[data-tone] carries a floor: transparent at its top, its own tone's colour from 200 px
    * down, so the top still cross fades with the body. The floor is painted exactly while the page is in
-   * that section's tone, and fades with the body (--tone-floor is a registered colour). */
+   * that section's tone (--tone-floor is a registered colour). While the page turns, no floor paints: the
+   * floor of the tone being left goes at once and the floor of the tone arriving comes once the body has finished
+   * turning, so the whole screen turns as one colour and no edge shows between the two sections (flow QA,
+   * October 21). */
   [data-tone="cream"] { --tone-bg: #f4efe4; }
   [data-tone="navy"] { --tone-bg: #071b30; }
-  main [data-tone] { background-image: var(--tone-tint, none), linear-gradient(to bottom, transparent 0, var(--tone-floor) 200px); transition: --tone-floor .5s var(--ease); }
-  html[data-theme="cream"] main [data-tone="cream"], html[data-theme="navy"] main [data-tone="navy"] { --tone-floor: var(--tone-bg); }
+  main [data-tone] { background-image: var(--tone-tint, none), linear-gradient(to bottom, transparent 0, var(--tone-floor) 200px); transition: --tone-floor 0s linear 0s; }
+  html[data-theme="cream"] main [data-tone="cream"], html[data-theme="navy"] main [data-tone="navy"] { --tone-floor: var(--tone-bg); transition-delay: .4s; }
 
   /* Atmosphere at a section's edges: a lamp or grain layer that is a direct child of a section (and a
    * section's own grain) fades out over its lower half, so it never ends in a hard horizontal seam; below
@@ -500,12 +506,6 @@
   .story-bar { position: relative; width: 72px; height: 2px; border-radius: 2px; background: var(--lit-off); margin-inline: auto; overflow: hidden; }
   .story-bar > i { position: absolute; inset: 0; background: var(--fg); transform-origin: 0 50%; transform: scaleX(0); }
 
-  /* ── The mark geometry ─────────────────────────────────────────────── */
-  /* z-index 0: under the copy, which sits in a positioned wrapper at z-index 1 (a bleed's .wrap already is). */
-  .geo { position: absolute; z-index: 0; width: var(--geo-size, 1100px); height: var(--geo-size, 1100px); max-width: none; max-height: none; pointer-events: none; color: currentColor; opacity: 1; }
-  .geo path, .geo circle.ring { fill: none; stroke: currentColor; stroke-width: var(--geo-sw, 1); opacity: var(--geo-o, .08); }
-  .geo circle.dot { fill: currentColor; stroke: none; opacity: calc(var(--geo-o, .08) * 2); }
-
   /* ── Header (1.8) ──────────────────────────────────────────────────── */
   .site-header { position: fixed; inset-inline: 0; top: 0; z-index: 50; height: var(--nav-h); color: #1f1d1a; --fg: #1f1d1a; --fg-2: #3d3a35; --fg-3: #5c574f; --focus: #8f6230;
     transition: background-color 240ms var(--ease), box-shadow 240ms var(--ease), color 240ms var(--ease), transform 450ms var(--sheet); }
@@ -642,3 +642,17 @@ html.no-js main [data-tone="navy"] .eyebrow { color: #e4b676; }
   .js [data-story-ui="steps"]:not(.static) .story-steps > .story-step .story-h em { font-weight: inherit; }
   .js [data-story-ui="steps"]:not(.static) .story-steps > .story-step .story-body { font-weight: 400; }
 }
+
+/* The InnerBoard OS logo's open arc (OsArc.astro): the brand device behind sections and round the hero's phone, in
+ * place of the earlier drawn ring. It sits under the copy (keep the copy in a positioned wrapper at z-index 1). */
+.os-arc { position: absolute; z-index: 0; display: block; width: var(--arc-size); height: var(--arc-size); max-width: none; max-height: none; pointer-events: none; opacity: var(--arc-o, 1); overflow: visible; }
+
+/* Page to page (the ClientRouter's view transition): the page leaving fades in 150 ms and the page arriving rises
+ * 8 px as it fades in, 280 ms from 110 ms, so the two are never read on top of each other (flow QA, October 21). The
+ * header (view-transition-name: nav) holds still. */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) { animation: 150ms cubic-bezier(.4, 0, 1, 1) both ib-page-out; }
+  ::view-transition-new(root) { animation: 280ms cubic-bezier(.16, 1, .3, 1) 110ms both ib-page-in; }
+}
+@keyframes ib-page-out { to { opacity: 0; } }
+@keyframes ib-page-in { from { opacity: 0; transform: translateY(8px); } }

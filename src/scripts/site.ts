@@ -180,8 +180,9 @@ function reveals() {
   qsa(".seq").forEach((seq) => Array.from(seq.children).forEach((c, i) => (c as HTMLElement).style.setProperty("--i", String(i))));
   if (!("IntersectionObserver" in window)) { items.forEach(arrive); revealIO = null; return; }
   /* Whatever already starts above the viewport's bottom arrives at once (a tall object that only peeks into
-   * the first screen of a short laptop must not wait for 12% of itself to be in view); the rest arrive as soon
-   * as any of them crosses into the band above the bottom 8% of the viewport (audit 2, finding 1). */
+   * the first screen of a short laptop must not wait for 12% of itself to be in view); the rest arrive as they
+   * come within 2% of the viewport's bottom edge, so a scrolling reader never meets a half built section (flow
+   * QA, October 21; it was the band above the bottom 8%, audit 2, finding 1). */
   const h = window.innerHeight;
   const later = items.filter((el) => { if (el.getBoundingClientRect().top < h) { arrive(el); return false; } return true; });
   revealIO = new IntersectionObserver((entries) => {
@@ -190,7 +191,7 @@ function reveals() {
       arrive(entry.target);
       revealIO?.unobserve(entry.target);
     }
-  }, { rootMargin: "0px 0px -8% 0px", threshold: 0 });
+  }, { rootMargin: "0px 0px 2% 0px", threshold: 0 });
   later.forEach((el) => revealIO!.observe(el));
   observe(revealIO);
   /* Keyboard focus that lands inside content that has not been revealed yet reveals it at once. */
@@ -276,7 +277,7 @@ function lineRise(gen: number) {
     if (gen !== generation) return;
     const io = "IntersectionObserver" in window ? new IntersectionObserver((entries) => {
       for (const e of entries) { if (e.isIntersecting) { e.target.classList.add("in"); io?.unobserve(e.target); } }
-    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 }) : null;
+    }, { rootMargin: "0px 0px -4% 0px", threshold: 0.12 }) : null;
     if (io) observe(io);
     for (const h of heads) {
       const blocks = (qsa(".hl", h).length ? qsa(".hl", h) : [h]).map((el) => ({ el, words: wordify(el, "w") }));
@@ -450,7 +451,8 @@ function header() {
   let acc = 0, lastY = window.scrollY, sampledY = -1e9, sampledAt = -1e9, hidden = false;
   const loadAt = performance.now();
   let resizeAt = -1e9;
-  listen(window, "resize", () => { resizeAt = performance.now(); }, { passive: true });
+  /* A resize can change what sits under the bar without a scroll: sample again once it settles. */
+  listen(window, "resize", () => { resizeAt = performance.now(); after(160, sample); }, { passive: true });
   const show = () => { hidden = false; el.classList.remove("nav-hidden"); };
   const hide = () => { hidden = true; el.classList.add("nav-hidden"); };
   register({ frame(now) {
@@ -466,9 +468,11 @@ function header() {
       else need = true;
     }
     /* While a story is pinned the bar stays shown: the stage sticks under it, so a hidden bar would leave a
-     * dead band of page above the stage (audit 2, finding 4). Read now, not from the story pass of the last
-     * frame, so a scroll that jumps into a pin never hides the bar for a frame. */
-    const locked = now - loadAt < 1200 || now - resizeAt < 500 || menuOpen() || el.contains(document.activeElement) || storyPinnedNow();
+     * dead band of page above the stage (audit 2, finding 4). It also stays for three quarters of a screen
+     * before a pin and after it, so the bar does not slide away and straight back as the reader scrolls from
+     * one story into the next (flow QA, October 21). Read now, not from the story pass of the last frame, so a
+     * scroll that jumps into a pin never hides the bar for a frame. */
+    const locked = now - loadAt < 1200 || now - resizeAt < 500 || menuOpen() || el.contains(document.activeElement) || storyPinnedNow(vh * 0.75);
     if (y < 120 || locked) { acc = 0; if (hidden && (y < 120 || locked)) show(); return; }
     if ((d > 0) !== (acc > 0)) acc = 0;
     acc += d;
@@ -794,11 +798,11 @@ type Dev = {
 /* The live stories, for the header: it stays shown while one is pinned, so a pinned stage never has a dead
  * band of page above it (audit 2, finding 4). One rect per live story, read before any write of the frame. */
 let storyRuns: (StoryRun | null)[] = [];
-function storyPinnedNow() {
+function storyPinnedNow(margin = 0) {
   for (const r of storyRuns) {
     if (!r || !r.ok || r.D < 1 || !r.root.classList.contains("is-live")) continue;
-    const p = (r.stick - r.track.getBoundingClientRect().top) / r.D;
-    if (p > 0 && p < 1) return true;
+    const t = r.stick - r.track.getBoundingClientRect().top;
+    if (t > -margin && t < r.D + margin) return true;
   }
   return false;
 }

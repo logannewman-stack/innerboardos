@@ -21,8 +21,10 @@
  * first viewport. The section's CSS (index.astro) places and sizes the box.
  */
 import PhoneFrame from "./PhoneFrame.astro";
+import OsArc from "./OsArc.astro";
 ---
 <div class="story-device-box story-phone io-hero-phone">
+  <OsArc class="io-hero-arc" size="calc(var(--pw) * 2.05)" cx="50%" cy="50%" opacity={0.62} weight={0.8} />
   <div class="io-hero-device rise-obj floor-on" style="--d:.3s" data-reveal-at="1" data-reveal-host=".io-hero-story .story-stage">
     <i class="io-halo" aria-hidden="true"></i>
     <PhoneFrame

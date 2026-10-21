@@ -13,7 +13,7 @@
 import Base from "../layouts/Base.astro";
 import Arrow from "../components/Arrow.astro";
 import Icon from "../components/Icon.astro";
-import Geo from "../components/Geo.astro";
+import OsArc from "../components/OsArc.astro";
 import IosHeroPlate from "../components/IosHeroPlate.astro";
 import IosPhilosophy from "../components/IosPhilosophy.astro";
 import IosWorkflow from "../components/IosWorkflow.astro";
@@ -155,7 +155,7 @@ const audiences = [
   <!-- 3. The solution: the statement, the two columns, diagram 1 -->
   <section id="solution" class="io-solution" data-tone="navy">
     <i class="lamp grain" aria-hidden="true" style="--lx:85%;--ly:0%;--la:.16"></i>
-    <Geo class="io-geo-solution" color="#f4efe4" opacity={0.08} />
+    <OsArc class="io-arc-solution" size={1000} color="#f4efe4" opacity={0.16} weight={0.12} />
     <div class="wrap">
       <div class="io-sol-head">
         <p class="eyebrow rise">Section two · The solution</p>
@@ -336,7 +336,7 @@ const audiences = [
     <i class="lamp grain" aria-hidden="true" style="--lx:50%;--ly:100%;--la:.2"></i>
     <!-- The brief's panoramic mountain photograph: when an image is approved for use it becomes this element's background-image and nothing else changes. Until then the close is flat navy with the horizon lamp. -->
     <div class="io-panorama" aria-hidden="true"></div>
-    <Geo class="io-geo-next" color="#f4efe4" opacity={0.06} />
+    <OsArc class="io-arc-next" size={1000} color="#f4efe4" opacity={0.14} weight={0.12} />
     <div class="wrap">
       <div class="io-next-in">
         <p class="eyebrow rise">Section eight · Let's build what's next</p>
@@ -357,8 +357,6 @@ const audiences = [
           <footer class="t-cap io-quote-by"><b>{SITE.founder}</b>, {SITE.founderTitle}</footer>
         </blockquote>
         <p class="io-brand-line" data-lit="lines" data-lit-step="200"><span class="lw">A more capable team.</span> <span class="lw">A stronger culture.</span> <span class="lw">A more valuable business.</span></p>
-        <p class="io-brand-mark rise"><img class="io-brand-mark-svg" src="/brand/logo.png" width="442" height="442" alt="" aria-hidden="true" loading="lazy" decoding="async" /><span>InnerBoard IOS</span></p>
-        <p class="t-cap-i io-brand-tag rise" style="--d:.26s">The people operating system for <span class="io-nw">high-performing</span> organizations.</p>
       </div>
     </div>
   </section>
@@ -418,6 +416,11 @@ const audiences = [
     top: max(108px, calc(var(--hero-h) + 56px - var(--pw) * 2.224));
     left: calc(100% - var(--edge) - var(--pw) * 1.06); }
   .io-hero-device { position: relative; }
+  /* The logo's open arc round the phone, on the circle the phone's height spans, its opening to the lower right as
+   * in the logo, drawn in as the page opens (OsArc). A phone's screen is too narrow to keep it clear of the device,
+   * so it starts at tablet width (735). */
+  .io-hero-arc { z-index: -1; }
+  @media (max-width: 734px) { .io-hero-arc { display: none; } }
   /* Wherever the hero is static (under 1069 wide, a short window, reduced motion, no script, or static by the fit
    * guard) the phone only ever shows its first screen: the other three are not laid out, so their lazy images are
    * never fetched (about 250 KB a phone does not need). */
@@ -468,7 +471,10 @@ const audiences = [
 
   /* ── 2.3 The solution ─────────────────────────────────────────────── */
   .io-solution { padding-block: var(--sec-l); overflow: hidden; }
-  .io-geo-solution { right: -320px; top: -200px; z-index: 0; }
+  /* The logo's open arc (OsArc) as a hairline in ivory, where the earlier ring was: its circle's centre 230 px
+   * inside the right edge and 350 px down, its opening to the lower right as in the logo. A hairline, so it can pass
+   * behind the centred statements as the ring did. */
+  .io-arc-solution { right: -270px; top: -150px; z-index: 0; }
   /* The heading block is centred in columns 3 to 10; the h2's two lines (each wider than 792 at Display L)
    * take columns 2 to 11. */
   .io-sol-head { max-width: calc(10 * var(--colw) + 9 * var(--gap)); margin-inline: auto; text-align: center; }
@@ -621,7 +627,7 @@ const audiences = [
 
   /* ── 2.9 Your next step and 2.10 the close ────────────────────────── */
   .io-next { padding-top: var(--sec-l); padding-bottom: 120px; overflow: hidden; }
-  .io-geo-next { right: -320px; bottom: -300px; z-index: 0; }
+  .io-arc-next { right: -270px; bottom: -250px; z-index: 0; }
   .io-panorama { position: absolute; inset: 0; z-index: 0; opacity: .5; background-size: cover; background-position: center; pointer-events: none;
     -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 70%); mask-image: linear-gradient(to top, #000 0%, transparent 70%); }
   .io-next-in { max-width: calc(8 * var(--colw) + 7 * var(--gap)); margin-inline: auto; text-align: center; }
@@ -641,9 +647,6 @@ const audiences = [
   /* The brand line in eyebrow style; its three sentences light in the accent (gold-2 on navy). */
   .io-brand-line { margin: 56px auto 0; font-family: var(--font-sans); font-size: 12.5px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; line-height: 2; color: var(--accent); }
   .js p.io-brand-line > .lw.on { color: var(--accent); }
-  .io-brand-mark { display: inline-flex; align-items: center; gap: 10px; margin: 24px auto 0; font-family: var(--font-display); font-size: 22px; font-weight: 400; letter-spacing: -.012em; line-height: 1; color: var(--fg); }
-  .io-brand-mark-svg { width: 56px; height: 56px; display: block; }
-  .io-brand-tag { margin: 8px auto 0; }
 
   /* ── Reduced motion: the book at rest, the brand line lit ─────────── */
   @media (prefers-reduced-motion: reduce) {
@@ -653,11 +656,11 @@ const audiences = [
   }
   @media (prefers-contrast: more) { .js p.io-brand-line > .lw { color: var(--accent) !important; } }
 
-  /* Below 1340 the geos' centres (spec placement: 230 px inside the right edge) would meet the centred
-   * statements; they move just past the right edge, so only the rings and the horizontal hairline show. */
+  /* Below 1340 the arcs' centres (230 px inside the right edge) would meet the centred statements; they move just
+   * past the right edge, so only the arcs' left sides show. */
   @media (max-width: 1339px) {
-    .io-geo-solution { right: -560px; }
-    .io-geo-next { right: -560px; }
+    .io-arc-solution { right: -510px; }
+    .io-arc-next { right: -510px; }
   }
 
   /* ── Tablet (735 to 1068) ─────────────────────────────────────────── */
@@ -758,8 +761,8 @@ const audiences = [
     /* Six lines at the statement size, so the balance applies and no word is left alone (audit 2, P2 14). */
     .io-cost-close { font-size: var(--fs-m); max-width: none; }
     .io-solution { padding-block: var(--sec); }
-    /* The geo's centre sits off the right edge so its dot never meets the heading; its ring crosses the top corner. */
-    .io-geo-solution { --geo-size: 720px !important; --geo-o: .06 !important; right: -420px; top: -300px; }
+    /* The arc's centre sits just off the right edge, so it crosses the top corner clear of the heading. */
+    .io-arc-solution { --arc-size: 660px !important; --arc-o: .1 !important; right: -390px; top: -270px; }
     .io-sol-state { max-width: none; }
     .io-sol-body { margin-top: 56px; }
     .io-sol-grid { padding-top: 40px; }
@@ -805,7 +808,7 @@ const audiences = [
     .io-pt-btn { grid-row: 4; margin-top: 24px; width: 100%; }
     .io-pt-btn .btn { width: 100%; }
     .io-next { padding-top: 72px; padding-bottom: 64px; }
-    .io-geo-next { --geo-size: 720px !important; --geo-o: .06 !important; right: -400px; bottom: -330px; }
+    .io-arc-next { --arc-size: 660px !important; --arc-o: .08 !important; right: -370px; bottom: -300px; }
     .io-next-in, .io-close { max-width: none; }
     .io-next-line { margin-top: 28px; }
     .io-close-rule { margin-top: 48px; }

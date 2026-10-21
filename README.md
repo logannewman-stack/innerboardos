@@ -28,7 +28,7 @@ corner.
 
 | # | Section (`id`, tone) | What is on it |
 | --- | --- | --- |
-| 1 | Hero (`#ios`, navy) | "Growth doesn't have to depend on you." with the Company OS Score on a phone in a honey halo. From 1069 x 600 the hero is a pinned scroll story in three steps (the rail and "01 / 03" beside the phone, both buttons pinned under the copy): the scored statements, then the later ones; the ring presses the app's own "See what ... means" bar, the result wipes up and at once scrolls past the score to rest on its reading and the three lowest statements; then the Assessments page of InnerBoard OS. Below that width, and in every static case, the hero is static on the scored statements. |
+| 1 | Hero (`#ios`, navy) | "Growth doesn't have to depend on you." with the Company OS Score on a phone in a honey halo, inside the logo's open arc (tablet and up). From 1069 x 600 the hero is a pinned scroll story in three steps (the rail and "01 / 03" beside the phone, both buttons pinned under the copy): the scored statements, then the later ones; the ring presses the app's own "See what ... means" bar, the result wipes up and at once scrolls past the score to rest on its reading and the three lowest statements; then the Assessments page of InnerBoard OS. Below that width, and in every static case, the hero is static on the scored statements. |
 | 2 | The challenge (`#challenge`, cream) | The heading and three paragraphs, three ruled columns, and the stacked one line argument ("What it costs") lighting line by line. |
 | 3 | The solution (`#solution`, navy) | The statement, two columns, and diagram 1: five linked rings (Leadership, Culture, Behavior, Results, Valuation) around IOS, an orbit the reader draws by scrolling, the brief's five definitions beside it. |
 | 4 | How it works (`#how-it-works`, cream) | Diagram 2 as a pinned scroll story in five steps (Assess, Develop with Personal Power and Social Influence, Embed, Measure, Certify), each with its own screen: a browser window on laptops with a drawn cursor, a phone on tablets and phones. Then "One connected system..." and the locked line "Assess → Develop → Embed → Measure → Certify". Never merged with diagram 1. |
@@ -36,7 +36,7 @@ corner.
 | 6 | The outcome (`#impact`, navy) | The lit statement and the six outcomes. |
 | 7 | Who it's for (`#who-its-for`, cream) | The four audiences as a ruled ledger. |
 | 8 | Partners (`#partners`, cream) | The statement, the margin rule, Explore a Partnership. |
-| 9 | Next step (`#next-step`, navy) | The close, the founder's quote, the brand line and the mark. Then the linen footer. |
+| 9 | Next step (`#next-step`, navy) | The close, the founder's quote and the brand line. Then the linen footer, which carries the logo and "The people operating system for high-performing organizations." (the close no longer repeats them just above it). |
 
 Without JavaScript, and with reduced motion, nothing is pinned or hidden: both stories show every step stacked, each
 with its own still screen, and the page rests on cream with its navy sections painting themselves.
@@ -59,13 +59,18 @@ The same system runs innerboardsuite.com; these are this site's copies, with the
   (where this header's burger goes), a tall lit statement lights earlier on a phone, the header's tone sample runs
   once more when a scroll settles, the fallback dark paint is `#071b30`, and a story warms (fetches and decodes) its
   frames only once it is within two screens, so the first screen never pays for them.
-- Components: `PhoneFrame`, `WindowFrame`, `StoryMarks`, `Geo`, `Arrow`, `Mark` are the system's; `Header`,
-  `Footer`, `Wordmark`, `Icon` and the four page parts `IosHeroPlate` (the hero's phone), `IosPhilosophy`
+- Components: `PhoneFrame`, `WindowFrame`, `StoryMarks`, `Arrow` are the system's; `Header`,
+  `Footer`, `Wordmark`, `Icon`, `OsArc` (the logo's open arc) and the four page parts `IosHeroPlate` (the hero's phone), `IosPhilosophy`
   (diagram 1), `IosWorkflow` (diagram 2 and its screens), `IosBookStill` are this site's. `src/pages/index.astro`
   holds the copy and the page's layout CSS (classes prefixed `io-`). `src/config/links.ts` holds every destination.
 
 ## Brand decisions
 
+- **The logo's open arc is the brand device.** The InnerBoard OS logo (October 21) is a steel circle with OS inside
+  an open white arc. `OsArc` draws that arc as a vector, measured from `public/brand/logo.png` (radius 180 of 221, 8 px,
+  from 105 to 350 degrees, open at the lower right), drawn in when it arrives: in honey round the hero's phone (tablet
+  and up) and behind the not found page's line, and as an ivory hairline where the earlier ring and crosshair
+  (`Geo`, retired) stood in the solution and the close.
 - **Navy, cream and muted gold, and nothing else.** IOS navy `#071b30` (the approved reference; also the favicon,
   the touch icon and the share card), cream `#f4efe4`, linen `#ebe4d5` for the footer and the book's mat. Honey
   `#e4b676` on navy (buttons with an ink label, italics, eyebrows, rails, lamps, the diagram's lines); bronze
