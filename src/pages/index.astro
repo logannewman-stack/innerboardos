@@ -66,10 +66,11 @@ const audiences = [
 <Base title={title} description={description} path="/" theme="navy" navStart="dark">
   <!-- 1. Hero (SCROLL_SPEC S9, STORY_V2 3.6). On laptops the hero itself is the step layout: the phone pinned at
        the right with the rail and its "01 / 03" counter beside it, the hero's copy split across the three steps at
-       the left (step 1 is the h1), both buttons pinned under it. As the reader scrolls, the later statements come
-       in scored, the copy slides to the lead and the ring presses the app's own bar, the result wipes up, then the
-       copy slides to the caption and the result scrolls to the three lowest. No camera move: the sample score is
-       never the focus. Under 1069 wide (and without the pin) it is today's static hero: the eyebrow, the h1, the
+       the left (step 1 is the h1), both buttons pinned under it. Each step has its own screen: the scored
+       statements (the later ones come in scored); as the copy slides to the lead the ring presses the app's own
+       bar and the result wipes up, then scrolls until the score has left and the reading and the three lowest
+       rest; as the copy slides to the caption the Assessments page of InnerBoard OS comes in. No camera move: the
+       sample score is never the focus. Under 1069 wide (and without the pin) it is today's static hero: the eyebrow, the h1, the
        line, the lead as one paragraph, the buttons, the caption, the phone on the scored statements. -->
   <section id="ios" class="io-hero" data-tone="navy">
     <div class="story io-hero-story" data-story="ios-hero" data-story-ui="steps" data-side="right" data-kind="hero" data-story-layouts="wide" data-story-static="device" style="--story-w:3;--step-l:60svh;--story-top:0px;--story-gap:0px">
@@ -87,11 +88,11 @@ const audiences = [
                 <h1 data-lines class="t-xl io-h1 story-h"><span class="hl">Growth doesn't have to depend</span> <em class="hl">on you.</em></h1>
                 <p class="t-s-quote io-hero-line story-body rise" style="--d:.5s">You built the business. Now build the people who can grow it.</p>
               </li>
-              <li class="story-step" data-step="1" data-act='{"hero":{"tap":[50,95.6,.22],"next":[.26,2]}}'>
+              <li class="story-step" data-step="1" data-act='{"hero":{"f":2,"in":[50,95.6],"scroll":[.3,.66,0,31]}}'>
                 <p class="eyebrow story-eyebrow story-only" aria-hidden="true">The Company OS Score</p>
                 <p class="t-lead io-hero-lead rise" style="--d:.55s"><span class="story-h">Your business has an operating system. Your people need one too.</span> <span class="story-body">InnerBoard IOS helps you accelerate the value of the people you already pay by developing the confidence, capability, and ownership to do their best work.</span></p>
               </li>
-              <li class="story-step io-hero-capstep" data-step="2" data-act='{"hero":{"scroll":[.12,.72,0,89.23]}}'>
+              <li class="story-step io-hero-capstep" data-step="2" data-act='{"hero":{"f":3}}'>
                 <p class="eyebrow story-eyebrow story-only" aria-hidden="true">The Company OS Score</p>
                 <p class="t-cap-i io-hero-cap story-h rise" style="--d:.65s">Take the assessment and receive your Company OS Gap Report.</p>
               </li>

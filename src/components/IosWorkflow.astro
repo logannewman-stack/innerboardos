@@ -11,10 +11,13 @@
  * Personal and then the Social leadership modules of the Track while
  * Develop's text gives way to Personal Power and then Social Influence (the
  * group label "02. Develop" stays as their eyebrow), clicks Tools for the
- * Role Blueprint filled in for one role (Embed), and goes back to the
- * Track's status column (Measure); Certify changes only its copy (no capture
- * shows certification honestly). On tablets and phones a phone does the same
- * story. The locked line "Assess → Develop → Embed → Measure → Certify" is
+ * Role Blueprint filled in for one role (Embed), clicks InnerBoard OS for
+ * the Curriculum, the modules in order with a crew's progress in counts only
+ * (Measure), and clicks Get Certified for the certifications hub (Certify).
+ * Every step has its own screen, captured from the live app; the Get
+ * Certified capture fades to the app's ivory above the cards' availability
+ * notes. On tablets and phones a phone does the same story (the Curriculum
+ * scrolls from its top to the crew row). The locked line "Assess → Develop → Embed → Measure → Certify" is
  * no longer the progress control: the page sets it under the statement that
  * follows the story.
  *
@@ -33,20 +36,27 @@ const caps = [
   "The Company OS Score, scored on a desk.",
   "What the score means: the reading, and the chapters that answer the lowest statements.",
   "The Track inside Practice: the modules under Personal leadership and Social leadership.",
-  "The Role Blueprint, filled in for one role."
+  "The Role Blueprint, filled in for one role.",
+  "The Curriculum: the modules in order, and a crew's progress in counts only.",
+  "Get Certified: the certifications for the InnerBoard method, with clients or teams."
 ];
 const win = [
   { name: "desk-score-upstream-scored", alt: caps[0], x2: true },
   { name: "desk-score-upstream-result", alt: caps[1], x2: true },
   { name: "desk-track-home", alt: caps[2], x2: true },
-  { name: "desk-leader-blueprint", alt: caps[3], x2: true }
+  { name: "desk-leader-blueprint", alt: caps[3], x2: true },
+  { name: "desk-os-curriculum", alt: caps[4], x2: true },
+  { name: "desk-get-certified", alt: caps[5], x2: true }
 ];
 const phone = [
   { name: "score-upstream-scored", alt: "The Company OS Score on a phone: statements scored on the ten point scale, and the button that shows what the score means.", w: 780, h: 1688 },
   { name: "score-upstream-result", alt: "What the score means on a phone: the three lowest statements and the chapter that answers each.", w: 780, h: 1688,
     strip: { next: "score-upstream-result-2", at: 89.23, head: 6.2 } },
   { name: "track-home", alt: "The Track on a phone: the modules under Personal leadership and Social leadership.", w: 780, h: 1688 },
-  { name: "leader-blueprint", alt: "The Role Blueprint on a phone, filled in for one role.", w: 780, h: 1688 }
+  { name: "leader-blueprint", alt: "The Role Blueprint on a phone, filled in for one role.", w: 780, h: 1688 },
+  { name: "os-curriculum", alt: "The Curriculum on a phone: the modules in order, each opened by the proof before it, and a crew's progress in counts only.", w: 780, h: 1688,
+    strip: { next: "os-curriculum-2", at: 75.64, head: 6.1 } },
+  { name: "get-certified", alt: "Get Certified on a phone: the certifications for using the InnerBoard method with clients or with a team.", w: 780, h: 1688 }
 ] as const;
 const steps = [
   { label: "01. Assess.", lead: "Understand your people and where the opportunities exist.", body: "Identify current strengths, development opportunities, role expectations, and what influences performance. Create greater clarity about where your team is today and what needs to develop next.",
@@ -62,13 +72,13 @@ const steps = [
     alt: "The Role Blueprint, filled in for one role: what the role is paid to produce.",
     act: '{"win":{"cur":[[.08,45,69.5],[.28,5,33.3],[.46,5,33.3],[.7,50,59.5]],"click":.36,"next":[.4,3]},"phone":{"f":3,"cam":[[.12,1,50,50],[.38,1.06,50,76],[.7,1.06,50,76],[.88,1,50,50]]}}' },
   { label: "04. Measure.", lead: "Track curriculum progress through module completion.", body: "Leaders can see how many modules each person has completed. Individual answers, reflections, and written responses remain private.",
-    w: 1, win: null, phone: null,
-    alt: "The Track again, with each module's own status: up next, or take it.",
-    act: '{"win":{"cur":[[.08,50,59.5],[.28,5,23.6],[.46,5,23.6],[.7,81,24.5]],"click":.36,"next":[.4,2]},"phone":{"f":2}}' },
+    w: 1, win: 4, phone: 4, off: 75.64,
+    alt: "The Curriculum inside InnerBoard OS: the modules in order, each opened by the proof before it, and a crew's progress in counts only, never a name or anybody's words.",
+    act: '{"win":{"cur":[[.06,50,59.5],[.22,5,23.6],[.3,5,23.6],[.56,45,92.4]],"click":.26,"next":[.3,4]},"phone":{"f":4,"scroll":[.32,.82,0,75.64]}}' },
   { label: "05. Certify.", lead: "Develop leaders who can sustain and scale the work.", body: "Build internal strength through trained and certified leaders who can reinforce the methodology, support their teams, and help sustain a culture of development.",
-    w: 1, win: null, phone: null,
-    alt: "The Track holds.",
-    act: '{"win":{},"phone":{}}' }
+    w: 1, win: 5, phone: 5,
+    alt: "Get Certified: the certification that fits the work, INQ to use the method with clients, OS Certification to use it with a team or organization.",
+    act: '{"win":{"cur":[[.06,45,92.4],[.22,5,28.6],[.3,5,28.6],[.56,75.5,29.8]],"click":.26,"next":[.3,5]},"phone":{"f":5,"cam":[[.12,1,50,50],[.38,1.06,50,30],[.7,1.06,50,30],[.88,1,50,50]]}}' }
 ];
 ---
 <div class="story io-wf-story" data-story="workflow" data-story-ui="steps" data-side="left" data-kind="win" data-story-h="s" data-warm style="--story-w:5.8;--step-l:64svh;--step-l-n:58svh">

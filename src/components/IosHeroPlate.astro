@@ -5,14 +5,16 @@
  * hero's scroll story. It is the story's device box (`.story-device-box
  * .story-phone`); the page puts the rail beside it in the device column.
  * Nothing moves on its own: on laptops, as the reader scrolls through the
- * hero's three steps, the later statements come in scored, the ring presses
- * the app's own "See what ... means" bar and the result wipes up from it,
- * then the result scrolls inside the phone until the three lowest statements
- * and their chapters are at the top and the sample score has left the
- * screen. There is no camera move anywhere in it, so the score is never
- * zoomed or centred. Without the pin (under 1069 wide, no script, reduced
- * motion, a short or landscape screen) it rests on the scored statements,
- * as the hero has always shown it.
+ * hero's three steps, each step shows its own screen. Step 1: the scored
+ * statements, then the later ones. Step 2: the ring presses the app's own
+ * "See what ... means" bar as the step begins, the result wipes up from it
+ * and scrolls until the sample score has left the screen and the reading
+ * and the three lowest statements rest under the header. Step 3: the
+ * Assessments page of InnerBoard OS (the Company OS Score to take, the Team
+ * OS Score and the Gap Audit). There is no camera move anywhere in it, so the
+ * score is never zoomed or centred. Without the pin (under 1069 wide, no
+ * script, reduced motion, a short or landscape screen) it rests on the scored
+ * statements, as the hero has always shown it.
  *
  * The entrance lives on an inner wrapper; it keeps its reveal gate
  * (data-reveal-at="1"), measured on the stage, whose centre is inside the
@@ -31,12 +33,13 @@ import PhoneFrame from "./PhoneFrame.astro";
       eager
       shadow="dark"
       tilt={3}
-      label="The Company OS Score on a phone."
+      label="The Company OS Score and the assessments of InnerBoard OS on a phone."
       screens={[
         { name: "score-upstream-scored", alt: "The Company OS Score on a phone: four of its statements scored on the ten point scale, and the button that shows what the score means.", w: 780, h: 1688 },
         { name: "score-upstream-scored-2", alt: "The Company OS Score on a phone: the last statements scored on the ten point scale.", w: 780, h: 1688 },
         { name: "score-upstream-result", alt: "The Company OS Score result: the score, its reading, and the lowest statements with the chapter that answers each.", w: 780, h: 1688,
-          strip: { next: "score-upstream-result-2", at: 89.23, head: 6.2 } }
+          strip: { next: "score-upstream-result-2", at: 89.23, head: 6.2 } },
+        { name: "os-assessments", alt: "The Assessments page of InnerBoard OS: the Company OS Score to take, every low category naming the chapter that fixes it, then the Team OS Score and the Gap Audit.", w: 780, h: 1688 }
       ]}
     />
   </div>
