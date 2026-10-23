@@ -65,8 +65,8 @@ html[data-theme="ink"] [data-tone="ink"] > .lamp,
 html[data-theme="teal"] [data-tone="teal"] > .lamp { opacity: 1; }
 [data-tone] > .lamp { z-index: 0; }
 [data-tone] > .wrap, [data-tone] > .wrap-wide { position: relative; z-index: 1; }
-/* IOS: the brand book navy #0d3054 and its soft steel #8aa3bf. The Suite's copy reads #0d1a2d and #c9ab66. */
-.no-js [data-tone="navy"] { background: #0d3054; color: #f4efe4; --fg: #f4efe4; --fg-2: #cdc6b8; --fg-3: #aaa396; --line: rgba(244,239,228,.14); --accent: #8aa3bf; --btn-line: rgba(244,239,228,.32); --lit-off: rgba(244,239,228,.25); --focus: #8aa3bf; }
+/* IOS (BRAND_FIX I1, I3): the IOS navy #071b30 and its honey gold #e4b676. The Suite's copy reads #0d1a2d and #c9ab66. */
+.no-js [data-tone="navy"] { background: #071b30; color: #f4efe4; --fg: #f4efe4; --fg-2: #cdc6b8; --fg-3: #aaa396; --line: rgba(244,239,228,.14); --accent: #e4b676; --btn-line: rgba(244,239,228,.32); --lit-off: rgba(244,239,228,.25); --focus: #e4b676; }
 .no-js [data-tone="practice"] { background: #0d3054; color: #f4efe4; --fg: #f4efe4; --fg-2: #cdc6b8; --fg-3: #aaa396; --line: rgba(201,171,102,.35); --accent: #c9ab66; --btn-line: rgba(244,239,228,.32); --lit-off: rgba(244,239,228,.25); --focus: #c9ab66; }
 .no-js [data-tone="charcoal"] { background: #26231f; color: #f4efe4; --fg: #f4efe4; --fg-2: #cdc6b8; --fg-3: #aaa396; --line: rgba(244,239,228,.12); --accent: #c9ab66; --btn-line: rgba(244,239,228,.32); --lit-off: rgba(244,239,228,.25); --focus: #c9ab66; }
 .no-js [data-tone="ink"] { background: #1f1d1a; color: #f7f4ee; --fg: #f7f4ee; --fg-2: #cdc6b8; --fg-3: #aaa396; --line: rgba(247,244,238,.12); --accent: #c9ab66; --btn-line: rgba(247,244,238,.32); --lit-off: rgba(247,244,238,.25); --focus: #c9ab66; }
@@ -206,7 +206,7 @@ html[data-theme="teal"] [data-tone="teal"] > .lamp { opacity: 1; }
 
   /* The rail (StoryMarks variant="rail", 1.7): n segments and the "01 / 05" counter. Its fill is --f from the
    * engine. Colours from the role tokens: on a light ground the fill is the ink and the track the ink at .14; on a
-   * dark ground (--dark: 1) the fill is the accent and the track the cream at .2. A page may set
+   * dark ground (--dark: 1) the fill is the accent (gold-2) and the track the cream at .2. A page may set
    * --rail-fill and --rail-track on the story. */
   :where(.js [data-story-ui="steps"]:not(.static)) .story-rail {
     --rail-fill-c: color-mix(in srgb, var(--accent) calc(var(--dark, 0) * 100%), var(--fg));

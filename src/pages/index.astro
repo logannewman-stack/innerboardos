@@ -426,19 +426,19 @@ const audiences = [
   }
   .no-js .io-hero-phone .cam > .ds:not(.on), .io-hero-story.static .io-hero-phone .cam > .ds:not(.on) { display: none; }
   .io-halo { position: absolute; z-index: -1; pointer-events: none; left: 50%; top: 40%; width: 200%; aspect-ratio: 1; transform: translate(-50%, -50%);
-    border-radius: 50%; background: radial-gradient(closest-side, rgba(138,163,191,.26), rgba(138,163,191,.1) 50%, rgba(138,163,191,0) 100%); }
+    border-radius: 50%; background: radial-gradient(closest-side, rgba(228,182,118,.26), rgba(228,182,118,.1) 50%, rgba(228,182,118,0) 100%); }
   /* The orbit (IosHeroPlate): centred on the phone and behind it, its radius from the plate's script. The stroke starts
    * at the bottom (the circle's own start, 3 o'clock, turned a quarter) and runs clockwise; a quarter shows before the
    * reader scrolls and the rest draws with the story's --g (0 to 3). Static heroes show it whole. */
   .io-orbit { display: none; position: absolute; z-index: -1; left: 50%; top: 50%; width: calc(2 * var(--orbit-r, 0px)); height: calc(2 * var(--orbit-r, 0px));
     max-width: none; overflow: visible; pointer-events: none; transform: translate(-50%, -50%) rotate(90deg); }
   .has-orbit > .io-orbit { display: block; }
-  .io-orbit circle { fill: none; stroke: #8aa3bf; stroke-opacity: .7; stroke-width: var(--orbit-sw, 1.1);
+  .io-orbit circle { fill: none; stroke: #e4b676; stroke-opacity: .62; stroke-width: var(--orbit-sw, 1.1);
     stroke-dasharray: 100 100; stroke-dashoffset: calc(75 - 25 * var(--g, 3)); }
   @media (max-width: 1068px) { .has-orbit > .io-orbit { display: none; } }
   /* The rail stands a little further from the phone than in the other stories, so the orbit passes between them. */
   .js .io-hero-story:not(.static) .io-hero-devcol { gap: 72px; }
-  .io-hero-phone .phone { box-shadow: inset 0 0 0 .55em #0c0b09, inset 0 0 0 .9em rgba(255,255,255,.08), 0 0 0 1px rgba(138,163,191,.28),
+  .io-hero-phone .phone { box-shadow: inset 0 0 0 .55em #0c0b09, inset 0 0 0 .9em rgba(255,255,255,.08), 0 0 0 1px rgba(228,182,118,.28),
     0 2px 4px rgba(0,0,0,.35), 0 24px 44px -14px rgba(0,0,0,.55), 0 90px 120px -40px rgba(0,0,0,.65); }
   /* Captures whose foot cuts a line of the app's text fade to the app's ivory (the screen's own ground) just above
    * that line, so no letter is cut at a screen's edge: the Assessments page (the hero's third screen) above the
@@ -592,7 +592,7 @@ const audiences = [
    * above the statement's Light 360 (BRAND_FIX I4: 460). */
   .io-imp-lit .lb { font-weight: 460; }
   .io-imp-lit p + p { margin-top: 1em; }
-  /* Six outcomes on three column lines (x 120, 512.3, 904.6), a faded steel rule above each. */
+  /* Six outcomes on three column lines (x 120, 512.3, 904.6), a faded gold rule above each. */
   .io-outcomes { list-style: none; margin: 80px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--gap); row-gap: 40px; }
   .io-outcomes > li { position: relative; padding-top: 24px; }
   .io-outcomes > li::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--line-gold) 12% 88%, transparent); }
@@ -650,7 +650,7 @@ const audiences = [
   .io-quote em { font-style: italic; font-weight: inherit; color: var(--accent); }
   .io-quote-by { margin-top: 20px; color: var(--fg-2); max-width: none; }
   .io-quote-by b { font-weight: 500; color: var(--fg); }
-  /* The brand line in eyebrow style; its three sentences light in the accent (soft steel on navy). */
+  /* The brand line in eyebrow style; its three sentences light in the accent (gold-2 on navy). */
   .io-brand-line { margin: 56px auto 0; font-family: var(--font-sans); font-size: 12.5px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; line-height: 2; color: var(--accent); }
   .js p.io-brand-line > .lw.on { color: var(--accent); }
   .io-brand-mark { display: inline-flex; align-items: center; gap: 10px; margin: 24px auto 0; font-family: var(--font-display); font-size: 22px; font-weight: 400; letter-spacing: -.012em; line-height: 1; color: var(--fg); }
@@ -809,7 +809,7 @@ const audiences = [
     .io-ledger > li:nth-child(3)::before { display: none; }
     .io-who-btn { margin-top: 36px; }
     .io-who-btn .btn { width: 100%; }
-    /* The margin rule becomes a 48 px horizontal steel rule above the full width button. */
+    /* The margin rule becomes a 48 px horizontal gold rule above the full width button. */
     .io-pt-rule { display: block; grid-column: 1 / -1; grid-row: 3; width: 48px; height: 1px; margin: 36px 0 0; justify-self: start; align-self: auto;
       background: linear-gradient(90deg, var(--line-gold), var(--line-gold) 70%, transparent); transform-origin: left; }
     .js .io-pt-rule { transform: scaleX(0); }

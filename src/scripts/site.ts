@@ -399,8 +399,8 @@ function header() {
       if (a && a.length >= 3 && (a.length < 4 || a[3] >= 0.5)) return c;
       if (n.matches("[data-tone]")) break;
     }
-    /* IOS: the fallback dark paint is the brand book navy #0d3054 (the Suite's copy reads #0d1a2d). */
-    return DARK.has(html.dataset.theme || "") ? "" : "#0d3054";
+    /* IOS (BRAND_FIX I3): the fallback dark paint is the IOS navy #071b30 (the Suite's copy reads #0d1a2d). */
+    return DARK.has(html.dataset.theme || "") ? "" : "#071b30";
   };
   const isDark = (src: Element) => {
     const surface = src.getAttribute("data-surface");
