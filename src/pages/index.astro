@@ -427,6 +427,17 @@ const audiences = [
   .no-js .io-hero-phone .cam > .ds:not(.on), .io-hero-story.static .io-hero-phone .cam > .ds:not(.on) { display: none; }
   .io-halo { position: absolute; z-index: -1; pointer-events: none; left: 50%; top: 40%; width: 200%; aspect-ratio: 1; transform: translate(-50%, -50%);
     border-radius: 50%; background: radial-gradient(closest-side, rgba(138,163,191,.26), rgba(138,163,191,.1) 50%, rgba(138,163,191,0) 100%); }
+  /* The orbit (IosHeroPlate): centred on the phone and behind it, its radius from the plate's script. The stroke starts
+   * at the bottom (the circle's own start, 3 o'clock, turned a quarter) and runs clockwise; a quarter shows before the
+   * reader scrolls and the rest draws with the story's --g (0 to 3). Static heroes show it whole. */
+  .io-orbit { display: none; position: absolute; z-index: -1; left: 50%; top: 50%; width: calc(2 * var(--orbit-r, 0px)); height: calc(2 * var(--orbit-r, 0px));
+    max-width: none; overflow: visible; pointer-events: none; transform: translate(-50%, -50%) rotate(90deg); }
+  .has-orbit > .io-orbit { display: block; }
+  .io-orbit circle { fill: none; stroke: #8aa3bf; stroke-opacity: .7; stroke-width: var(--orbit-sw, 1.1);
+    stroke-dasharray: 100 100; stroke-dashoffset: calc(75 - 25 * var(--g, 3)); }
+  @media (max-width: 1068px) { .has-orbit > .io-orbit { display: none; } }
+  /* The rail stands a little further from the phone than in the other stories, so the orbit passes between them. */
+  .js .io-hero-story:not(.static) .io-hero-devcol { gap: 72px; }
   .io-hero-phone .phone { box-shadow: inset 0 0 0 .55em #0c0b09, inset 0 0 0 .9em rgba(255,255,255,.08), 0 0 0 1px rgba(138,163,191,.28),
     0 2px 4px rgba(0,0,0,.35), 0 24px 44px -14px rgba(0,0,0,.55), 0 90px 120px -40px rgba(0,0,0,.65); }
   /* Captures whose foot cuts a line of the app's text fade to the app's ivory (the screen's own ground) just above

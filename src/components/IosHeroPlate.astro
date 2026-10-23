@@ -16,6 +16,12 @@
  * script, reduced motion, a short or landscape screen) it rests on the scored
  * statements, as the hero has always shown it.
  *
+ * The orbit: a soft steel ring behind the phone that the scroll draws. It
+ * starts as the quarter from the bottom to the left and closes clockwise as
+ * the reader scrolls through the three steps (--g, 0 to 3, from the story;
+ * a full ring wherever the hero is static). The script below sizes it per
+ * layout so it never crosses the copy or the step counter.
+ *
  * The entrance lives on an inner wrapper; it keeps its reveal gate
  * (data-reveal-at="1"), measured on the stage, whose centre is inside the
  * first viewport. The section's CSS (index.astro) places and sizes the box.
@@ -25,6 +31,9 @@ import PhoneFrame from "./PhoneFrame.astro";
 <div class="story-device-box story-phone io-hero-phone">
   <div class="io-hero-device rise-obj floor-on" style="--d:.3s" data-reveal-at="1" data-reveal-host=".io-hero-story .story-stage">
     <i class="io-halo" aria-hidden="true"></i>
+    <svg class="io-orbit" viewBox="0 0 100 100" aria-hidden="true" focusable="false" data-story-g>
+      <circle cx="50" cy="50" r="50" pathLength="100" />
+    </svg>
     <PhoneFrame
       id="hero-phone"
       device="hero"
@@ -44,3 +53,56 @@ import PhoneFrame from "./PhoneFrame.astro";
     />
   </div>
 </div>
+
+<script>
+  /* The orbit's radius: as wide as the layout allows, up to 1.7 times the phone's half width, inside the window, clear
+   * of every line of the hero's copy (all three steps, laid out whether shown or not) and of the rail and counter
+   * beside the phone. Where even 1.15 does not fit, the orbit stays hidden rather than touch a word. */
+  const dev = document.querySelector<HTMLElement>(".io-hero-device");
+  const copy = document.querySelector<HTMLElement>(".io-hero-copy");
+  const phone = dev?.querySelector<HTMLElement>(".phone");
+  if (dev && copy && phone) {
+    const range = document.createRange();
+    const textRight = () => {
+      let right = -Infinity;
+      const walk = document.createTreeWalker(copy, NodeFilter.SHOW_TEXT);
+      while (walk.nextNode()) {
+        const n = walk.currentNode;
+        if (!n.textContent?.trim()) continue;
+        range.selectNodeContents(n);
+        for (const r of range.getClientRects()) if (r.width > 0) right = Math.max(right, r.right);
+      }
+      copy.querySelectorAll(".btn").forEach((b) => { right = Math.max(right, b.getBoundingClientRect().right); });
+      return right;
+    };
+    /* The radii whose ring would cross a box, with a margin: between its nearest and farthest points. */
+    const crosses = (r: number, cx: number, cy: number, b: DOMRect, m: number) => {
+      const nx = Math.max(b.left, Math.min(cx, b.right)), ny = Math.max(b.top, Math.min(cy, b.bottom));
+      const near = Math.hypot(nx - cx, ny - cy);
+      const far = Math.max(...[[b.left, b.top], [b.right, b.top], [b.left, b.bottom], [b.right, b.bottom]].map(([x, y]) => Math.hypot(x - cx, y - cy)));
+      return r > near - m && r < far + m;
+    };
+    const size = () => {
+      const p = phone.getBoundingClientRect();
+      if (!p.width) return;
+      const half = p.width / 2, cx = p.left + half, cy = p.top + p.height / 2;
+      let r = Math.min(half * 1.7, cx - textRight() - 32, document.documentElement.clientWidth - cx - 16);
+      const marks = [[".io-hero-story .story-count", 14], [".io-hero-story .story-rail-bars", 6]] as const;
+      for (const [sel, m] of marks) {
+        const b = document.querySelector(sel)?.getBoundingClientRect();
+        if (b && b.width) while (r > half && crosses(r, cx, cy, b, m)) r -= 2;
+      }
+      dev.style.setProperty("--orbit-r", Math.round(r) + "px");
+      /* A 5 px line at any radius: the circle is drawn in a 100 unit box. */
+      dev.style.setProperty("--orbit-sw", (500 / (2 * Math.round(r))).toFixed(3));
+      dev.classList.toggle("has-orbit", r >= half * 1.15);
+    };
+    let raf = 0;
+    const later = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(size); };
+    size();
+    document.fonts?.ready.then(later);
+    addEventListener("load", later);
+    addEventListener("resize", later);
+    new ResizeObserver(later).observe(copy);
+  }
+</script>
