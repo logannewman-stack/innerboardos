@@ -32,7 +32,7 @@ interface Props {
   noindex?: boolean;
 }
 const { title, description = SITE.description, path = "/", image = "/og-image.png", theme = "cream", navStart = "light", noindex = false } = Astro.props;
-const color = theme === "navy" ? "#071b30" : "#f4efe4";
+const color = theme === "navy" ? "#0d3054" : "#f4efe4";
 const canonical = new URL(path, SITE.url).toString();
 /* The link preview (Open Graph, Twitter) must load from the host that serves this build: on Vercel that is the
  * project's production URL (its vercel.app address until the domain is attached, then the domain), or the branch

@@ -81,9 +81,9 @@ const head = [
 <style>
   .io-phil-box { position: relative; width: 100%; aspect-ratio: 1 / 1; }
   .io-phil-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-  .io-ring-line { fill: rgba(244,239,228,.025); stroke: #e4b676; stroke-opacity: .75; stroke-width: 1.1; }
-  .io-core { fill: #1b3052; }
-  .io-core-ring { fill: none; stroke: #e4b676; stroke-width: 1.4; }
+  .io-ring-line { fill: rgba(244,239,228,.025); stroke: #8aa3bf; stroke-opacity: .75; stroke-width: 1.1; }
+  .io-core { fill: #214576; }
+  .io-core-ring { fill: none; stroke: #8aa3bf; stroke-width: 1.4; }
   /* The names take the page's text colour (cream on navy), so when the page cross fades to cream with
    * the drawing's foot still in view they turn ink instead of vanishing. The centre word sits on the
    * navy disc and stays cream. */
@@ -91,8 +91,8 @@ const head = [
    * laptops (477 to 542 px), 5 of a tablet's (381), 8 of a narrow tablet's (464) and the full phone column (335 to 390). */
   .ring-name { font-family: var(--font-sans); font-size: 15.5px; font-weight: 600; letter-spacing: .12em; fill: var(--fg); transition: fill .5s var(--ease); }
   .io-core-word { font-family: var(--font-display); font-size: 34px; font-weight: 360; fill: #f4efe4; }
-  .io-phil-orbit .draw-line { fill: none; stroke: #e4b676; stroke-width: 1; stroke-linecap: round; }
-  .io-phil-orbit .draw-head { fill: #e4b676; }
+  .io-phil-orbit .draw-line { fill: none; stroke: #8aa3bf; stroke-width: 1; stroke-linecap: round; }
+  .io-phil-orbit .draw-head { fill: #8aa3bf; }
   /* Each name fades in once its ring has finished drawing. */
   :global(.js) .ring-name { opacity: 0; transition: opacity .4s var(--ease) calc(var(--d, 0s) + 1.2s), fill .5s var(--ease); }
   :global(.js) .io-phil-svg.in .ring-name { opacity: 1; }

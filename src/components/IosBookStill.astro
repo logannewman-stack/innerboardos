@@ -6,9 +6,8 @@
  * to the mat. The book is one flat plane turned in perspective with its
  * binding drawn along the left edge (a preserve-3d spine loses the book's
  * lower half in Chromium when its top is scrolled out of view). The cover
- * slot stays exactly as the README says: when the approved cover arrives it
- * is dropped at public/images/replaceable-cover.jpg and the `src` below
- * changes; nothing else moves. The page sizes the mat and the book.
+ * is the book's real cover (ISBN 0998174475), served as WebP with a JPEG
+ * fallback. The page sizes the mat and the book.
  */
 ---
 <div class="mat io-bookmat rise-obj" style="--d:.3s">
@@ -16,7 +15,10 @@
   <figure class="io-book" role="img" aria-label="The cover of Replaceable.">
     <span class="io-book-spine" aria-hidden="true"></span>
     <span class="io-book-face">
-      <img src="/images/replaceable-cover.svg" alt="" width="360" height="540" loading="lazy" decoding="async" />
+      <picture>
+        <source srcset="/images/replaceable-cover.webp" type="image/webp" />
+        <img src="/images/replaceable-cover.jpg" alt="" width="1000" height="1499" loading="lazy" decoding="async" />
+      </picture>
     </span>
   </figure>
 </div>

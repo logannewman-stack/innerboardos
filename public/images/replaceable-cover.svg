@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 540" width="360" height="540">
-  <rect width="360" height="540" fill="#071b30"/>
-  <rect x="18" y="18" width="324" height="504" fill="none" stroke="#e4b676" stroke-opacity="0.5" stroke-width="1.5"/>
-  <g fill="none" stroke="#e4b676"><circle cx="180" cy="150" r="44" stroke-width="6"/><path d="M180 92v116M122 150h116" stroke-width="4"/></g>
-  <circle cx="180" cy="150" r="9" fill="#f4efe4"/>
-  <text x="180" y="300" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="46" fill="#f4efe4" font-weight="500" letter-spacing="-1">Replaceable</text>
-  <text x="180" y="470" text-anchor="middle" font-family="Instrument Sans, Helvetica, Arial, sans-serif" font-size="15" fill="#f1dcb4" letter-spacing="2">LEAH ROLING</text>
-</svg>
