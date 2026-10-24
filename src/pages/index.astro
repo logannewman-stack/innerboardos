@@ -96,7 +96,7 @@ const audiences = [
               </li>
               <li class="story-step" data-step="1" data-act='{"hero":{"f":2,"in":[50,95.6],"scroll":[.08,.4,0,35]}}'>
                 <p class="eyebrow story-eyebrow story-only" aria-hidden="true">The Company OS Score</p>
-                <p class="t-lead io-hero-lead rise" style="--d:.55s"><span class="story-h">Your business has an operating system. Your people need one too.</span> <span class="story-body">InnerBoard IOS helps you accelerate the value of the people you already pay by developing the confidence, capability, and ownership to do their best work.</span></p>
+                <p class="t-lead io-hero-lead rise" style="--d:.55s"><span class="story-h">Your business has an operating system. <span class="io-br">Your people need one too.</span></span> <span class="story-body">InnerBoard IOS helps you accelerate the value of the people you already pay by developing the confidence, capability, and ownership to do their best work.</span></p>
               </li>
               <li class="story-step io-hero-capstep" data-step="2" data-act='{"hero":{"f":3}}'>
                 <p class="eyebrow story-eyebrow story-only" aria-hidden="true">The Company OS Score</p>
@@ -119,7 +119,7 @@ const audiences = [
     <div class="wrap">
       <div class="grid">
         <div class="io-ch-head">
-          <p class="eyebrow rise">Section one · The challenge</p>
+          <p class="eyebrow rise">The challenge</p>
           <h2 class="t-l wipe">You've built a successful business. <em>Why does it still need you for everything?</em></h2>
         </div>
         <div class="io-ch-paras io-stack">
@@ -158,7 +158,7 @@ const audiences = [
     <Geo class="io-geo-solution" color="#f4efe4" opacity={0.08} />
     <div class="wrap">
       <div class="io-sol-head">
-        <p class="eyebrow rise">Section two · The solution</p>
+        <p class="eyebrow rise">The solution</p>
         <h2 class="t-l wipe io-sol-h2">A people operating system for <em><span class="io-nw">high-performing</span> organizations.</em></h2>
         <p class="t-state io-sol-state rise" style="--d:.3s">Your business has an operating system. <em>Your people need one too.</em></p>
       </div>
@@ -195,7 +195,7 @@ const audiences = [
     <div class="wrap">
       <div class="grid">
         <div class="io-how-head">
-          <p class="eyebrow rise">Section three · The InnerBoard IOS workflow</p>
+          <p class="eyebrow rise">The InnerBoard IOS workflow</p>
           <h2 class="t-l wipe">Know where your people are. <em>Build what they're capable of becoming.</em></h2>
         </div>
         <p class="t-s-quote io-how-quote rise" style="--d:.26s">You can't develop what you don't understand.</p>
@@ -226,7 +226,7 @@ const audiences = [
       <div class="grid io-book-grid">
         <IosBookStill />
         <div class="io-book-copy">
-          <p class="eyebrow rise">Section four · The thinking behind InnerBoard IOS</p>
+          <p class="eyebrow rise">The thinking behind InnerBoard IOS</p>
           <h2 class="t-m wipe">The future of your business is <em>already in your people.</em></h2>
           <p class="t-small io-book-author rise" style="--d:.24s">Replaceable by Leah Roling</p>
           <div class="io-book-paras io-stack">
@@ -249,7 +249,7 @@ const audiences = [
     <div class="wrap">
       <div class="grid">
         <div class="io-imp-head">
-          <p class="eyebrow rise">Section five · The outcome</p>
+          <p class="eyebrow rise">The outcome</p>
           <h2 class="t-l wipe">Your business becomes stronger when <em>more people can carry it.</em></h2>
         </div>
         <p class="t-s-quote io-imp-quote rise" style="--d:.26s">Accelerate the value of the people you already pay.</p>
@@ -288,7 +288,7 @@ const audiences = [
     <div class="wrap">
       <div class="grid">
         <div class="io-who-head">
-          <p class="eyebrow rise">Section six · Built for organizations ready to grow</p>
+          <p class="eyebrow rise">Built for organizations ready to grow</p>
           <h2 class="t-l wipe">You've built something valuable. <em>Now it's time to make it stronger.</em></h2>
         </div>
         <p class="t-lead io-who-para rise" style="--d:.3s">InnerBoard IOS is designed for founders, CEOs, and leadership teams who recognize that their next stage of growth depends on developing the people already inside their organization.</p>
@@ -316,7 +316,7 @@ const audiences = [
     <div class="wrap io-pt-wrap">
       <div class="grid">
         <div class="io-pt-head">
-          <p class="eyebrow rise">Section seven · Partners</p>
+          <p class="eyebrow rise">Partners</p>
           <h2 class="t-m wipe">Your systems help businesses operate. <em>IOS helps their people execute.</em></h2>
         </div>
         <div class="io-pt-paras io-stack">
@@ -339,7 +339,7 @@ const audiences = [
     <Geo class="io-geo-next" color="#f4efe4" opacity={0.06} />
     <div class="wrap">
       <div class="io-next-in">
-        <p class="eyebrow rise">Section eight · Let's build what's next</p>
+        <p class="eyebrow rise">Let's build what's next</p>
         <h2 class="t-l wipe">You don't have to keep carrying <em>the business you've built.</em></h2>
         <p class="t-lead io-next-lead rise" style="--d:.28s">You've worked hard to create something valuable. When the people around you can help carry it, the business moves forward without needing you in every room.</p>
         <p class="t-s io-next-line" data-lit="lines" data-lit-step="220"><span class="lw">Stronger people.</span> <span class="lw">Stronger execution.</span> <span class="lw">Less dependency on you.</span> <span class="lw">A business positioned to grow in value.</span></p>
@@ -485,6 +485,9 @@ const audiences = [
   .io-sol-head { max-width: calc(10 * var(--colw) + 9 * var(--gap)); margin-inline: auto; text-align: center; }
   .io-sol-h2 { max-width: none; margin-inline: auto; }
   .io-sol-state { max-width: calc(8 * var(--colw) + 7 * var(--gap)); margin: 28px auto 0; color: var(--fg); }
+  /* The client (October 24): "Your people need one too." on its own line. */
+  .io-sol-state em { display: block; }
+  .js .io-hero-story:not(.static) .io-br { display: block; }
   .io-sol-body { margin-top: 72px; }
   .io-sol-grid { padding-top: 48px; }
   .io-sol-col-a { grid-column: 1 / span 6; }
@@ -517,6 +520,11 @@ const audiences = [
   .io-wf-steps > li { padding-block: 40px; border-top: 1px solid var(--line); }
   .io-wf-steps > li:last-child { border-bottom: 1px solid var(--line); }
   .io-wf-label { color: var(--accent); }
+  /* The client (October 24): the five step names large. The number stays a small folio; the name is a display word. */
+  .io-wf-story .io-wf-label.story-eyebrow, .io-wf-story .io-wf-dev-label.story-eyebrow { display: flex; align-items: baseline; gap: 14px; margin: 0 0 18px;
+    font-family: var(--font-display); font-size: clamp(36px, 3.3vw, 54px); font-weight: 300; font-style: italic; letter-spacing: -.02em; text-transform: none; line-height: 1; color: var(--accent); }
+  .io-wf-story .io-wf-label.story-eyebrow::before, .io-wf-story .io-wf-dev-label.story-eyebrow::before { content: none; }
+  .io-wf-num { font-family: var(--font-sans); font-style: normal; font-size: 13px; font-weight: 600; letter-spacing: .14em; line-height: 1; color: var(--fg-3); transform: translateY(-.2em); }
   .io-wf-lead { margin-top: 12px; color: var(--fg); }
   .io-wf-body { margin-top: 8px; color: var(--fg-2); }
   .io-wf-develop { position: relative; margin-top: 28px; padding-top: 24px; }

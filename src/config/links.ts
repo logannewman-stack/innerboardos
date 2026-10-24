@@ -20,7 +20,8 @@ export const LINKS = {
   /** The app itself, with where they came from. */
   app: `${APP}/?from=os`,
   suite: "https://innerboardsuite.com",
-  academy: "https://innerboardsuite.com/academy",
+  /* The client (October 24): Academy goes straight to the Academy in Practice, where the courses are bought. */
+  academy: "https://practiceinnerboard.com/academy",
   inq: "https://innerboardsuite.com/inq-certification",
   practice: "https://innerboardsuite.com/practice",
   contactEmail: "info@innerboardsuite.com",

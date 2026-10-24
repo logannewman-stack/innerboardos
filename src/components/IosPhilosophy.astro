@@ -5,7 +5,10 @@
  * that the reader draws by scrolling, lighting each definition in the legend
  * as it passes that ring. Two stacked SVGs share one viewBox: A draws the
  * rings on enter (1.7.14), B is the scroll drawn orbit that lights the rows
- * of #phil-rows. The five names and IOS are the only words in the drawing;
+ * of #phil-rows. As the orbit reaches a ring the ring lights with its row;
+ * once all five are lit a slow glow walks round them in the orbit's order,
+ * and the centre breathes (the client, October 24: "Can this be animated?").
+ * The five names and IOS are the only words in the drawing;
  * the definitions are the brief's, in the legend. Separate from the workflow
  * by design. The page places the two blocks on the grid.
  */
@@ -54,6 +57,7 @@ const head = [
       {rings.map((p, i) => (
         <circle class="draw-line io-ring-line" cx={f(p.x)} cy={f(p.y)} r={r} style={`--d:${(i * 0.14).toFixed(2)}s;--dur:1400ms`}></circle>
       ))}
+      <circle class="io-core-pulse" cx={cx} cy={cy} r="62" aria-hidden="true"></circle>
       <circle class="io-core" cx={cx} cy={cy} r="62"></circle>
       <circle class="draw-line io-core-ring" cx={cx} cy={cy} r="62" style="--d:.7s;--dur:1400ms"></circle>
       {nodes.map((n, i) => (
@@ -101,4 +105,33 @@ const head = [
   @media (max-width: 899px) { .ring-name { font-size: 16px; } }
   @media (max-width: 734px) { .ring-name { font-size: 22px; } .io-core-word { font-size: 40px; } }
   @media (max-width: 1068px) and (max-height: 500px) and (orientation: landscape) { .ring-name { font-size: 23px; } }
+</style>
+<style is:global>
+  /* The drawing in motion. Lit by the legend's rows (the scroll engine lights row k as the orbit passes ring k). */
+  .io-ring-line { transition: fill .6s var(--ease), stroke-opacity .6s var(--ease), stroke-width .6s var(--ease); }
+  .io-phil-grid:has(#phil-rows > li:nth-child(1).on) .io-ring-line:nth-of-type(1) { fill: rgba(228,182,118,.1); stroke-opacity: 1; stroke-width: 1.8; }
+  .io-phil-grid:has(#phil-rows > li:nth-child(1).on) .ring-name:nth-of-type(1) { fill: #e4b676; }
+  .io-phil-grid:has(#phil-rows > li:nth-child(2).on) .io-ring-line:nth-of-type(2) { fill: rgba(228,182,118,.1); stroke-opacity: 1; stroke-width: 1.8; }
+  .io-phil-grid:has(#phil-rows > li:nth-child(2).on) .ring-name:nth-of-type(2) { fill: #e4b676; }
+  .io-phil-grid:has(#phil-rows > li:nth-child(3).on) .io-ring-line:nth-of-type(3) { fill: rgba(228,182,118,.1); stroke-opacity: 1; stroke-width: 1.8; }
+  .io-phil-grid:has(#phil-rows > li:nth-child(3).on) .ring-name:nth-of-type(3) { fill: #e4b676; }
+  .io-phil-grid:has(#phil-rows > li:nth-child(4).on) .io-ring-line:nth-of-type(4) { fill: rgba(228,182,118,.1); stroke-opacity: 1; stroke-width: 1.8; }
+  .io-phil-grid:has(#phil-rows > li:nth-child(4).on) .ring-name:nth-of-type(4) { fill: #e4b676; }
+  .io-phil-grid:has(#phil-rows > li:nth-child(5).on) .io-ring-line:nth-of-type(5) { fill: rgba(228,182,118,.1); stroke-opacity: 1; stroke-width: 1.8; }
+  .io-phil-grid:has(#phil-rows > li:nth-child(5).on) .ring-name:nth-of-type(5) { fill: #e4b676; }
+  /* All five lit: a glow walks round the rings, Leadership to Valuation, one every 1.6 s. */
+  @keyframes io-ring-walk { 0%, 24%, 100% { fill: rgba(228,182,118,.1); stroke-width: 1.8; } 10% { fill: rgba(228,182,118,.26); stroke-width: 2.6; } }
+  .io-phil-grid:has(.io-phil-orbit.done) .io-ring-line { animation: io-ring-walk 8s var(--ease) infinite; }
+  .io-phil-grid:has(.io-phil-orbit.done) .io-ring-line:nth-of-type(2) { animation-delay: 1.6s; }
+  .io-phil-grid:has(.io-phil-orbit.done) .io-ring-line:nth-of-type(3) { animation-delay: 3.2s; }
+  .io-phil-grid:has(.io-phil-orbit.done) .io-ring-line:nth-of-type(4) { animation-delay: 4.8s; }
+  .io-phil-grid:has(.io-phil-orbit.done) .io-ring-line:nth-of-type(5) { animation-delay: 6.4s; }
+  /* The centre breathes: a honey ring leaves the disc and fades, every 3.2 s, once the drawing is in. */
+  .io-core-pulse { fill: none; stroke: #e4b676; stroke-width: 1.2; opacity: 0; transform-box: fill-box; transform-origin: center; }
+  @keyframes io-core-pulse { 0% { opacity: .7; transform: scale(1); } 100% { opacity: 0; transform: scale(1.7); } }
+  .js .io-phil-svg.in .io-core-pulse { animation: io-core-pulse 3.2s cubic-bezier(.2, .6, .3, 1) 1.8s infinite; }
+  @media (prefers-reduced-motion: reduce) {
+    .io-ring-line { transition: none; }
+    .io-phil-grid:has(.io-phil-orbit.done) .io-ring-line, .js .io-phil-svg.in .io-core-pulse { animation: none; }
+  }
 </style>

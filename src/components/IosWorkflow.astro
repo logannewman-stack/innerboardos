@@ -111,13 +111,13 @@ const steps = [
               {i === 1 ? (
                 <Fragment>
                   <div class="story-sub io-wf-text" data-sub="0">
-                    <p class="t-folio io-wf-label story-eyebrow">{s.label}</p>
+                    <p class="t-folio io-wf-label story-eyebrow"><span class="io-wf-num">{s.label.split(" ")[0]}</span> <span class="io-wf-word">{s.label.split(" ").slice(1).join(" ")}</span></p>
                     <p class="t-title io-wf-lead story-h">{s.lead}</p>
                     <p class="t-body io-wf-body story-body">{s.body}</p>
                   </div>
                   <div class="story-subs io-wf-develop">
                     <i class="io-wf-dev-rule" aria-hidden="true"></i>
-                    <p class="t-folio io-wf-dev-label story-eyebrow">02. Develop</p>
+                    <p class="t-folio io-wf-dev-label story-eyebrow"><span class="io-wf-num">02.</span> <span class="io-wf-word">Develop</span></p>
                     <div class="story-sub io-wf-dev-item" data-sub="1">
                       <p class="t-title io-wf-dev-name story-h">Personal Power</p>
                       <p class="t-body io-wf-dev-body story-body">How we lead ourselves. Build the awareness, confidence, and emotional capacity to make intentional choices, take ownership, and follow through.</p>
@@ -130,7 +130,7 @@ const steps = [
                 </Fragment>
               ) : (
                 <div class="io-wf-text">
-                  <p class="t-folio io-wf-label story-eyebrow">{s.label}</p>
+                  <p class="t-folio io-wf-label story-eyebrow"><span class="io-wf-num">{s.label.split(" ")[0]}</span> <span class="io-wf-word">{s.label.split(" ").slice(1).join(" ")}</span></p>
                   <p class="t-title io-wf-lead story-h">{s.lead}</p>
                   <p class="t-body io-wf-body story-body">{s.body}</p>
                 </div>
