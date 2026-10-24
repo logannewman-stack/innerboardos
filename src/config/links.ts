@@ -11,8 +11,10 @@ export const APP = "https://practiceinnerboard.com";
 export const LINKS = {
   /** Get Your Company OS Score: the existing assessment in Practice. Pending: confirm results flow and email capture. */
   score: `${APP}/book/upstream?from=os`,
-  /** Talk to Our Team / Let's Talk About Your Organization. Pending: booking or contact URL. */
-  talk: "mailto:info@innerboardsuite.com?subject=InnerBoard%20IOS%3A%20a%20conversation%20about%20our%20organization",
+  /** Talk to Our Team / Let's Talk About Your Organization: the InnerBoard OS exploration call (the client, October 24).
+   * Today it is a page on the old innerboardos.com; once this site takes the domain, vercel.json sends the same
+   * address to the "Leah or Abra" scheduler that page offers. */
+  talk: "https://innerboardos.com/book-os-exploration-call",
   /** Buy the Book. Pending: the Replaceable purchase URL. Interim: the book inside Practice. */
   book: `${APP}/book?from=os`,
   /** Explore a Partnership. Pending: partner inquiry destination. */

@@ -124,8 +124,11 @@ carries `data-passthrough`: the page's `utm_*` and `from` parameters travel with
   `public/images/replaceable-cover.jpg` and `.webp`. Swap in the print file if the client wants it sharper.
 - **The founder's title under the closing quote** reads "Founder, InnerBoard" until confirmed (`SITE.founderTitle` in
   `src/config/links.ts`).
-- **The booking and partner destinations.** Talk to Our Team, Let's Talk About Your Organization and Explore a
-  Partnership open an email to info@innerboardsuite.com for now (`LINKS.talk`, `LINKS.partner`). Buy the Book opens
+- **The booking and partner destinations.** Talk to Our Team and Let's Talk About Your Organization open the
+  InnerBoard OS exploration call, `https://innerboardos.com/book-os-exploration-call` (the client, October 24; a
+  page on the old site). When this site takes innerboardos.com, `vercel.json` redirects that address to the "Leah or
+  Abra" scheduler the page offers (`calendly.com/innerboardos-support/os-discovery-call`). Explore a Partnership
+  still opens an email to info@innerboardsuite.com (`LINKS.partner`). Buy the Book opens
   the book inside Practice (`LINKS.book`); the live app's own Buy the book now links to `https://a.co/d/0eoti7Jg`,
   which the client can confirm as the purchase URL. The Company OS Score's results flow and any email capture are
   the app's (`LINKS.score`).
