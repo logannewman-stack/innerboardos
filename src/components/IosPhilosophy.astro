@@ -85,18 +85,18 @@ const head = [
 <style>
   .io-phil-box { position: relative; width: 100%; aspect-ratio: 1 / 1; }
   .io-phil-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-  .io-ring-line { fill: rgba(244,239,228,.025); stroke: #e4b676; stroke-opacity: .75; stroke-width: 1.1; }
-  .io-core { fill: #1b3052; }
-  .io-core-ring { fill: none; stroke: #e4b676; stroke-width: 1.4; }
-  /* The names take the page's text colour (cream on navy), so when the page cross fades to cream with
-   * the drawing's foot still in view they turn ink instead of vanishing. The centre word sits on the
+  .io-ring-line { fill: rgba(242,236,224,.025); stroke: #8aa3bf; stroke-opacity: .75; stroke-width: 1.1; }
+  .io-core { fill: #4f6d8c; }
+  .io-core-ring { fill: none; stroke: #8aa3bf; stroke-width: 1.4; }
+  /* The names take the page's text colour (cream on navy), dimmed until their ring lights, so when the page cross
+   * fades to cream with the drawing's foot still in view they turn ink instead of vanishing. The centre word sits on the
    * navy disc and stays cream. */
   /* The names in user units, sized per layout so they render at 12 px or more: the drawing is 5 columns wide on
    * laptops (477 to 542 px), 5 of a tablet's (381), 8 of a narrow tablet's (464) and the full phone column (335 to 390). */
-  .ring-name { font-family: var(--font-sans); font-size: 15.5px; font-weight: 600; letter-spacing: .12em; fill: var(--fg); transition: fill .5s var(--ease); }
-  .io-core-word { font-family: var(--font-display); font-size: 34px; font-weight: 360; fill: #f4efe4; }
-  .io-phil-orbit .draw-line { fill: none; stroke: #e4b676; stroke-width: 1; stroke-linecap: round; }
-  .io-phil-orbit .draw-head { fill: #e4b676; }
+  .ring-name { font-family: var(--font-sans); font-size: 15.5px; font-weight: 600; letter-spacing: .12em; fill: color-mix(in srgb, var(--fg) 55%, transparent); transition: fill .5s var(--ease); }
+  .io-core-word { font-family: var(--font-display); font-size: 34px; font-weight: 360; fill: #f2ece0; }
+  .io-phil-orbit .draw-line { fill: none; stroke: #8aa3bf; stroke-width: 1; stroke-linecap: round; }
+  .io-phil-orbit .draw-head { fill: #8aa3bf; }
   /* Each name fades in once its ring has finished drawing. */
   :global(.js) .ring-name { opacity: 0; transition: opacity .4s var(--ease) calc(var(--d, 0s) + 1.2s), fill .5s var(--ease); }
   :global(.js) .io-phil-svg.in .ring-name { opacity: 1; }
@@ -109,25 +109,25 @@ const head = [
 <style is:global>
   /* The drawing in motion. Lit by the legend's rows (the scroll engine lights row k as the orbit passes ring k). */
   .io-ring-line { transition: fill .6s var(--ease), stroke-opacity .6s var(--ease), stroke-width .6s var(--ease); }
-  .io-phil-grid:has(#phil-rows > li:nth-child(1).on) .io-ring-line:nth-of-type(1) { fill: rgba(228,182,118,.1); stroke-opacity: 1; stroke-width: 1.8; }
-  .io-phil-grid:has(#phil-rows > li:nth-child(1).on) .ring-name:nth-of-type(1) { fill: #e4b676; }
-  .io-phil-grid:has(#phil-rows > li:nth-child(2).on) .io-ring-line:nth-of-type(2) { fill: rgba(228,182,118,.1); stroke-opacity: 1; stroke-width: 1.8; }
-  .io-phil-grid:has(#phil-rows > li:nth-child(2).on) .ring-name:nth-of-type(2) { fill: #e4b676; }
-  .io-phil-grid:has(#phil-rows > li:nth-child(3).on) .io-ring-line:nth-of-type(3) { fill: rgba(228,182,118,.1); stroke-opacity: 1; stroke-width: 1.8; }
-  .io-phil-grid:has(#phil-rows > li:nth-child(3).on) .ring-name:nth-of-type(3) { fill: #e4b676; }
-  .io-phil-grid:has(#phil-rows > li:nth-child(4).on) .io-ring-line:nth-of-type(4) { fill: rgba(228,182,118,.1); stroke-opacity: 1; stroke-width: 1.8; }
-  .io-phil-grid:has(#phil-rows > li:nth-child(4).on) .ring-name:nth-of-type(4) { fill: #e4b676; }
-  .io-phil-grid:has(#phil-rows > li:nth-child(5).on) .io-ring-line:nth-of-type(5) { fill: rgba(228,182,118,.1); stroke-opacity: 1; stroke-width: 1.8; }
-  .io-phil-grid:has(#phil-rows > li:nth-child(5).on) .ring-name:nth-of-type(5) { fill: #e4b676; }
+  .io-phil-grid:has(#phil-rows > li:nth-child(1).on) .io-ring-line:nth-of-type(1) { fill: rgba(138,163,191,.1); stroke-opacity: 1; stroke-width: 1.8; }
+  .io-phil-grid:has(#phil-rows > li:nth-child(1).on) .ring-name:nth-of-type(1) { fill: var(--fg); }
+  .io-phil-grid:has(#phil-rows > li:nth-child(2).on) .io-ring-line:nth-of-type(2) { fill: rgba(138,163,191,.1); stroke-opacity: 1; stroke-width: 1.8; }
+  .io-phil-grid:has(#phil-rows > li:nth-child(2).on) .ring-name:nth-of-type(2) { fill: var(--fg); }
+  .io-phil-grid:has(#phil-rows > li:nth-child(3).on) .io-ring-line:nth-of-type(3) { fill: rgba(138,163,191,.1); stroke-opacity: 1; stroke-width: 1.8; }
+  .io-phil-grid:has(#phil-rows > li:nth-child(3).on) .ring-name:nth-of-type(3) { fill: var(--fg); }
+  .io-phil-grid:has(#phil-rows > li:nth-child(4).on) .io-ring-line:nth-of-type(4) { fill: rgba(138,163,191,.1); stroke-opacity: 1; stroke-width: 1.8; }
+  .io-phil-grid:has(#phil-rows > li:nth-child(4).on) .ring-name:nth-of-type(4) { fill: var(--fg); }
+  .io-phil-grid:has(#phil-rows > li:nth-child(5).on) .io-ring-line:nth-of-type(5) { fill: rgba(138,163,191,.1); stroke-opacity: 1; stroke-width: 1.8; }
+  .io-phil-grid:has(#phil-rows > li:nth-child(5).on) .ring-name:nth-of-type(5) { fill: var(--fg); }
   /* All five lit: a glow walks round the rings, Leadership to Valuation, one every 1.6 s. */
-  @keyframes io-ring-walk { 0%, 24%, 100% { fill: rgba(228,182,118,.1); stroke-width: 1.8; } 10% { fill: rgba(228,182,118,.26); stroke-width: 2.6; } }
+  @keyframes io-ring-walk { 0%, 24%, 100% { fill: rgba(138,163,191,.1); stroke-width: 1.8; } 10% { fill: rgba(138,163,191,.26); stroke-width: 2.6; } }
   .io-phil-grid:has(.io-phil-orbit.done) .io-ring-line { animation: io-ring-walk 8s var(--ease) infinite; }
   .io-phil-grid:has(.io-phil-orbit.done) .io-ring-line:nth-of-type(2) { animation-delay: 1.6s; }
   .io-phil-grid:has(.io-phil-orbit.done) .io-ring-line:nth-of-type(3) { animation-delay: 3.2s; }
   .io-phil-grid:has(.io-phil-orbit.done) .io-ring-line:nth-of-type(4) { animation-delay: 4.8s; }
   .io-phil-grid:has(.io-phil-orbit.done) .io-ring-line:nth-of-type(5) { animation-delay: 6.4s; }
-  /* The centre breathes: a honey ring leaves the disc and fades, every 3.2 s, once the drawing is in. */
-  .io-core-pulse { fill: none; stroke: #e4b676; stroke-width: 1.2; opacity: 0; transform-box: fill-box; transform-origin: center; }
+  /* The centre breathes: a soft steel ring leaves the disc and fades, every 3.2 s, once the drawing is in. */
+  .io-core-pulse { fill: none; stroke: #8aa3bf; stroke-width: 1.2; opacity: 0; transform-box: fill-box; transform-origin: center; }
   @keyframes io-core-pulse { 0% { opacity: .7; transform: scale(1); } 100% { opacity: 0; transform: scale(1.7); } }
   .js .io-phil-svg.in .io-core-pulse { animation: io-core-pulse 3.2s cubic-bezier(.2, .6, .3, 1) 1.8s infinite; }
   @media (prefers-reduced-motion: reduce) {

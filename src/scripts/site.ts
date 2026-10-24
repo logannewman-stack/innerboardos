@@ -399,8 +399,8 @@ function header() {
       if (a && a.length >= 3 && (a.length < 4 || a[3] >= 0.5)) return c;
       if (n.matches("[data-tone]")) break;
     }
-    /* IOS (BRAND_FIX I3): the fallback dark paint is the IOS navy #071b30 (the Suite's copy reads #0d1a2d). */
-    return DARK.has(html.dataset.theme || "") ? "" : "#071b30";
+    /* IOS (BRAND_FIX I3): the fallback dark paint is the IOS navy #0d3054 (the Suite's copy reads #0d1a2d). */
+    return DARK.has(html.dataset.theme || "") ? "" : "#0d3054";
   };
   const isDark = (src: Element) => {
     const surface = src.getAttribute("data-surface");
@@ -1281,7 +1281,7 @@ class StoryRun {
       put(this.c, day.phone, "--sx", (-26 * wM + 26 * wA).toFixed(1) + "px");
       put(this.c, day.phone, "--floor-a", (0.3 + 0.25 * wE).toFixed(3));
     }
-    if (day.mat) put(this.c, day.mat, "--day-cap", `color-mix(in srgb, #5c574f, #cdc6b8 ${(wE * 100).toFixed(1)}%)`);
+    if (day.mat) put(this.c, day.mat, "--day-cap", `color-mix(in srgb, #6e6660, rgba(230,231,234,.82) ${(wE * 100).toFixed(1)}%)`);
   }
 }
 /* One controller per story: bound while STORY_MQ matches, rebound when it or the wide line changes. */

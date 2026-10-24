@@ -9,6 +9,7 @@
     "preview": "astro preview",
     "check": "astro check",
     "sweep": "node scripts/sweep.mjs",
+    "brand": "node scripts/brand.mjs",
     "desk2x": "node scripts/desk2x.mjs",
     "small": "node scripts/small.mjs",
     "capture": "node scripts/capture.mjs",

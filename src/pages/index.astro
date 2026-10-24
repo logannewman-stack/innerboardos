@@ -155,7 +155,7 @@ const audiences = [
   <!-- 3. The solution: the statement, the two columns, diagram 1 -->
   <section id="solution" class="io-solution" data-tone="navy">
     <i class="lamp grain" aria-hidden="true" style="--lx:85%;--ly:0%;--la:.16"></i>
-    <Geo class="io-geo-solution" color="#f4efe4" opacity={0.08} />
+    <Geo class="io-geo-solution" color="#f2ece0" opacity={0.08} />
     <div class="wrap">
       <div class="io-sol-head">
         <p class="eyebrow rise">The solution</p>
@@ -336,7 +336,7 @@ const audiences = [
     <i class="lamp grain" aria-hidden="true" style="--lx:50%;--ly:100%;--la:.2"></i>
     <!-- The brief's panoramic mountain photograph: when an image is approved for use it becomes this element's background-image and nothing else changes. Until then the close is flat navy with the horizon lamp. -->
     <div class="io-panorama" aria-hidden="true"></div>
-    <Geo class="io-geo-next" color="#f4efe4" opacity={0.06} />
+    <Geo class="io-geo-next" color="#f2ece0" opacity={0.06} />
     <div class="wrap">
       <div class="io-next-in">
         <p class="eyebrow rise">Let's build what's next</p>
@@ -426,19 +426,19 @@ const audiences = [
   }
   .no-js .io-hero-phone .cam > .ds:not(.on), .io-hero-story.static .io-hero-phone .cam > .ds:not(.on) { display: none; }
   .io-halo { position: absolute; z-index: -1; pointer-events: none; left: 50%; top: 40%; width: 200%; aspect-ratio: 1; transform: translate(-50%, -50%);
-    border-radius: 50%; background: radial-gradient(closest-side, rgba(228,182,118,.26), rgba(228,182,118,.1) 50%, rgba(228,182,118,0) 100%); }
+    border-radius: 50%; background: radial-gradient(closest-side, rgba(138,163,191,.26), rgba(138,163,191,.1) 50%, rgba(138,163,191,0) 100%); }
   /* The orbit (IosHeroPlate): centred on the phone and behind it, its radius from the plate's script. The stroke starts
    * at the bottom (the circle's own start, 3 o'clock, turned a quarter) and runs clockwise; a quarter shows before the
    * reader scrolls and the rest draws with the story's --g (0 to 3). Static heroes show it whole. */
   .io-orbit { display: none; position: absolute; z-index: -1; left: 50%; top: 50%; width: calc(2 * var(--orbit-r, 0px)); height: calc(2 * var(--orbit-r, 0px));
     max-width: none; overflow: visible; pointer-events: none; transform: translate(-50%, -50%) rotate(90deg); }
   .has-orbit > .io-orbit { display: block; }
-  .io-orbit circle { fill: none; stroke: #e4b676; stroke-opacity: .62; stroke-width: var(--orbit-sw, 1.1);
+  .io-orbit circle { fill: none; stroke: #8aa3bf; stroke-opacity: .62; stroke-width: var(--orbit-sw, 1.1);
     stroke-dasharray: 100 100; stroke-dashoffset: calc(75 - 25 * var(--g, 3)); }
   @media (max-width: 1068px) { .has-orbit > .io-orbit { display: none; } }
   /* The rail stands a little further from the phone than in the other stories, so the orbit passes between them. */
   .js .io-hero-story:not(.static) .io-hero-devcol { gap: 72px; }
-  .io-hero-phone .phone { box-shadow: inset 0 0 0 .55em #0c0b09, inset 0 0 0 .9em rgba(255,255,255,.08), 0 0 0 1px rgba(228,182,118,.28),
+  .io-hero-phone .phone { box-shadow: inset 0 0 0 .55em #1b1916, inset 0 0 0 .9em rgba(255,255,255,.08), 0 0 0 1px rgba(138,163,191,.28),
     0 2px 4px rgba(0,0,0,.35), 0 24px 44px -14px rgba(0,0,0,.55), 0 90px 120px -40px rgba(0,0,0,.65); }
   /* Captures whose foot cuts a line of the app's text fade to the app's ivory (the screen's own ground) just above
    * that line, so no letter is cut at a screen's edge: the Assessments page (the hero's third screen) above the
@@ -566,15 +566,15 @@ const audiences = [
   /* The mat clips the book's object shadow and its floor, so the contact shadow stays on the linen. */
   .io-bookmat { grid-column: 1 / span 5; grid-row: 1 / span 2; align-self: center; height: 560px; overflow: hidden; }
   .io-book-floor { position: absolute; left: 50%; bottom: 28px; width: 340px; height: 64px; margin-left: -170px; border-radius: 50%; pointer-events: none;
-    background: radial-gradient(50% 50% at 50% 50%, rgba(31,29,26,var(--floor-a, .3)), transparent 70%); filter: blur(10px); }
+    background: radial-gradient(50% 50% at 50% 50%, rgba(27,25,22,var(--floor-a, .3)), transparent 70%); filter: blur(10px); }
   /* The book is one flat plane turned in perspective. A preserve-3d book (a spine rotated a quarter turn)
    * loses its lower tiles in Chromium whenever its top is scrolled past the viewport, so the spine is
    * drawn on the plane instead: a dark binding strip along the left edge. */
   .io-book { position: absolute; left: 50%; bottom: 48px; width: 300px; height: 450px; margin: 0 0 0 -150px; transform: perspective(1200px) rotateY(-12deg) rotateX(1deg); transform-style: flat; transition: transform 600ms var(--ease); }
-  .io-book-face { position: absolute; inset: 0; display: block; border-radius: 4px 12px 12px 4px; overflow: hidden; background: #122239; box-shadow: var(--sh-object), inset 6px 0 12px -8px rgba(0,0,0,.6); }
+  .io-book-face { position: absolute; inset: 0; display: block; border-radius: 4px 12px 12px 4px; overflow: hidden; background: #0d3054; box-shadow: var(--sh-object), inset 6px 0 12px -8px rgba(0,0,0,.6); }
   .io-book-face picture { display: block; height: 100%; }
   .io-book-face img { width: 100%; height: 100%; object-fit: cover; }
-  .io-book-spine { position: absolute; left: -6px; top: 3px; bottom: 3px; width: 6px; display: block; background: linear-gradient(to right, #08111f, #182a45); border-radius: 3px 0 0 3px; }
+  .io-book-spine { position: absolute; left: -6px; top: 3px; bottom: 3px; width: 6px; display: block; background: linear-gradient(to right, #1b1916, #0d3054); border-radius: 3px 0 0 3px; }
   @media (hover: hover) and (pointer: fine) { .io-bookmat:hover .io-book { transform: perspective(1200px) rotateY(-6deg) rotateX(1deg); } }
   /* The book arrives 160 ms after the mat, from a deeper turn; the floor fades in under it. */
   .js .io-bookmat .io-book { opacity: 0; }
