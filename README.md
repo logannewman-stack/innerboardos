@@ -23,12 +23,12 @@ out of the sitemap; `robots.txt` allows everything and names `sitemap-index.xml`
 ### The homepage, section by section
 
 Every section carries `data-tone` (navy or cream); the page itself paints nothing, and the body cross fades between
-the two as each section's top passes the middle of the screen. Each navy section has one soft steel lamp from a
-different corner.
+the two as each section's top passes the middle of the screen. Every surface is a flat brand colour: no lamps, glows
+or grain.
 
 | # | Section (`id`, tone) | What is on it |
 | --- | --- | --- |
-| 1 | Hero (`#ios`, navy) | "Growth doesn't have to depend on you." with the Company OS Score on a phone in a soft steel halo, inside a soft steel ring that the scroll draws (a quarter from the bottom at first, closing clockwise through the three steps; whole wherever the hero is static; sized by `IosHeroPlate.astro` to clear the copy and the rail; not on phones). From 1069 x 600 the hero is a pinned scroll story in three steps (the rail and "01 / 03" beside the phone, both buttons pinned under the copy): the scored statements, then the later ones; the ring presses the app's own "See what ... means" bar, the result wipes up and at once scrolls past the score to rest on its reading and the three lowest statements; then the Assessments page of InnerBoard OS. Below that width, and in every static case, the hero is static on the scored statements. |
+| 1 | Hero (`#ios`, navy) | "Growth doesn't have to depend on you." with the Company OS Score on a phone, inside a soft steel ring that the scroll draws (a quarter from the bottom at first, closing clockwise through the three steps; whole wherever the hero is static; sized by `IosHeroPlate.astro` to clear the copy and the rail; not on phones). From 1069 x 600 the hero is a pinned scroll story in three steps (the rail and "01 / 03" beside the phone, both buttons pinned under the copy): the scored statements, then the later ones; the ring presses the app's own "See what ... means" bar, the result wipes up and at once scrolls past the score to rest on its reading and the three lowest statements; then the Assessments page of InnerBoard OS. Below that width, and in every static case, the hero is static on the scored statements. |
 | 2 | The challenge (`#challenge`, cream) | The heading and three paragraphs, three ruled columns, and the stacked one line argument ("What it costs") lighting line by line. |
 | 3 | The solution (`#solution`, navy) | The statement, two columns, and diagram 1: five linked rings (Leadership, Culture, Behavior, Results, Valuation) around IOS, an orbit the reader draws by scrolling, the brief's five definitions beside it. |
 | 4 | How it works (`#how-it-works`, cream) | Diagram 2 as a pinned scroll story in five steps (Assess, Develop with Personal Power and Social Influence, Embed, Measure, Certify), each with its own screen: a browser window on laptops with a drawn cursor, a phone on tablets and phones. Then "One connected system..." and the locked line "Assess → Develop → Embed → Measure → Certify". Never merged with diagram 1. |
@@ -66,17 +66,24 @@ The same system runs innerboardsuite.com; these are this site's copies, with the
 
 ## Brand decisions
 
-- **The brand book's InnerBoard OS palette, exactly** (`brief/InnerBoard_Brand_Book_v1.0.html`, section 05; the
-  client, October 24: "comply to the company color guidelines and hex codes"). Every colour on the site is one of the
-  book's hex codes, or white or black for shadows and highlights, at full strength or as a transparent tint
-  (`npm run brand` reads the build and fails on anything else). Deep navy `#0d3054`
-  for the dark sections and the share card; steel `#4f6d8c` on the ivory (buttons with an ivory label, italics,
-  eyebrows, links; 4.58, so small type takes it too); soft steel `#8aa3bf` on navy (buttons with an ink label,
-  italics, eyebrows, the hero's ring, the lamps, the diagram); pale `#e6e7ea` for the footer and the book's mat (the
-  footer's accent is the navy, since steel on pale is 4.36); white paper; the family's ivory `#f2ece0` and ink
-  `#1b1916`, with muted text in the book's graphite `#3a3631` and slate `#6e6660`, or the pale as a tint on navy. No
-  gold, green or teal anywhere. The class names that still say gold (`btn-gold`, `--line-gold`) are the shared
-  system's. (The site was navy and tan from October 21 to 24; the brand book won.)
+- **The brand book's InnerBoard OS palette, exactly and solid** (`brief/InnerBoard_Brand_Book_v1.0.html`, section
+  05; the client, October 24: "comply to the company color guidelines and hex codes", and October 27: "only use the
+  hex codes in the file"). Every colour the site paints is one of the book's hex codes at full strength. Nothing
+  blends: no see-through tints, gradients, glows, lamps, grain, soft shadows, blurs, blend modes or part-faded
+  layers at rest, since each of those paints colours the book does not list. Fades are allowed only while something
+  moves between two solid states. `npm run brand` reads the build and fails on any colour outside the book, any
+  tint, gradient (a mask may only cut, with hard stops), color-mix, soft shadow, filter or blend mode. Deep navy
+  `#0d3054` for the dark sections and the share card; steel `#4f6d8c` on the ivory (buttons with an ivory label,
+  italics, eyebrows, links; 4.58, so small type takes it too) and for hairlines on navy; soft steel `#8aa3bf` on
+  navy (buttons with an ink label, italics, eyebrows, soft text, the hero's ring, the lit diagram); pale `#e6e7ea`
+  for the footer, the book's mat, paper and secondary text on navy (the footer's accent is the navy, since steel on
+  pale is 4.36); the family's ivory `#f2ece0` and ink `#1b1916`, with muted text in the book's graphite `#3a3631`
+  and slate `#6e6660` and hairlines in slate soft `#b8b2a8` on the ivory. Unlit and dimmed text is a solid colour
+  (slate on the ivory, soft steel on navy), never opacity. The geometry is an ink hairline engraved in the navy.
+  The drawn phone is a graphite body with an ink band, the window pale with a slate soft edge, and neither has a
+  shadow. No white, black, gold, green or teal anywhere. The class names that still say gold (`btn-gold`,
+  `--line-gold`) are the shared system's. (The site was navy and tan from October 21 to 24; the brand book won.)
+  Images keep their own colours: the app's screenshots, the logo and the book cover.
 - **The logo** is the client's OS roundel (`public/brand/`), in the header, the footer, the 404, the favicons and
   the share card.
 - **Type from the InnerBoard OS brand book:** Fraunces Light (h1 300, every other display role 360, the lit lead

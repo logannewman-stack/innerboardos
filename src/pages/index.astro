@@ -82,7 +82,6 @@ const audiences = [
     <div class="story io-hero-story" data-story="ios-hero" data-story-ui="steps" data-side="right" data-kind="hero" data-story-layouts="wide" data-story-static="device" style="--story-w:3;--step-l:60svh;--story-top:0px;--story-gap:0px">
       <div class="story-track">
         <div class="story-stage">
-          <i class="lamp grain io-hero-lamp" aria-hidden="true" style="--lx:18%;--ly:0%;--la:.16"></i>
           <div class="story-device-col io-hero-devcol">
             <StoryMarks variant="rail" labels={heroSteps} label="The Company OS Score, screen by screen" />
             <IosHeroPlate />
@@ -154,8 +153,7 @@ const audiences = [
 
   <!-- 3. The solution: the statement, the two columns, diagram 1 -->
   <section id="solution" class="io-solution" data-tone="navy">
-    <i class="lamp grain" aria-hidden="true" style="--lx:85%;--ly:0%;--la:.16"></i>
-    <Geo class="io-geo-solution" color="#f2ece0" opacity={0.08} />
+    <Geo class="io-geo-solution" color="var(--geo-line)" />
     <div class="wrap">
       <div class="io-sol-head">
         <p class="eyebrow rise">The solution</p>
@@ -245,7 +243,6 @@ const audiences = [
 
   <!-- 6. The outcome: the lit statement and the six outcomes -->
   <section id="impact" class="io-impact" data-tone="navy">
-    <i class="lamp grain" aria-hidden="true" style="--lx:12%;--ly:100%;--la:.16"></i>
     <div class="wrap">
       <div class="grid">
         <div class="io-imp-head">
@@ -333,10 +330,9 @@ const audiences = [
 
   <!-- 9. Your next step, and the closing brand statement -->
   <section id="next-step" class="io-next" data-tone="navy">
-    <i class="lamp grain" aria-hidden="true" style="--lx:50%;--ly:100%;--la:.2"></i>
-    <!-- The brief's panoramic mountain photograph: when an image is approved for use it becomes this element's background-image and nothing else changes. Until then the close is flat navy with the horizon lamp. -->
+    <!-- The brief's panoramic mountain photograph: when an image is approved for use it becomes this element's background-image and nothing else changes. Until then the close is flat navy. -->
     <div class="io-panorama" aria-hidden="true"></div>
-    <Geo class="io-geo-next" color="#f2ece0" opacity={0.06} />
+    <Geo class="io-geo-next" color="var(--geo-line)" />
     <div class="wrap">
       <div class="io-next-in">
         <p class="eyebrow rise">Let's build what's next</p>
@@ -381,7 +377,7 @@ const audiences = [
   .io-btns { display: flex; flex-wrap: wrap; gap: 12px; }
   .io-stack > p + p { margin-top: 1em; }
   .io-nw { white-space: nowrap; }
-  .io-ring { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; box-shadow: inset 0 0 0 1px var(--line-strong); color: var(--accent); flex: none; }
+  .io-ring { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; box-shadow: inset 0 0 0 1px var(--line); color: var(--accent); flex: none; }
   .io-ring-icon { width: 20px; height: 20px; }
 
   /* ── 2.1 Hero (SCROLL_SPEC S9, STORY_V2 3.6) ──────────────────────── */
@@ -394,10 +390,6 @@ const audiences = [
    * screen in every layout. */
   .io-hero { --hero-h: max(640px, min(100svh, 980px)); padding: 0; overflow-x: clip; }
   .io-hero-story .story-stage { display: flex; flex-direction: column; min-height: var(--hero-h); padding-top: var(--nav-h); }
-  /* The lamp is in the stage, so the light stays with the pinned copy; it fades in with the navy theme and
-   * out over its last 96 px, so the hero has no seam. */
-  .io-hero-lamp { z-index: 0; opacity: 0; transition: opacity .5s var(--ease); -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 96px), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 96px), transparent); }
-  html[data-theme="navy"] .io-hero-lamp { opacity: 1; }
   .io-hero-copy { position: relative; z-index: 2; display: flex; flex-direction: column; width: min(100% - 2 * var(--gutter), var(--max)); margin-inline: auto; padding-top: 90px; padding-bottom: 56px; }
   .io-hero-copy > .io-hero-steps { display: contents; }
   .io-hero-steps > li, .io-hero-copy > .io-hero-btns { max-width: calc(7 * var(--colw) + 6 * var(--gap)); }
@@ -413,7 +405,7 @@ const audiences = [
   .io-hero-btns { margin-top: 32px; }
   .io-hero-cap { margin-top: 14px; }
   /* The product is the hero's object: the phone alone on the navy, about 380 wide at 1440, right aligned
-   * to the grid, in a warm halo with a deep shadow, its foot hanging past the fold onto the next section. */
+   * to the grid, inside its orbit, its foot hanging past the fold onto the next section. */
   .io-hero-phone { --pw: clamp(280px, min(26.5vw, 48vh), 400px); position: absolute; z-index: 3; width: calc(var(--pw) * 1.06);
     top: max(108px, calc(var(--hero-h) + 56px - var(--pw) * 2.224));
     left: calc(100% - var(--edge) - var(--pw) * 1.06); }
@@ -425,31 +417,30 @@ const audiences = [
     .io-hero-phone .cam > .ds:not(.on) { display: none; }
   }
   .no-js .io-hero-phone .cam > .ds:not(.on), .io-hero-story.static .io-hero-phone .cam > .ds:not(.on) { display: none; }
-  .io-halo { position: absolute; z-index: -1; pointer-events: none; left: 50%; top: 40%; width: 200%; aspect-ratio: 1; transform: translate(-50%, -50%);
-    border-radius: 50%; background: radial-gradient(closest-side, rgba(138,163,191,.26), rgba(138,163,191,.1) 50%, rgba(138,163,191,0) 100%); }
   /* The orbit (IosHeroPlate): centred on the phone and behind it, its radius from the plate's script. The stroke starts
    * at the bottom (the circle's own start, 3 o'clock, turned a quarter) and runs clockwise; a quarter shows before the
    * reader scrolls and the rest draws with the story's --g (0 to 3). Static heroes show it whole. */
   .io-orbit { display: none; position: absolute; z-index: -1; left: 50%; top: 50%; width: calc(2 * var(--orbit-r, 0px)); height: calc(2 * var(--orbit-r, 0px));
     max-width: none; overflow: visible; pointer-events: none; transform: translate(-50%, -50%) rotate(90deg); }
   .has-orbit > .io-orbit { display: block; }
-  .io-orbit circle { fill: none; stroke: #8aa3bf; stroke-opacity: .62; stroke-width: var(--orbit-sw, 1.1);
+  .io-orbit circle { fill: none; stroke: #8aa3bf; stroke-width: var(--orbit-sw, 1.1);
     stroke-dasharray: 100 100; stroke-dashoffset: calc(75 - 25 * var(--g, 3)); }
   @media (max-width: 1068px) { .has-orbit > .io-orbit { display: none; } }
   /* The rail stands a little further from the phone than in the other stories, so the orbit passes between them. */
   .js .io-hero-story:not(.static) .io-hero-devcol { gap: 72px; }
-  .io-hero-phone .phone { box-shadow: inset 0 0 0 .55em #1b1916, inset 0 0 0 .9em rgba(255,255,255,.08), 0 0 0 1px rgba(138,163,191,.28),
-    0 2px 4px rgba(0,0,0,.35), 0 24px 44px -14px rgba(0,0,0,.55), 0 90px 120px -40px rgba(0,0,0,.65); }
-  /* Captures whose foot cuts a line of the app's text fade to the app's ivory (the screen's own ground) just above
-   * that line, so no letter is cut at a screen's edge: the Assessments page (the hero's third screen) above the
-   * first of the seven scores, the Role Blueprint above its second answer, the desk Track above its last card. The
-   * hero's result strip rests at 35 em, "In transition" just under the app's header, and its foot fades the same
-   * way over the card the screen's edge would cut. */
-  .phone-screen img[src="/app/os-assessments.webp"], .phone-screen img[src="/app/leader-blueprint.webp"] {
-    -webkit-mask-image: linear-gradient(to bottom, #000 94.9%, transparent 97.9%); mask-image: linear-gradient(to bottom, #000 94.9%, transparent 97.9%); }
-  .win-screen img[src="/app/desk-track-home.webp"] {
-    -webkit-mask-image: linear-gradient(to bottom, #000 97.4%, transparent 98.9%); mask-image: linear-gradient(to bottom, #000 97.4%, transparent 98.9%); }
-  #hero-phone .ds-strip { -webkit-mask-image: linear-gradient(to bottom, #000 93%, transparent 97.5%); mask-image: linear-gradient(to bottom, #000 93%, transparent 97.5%); }
+  /* On the navy the phone's edge is a solid steel hairline round its ink band. */
+  .io-hero-phone .phone { box-shadow: inset 0 0 0 .55em #1b1916, 0 0 0 1px #4f6d8c; }
+  /* Captures whose foot cuts a line of the app's text end, hard edged, on the app's ivory (the screen's own ground)
+   * just above that line, so no letter is cut at a screen's edge: the Assessments page (the hero's third screen)
+   * above the first of the seven scores, the Role Blueprint above its second answer, the desk Track above its last
+   * card. The hero's result strip rests at 35 em, "In transition" just under the app's header, and its foot ends
+   * the same way over the card the screen's edge would cut. The crop is a rect mask (no fade), sized to the line. */
+  .phone-screen img[src="/app/os-assessments.webp"], .phone-screen img[src="/app/leader-blueprint.webp"], .win-screen img[src="/app/desk-track-home.webp"], #hero-phone .ds-strip {
+    -webkit-mask-image: var(--mask-rect); mask-image: var(--mask-rect); -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: 0 0; mask-position: 0 0;
+    -webkit-mask-size: 100% var(--crop); mask-size: 100% var(--crop); }
+  .phone-screen img[src="/app/os-assessments.webp"], .phone-screen img[src="/app/leader-blueprint.webp"] { --crop: 96.4%; }
+  .win-screen img[src="/app/desk-track-home.webp"] { --crop: 98.1%; }
+  #hero-phone .ds-strip { --crop: 95.2%; }
   /* A laptop window under 760 tall (audit 2, P2 7): the caption ends inside the first screen. */
   @media (min-width: 900px) and (max-height: 760px) {
     .io-hero-copy { padding-top: 56px; }
@@ -503,7 +494,7 @@ const audiences = [
   .io-phil-line { color: var(--accent); }
   .io-phil-rows { list-style: none; margin: 20px 0 0; padding: 0; }
   .io-phil-rows > li { position: relative; padding-block: 20px; }
-  .io-phil-rows > li::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--line-gold) 12% 88%, transparent); }
+  .io-phil-rows > li::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--line-gold); }
   .io-phil-rows .t-title { color: var(--fg); }
   .io-phil-rows .t-body { margin-top: 6px; color: var(--fg-2); }
   .js .io-phil-rows > li:not(.on) .t-title, .js .io-phil-rows > li:not(.on) .t-body { color: inherit; }
@@ -563,25 +554,21 @@ const audiences = [
   /* ── 2.5 The book ─────────────────────────────────────────────────── */
   .io-book-wrap { border-top: 1px solid var(--line); padding-block: var(--sec); }
   .io-book-grid { align-items: start; }
-  /* The mat clips the book's object shadow and its floor, so the contact shadow stays on the linen. */
+  /* The book stands on the pale mat with no shadow: a blurred shadow paints colours outside the book. */
   .io-bookmat { grid-column: 1 / span 5; grid-row: 1 / span 2; align-self: center; height: 560px; overflow: hidden; }
-  .io-book-floor { position: absolute; left: 50%; bottom: 28px; width: 340px; height: 64px; margin-left: -170px; border-radius: 50%; pointer-events: none;
-    background: radial-gradient(50% 50% at 50% 50%, rgba(27,25,22,var(--floor-a, .3)), transparent 70%); filter: blur(10px); }
   /* The book is one flat plane turned in perspective. A preserve-3d book (a spine rotated a quarter turn)
    * loses its lower tiles in Chromium whenever its top is scrolled past the viewport, so the spine is
    * drawn on the plane instead: a dark binding strip along the left edge. */
   .io-book { position: absolute; left: 50%; bottom: 48px; width: 300px; height: 450px; margin: 0 0 0 -150px; transform: perspective(1200px) rotateY(-12deg) rotateX(1deg); transform-style: flat; transition: transform 600ms var(--ease); }
-  .io-book-face { position: absolute; inset: 0; display: block; border-radius: 4px 12px 12px 4px; overflow: hidden; background: #0d3054; box-shadow: var(--sh-object), inset 6px 0 12px -8px rgba(0,0,0,.6); }
+  .io-book-face { position: absolute; inset: 0; display: block; border-radius: 4px 12px 12px 4px; overflow: hidden; background: #0d3054; }
   .io-book-face picture { display: block; height: 100%; }
   .io-book-face img { width: 100%; height: 100%; object-fit: cover; }
-  .io-book-spine { position: absolute; left: -6px; top: 3px; bottom: 3px; width: 6px; display: block; background: linear-gradient(to right, #1b1916, #0d3054); border-radius: 3px 0 0 3px; }
+  .io-book-spine { position: absolute; left: -6px; top: 3px; bottom: 3px; width: 6px; display: block; background: #1b1916; border-radius: 3px 0 0 3px; }
   @media (hover: hover) and (pointer: fine) { .io-bookmat:hover .io-book { transform: perspective(1200px) rotateY(-6deg) rotateX(1deg); } }
-  /* The book arrives 160 ms after the mat, from a deeper turn; the floor fades in under it. */
+  /* The book arrives 160 ms after the mat, from a deeper turn. */
   .js .io-bookmat .io-book { opacity: 0; }
   .js .io-bookmat.in .io-book { opacity: 1; animation: io-book-in 1.2s var(--slow) .46s backwards; }
   @keyframes io-book-in { from { opacity: 0; transform: perspective(1200px) translateY(16px) rotateY(-18deg) rotateX(1deg); } to { opacity: 1; transform: perspective(1200px) rotateY(-12deg) rotateX(1deg); } }
-  .js .io-book-floor { opacity: 0; transition: opacity 1.2s var(--slow) .6s; }
-  .js .io-bookmat.in .io-book-floor { opacity: 1; }
   .io-book-copy { grid-column: 7 / span 6; grid-row: 1; }
   .io-book-author { margin-top: 18px; line-height: 1.3; color: var(--fg-3); }
   .io-book-paras { margin-top: var(--lead-gap); color: var(--fg-2); }
@@ -600,10 +587,10 @@ const audiences = [
    * above the statement's Light 360 (BRAND_FIX I4: 460). */
   .io-imp-lit .lb { font-weight: 460; }
   .io-imp-lit p + p { margin-top: 1em; }
-  /* Six outcomes on three column lines (x 120, 512.3, 904.6), a faded gold rule above each. */
+  /* Six outcomes on three column lines (x 120, 512.3, 904.6), a steel rule above each. */
   .io-outcomes { list-style: none; margin: 80px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--gap); row-gap: 40px; }
   .io-outcomes > li { position: relative; padding-top: 24px; }
-  .io-outcomes > li::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--line-gold) 12% 88%, transparent); }
+  .io-outcomes > li::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--line-gold); }
   .io-outcomes .io-ring { box-shadow: inset 0 0 0 1px var(--line-gold); }
   .io-outcomes .t-title { margin-top: 18px; color: var(--fg); }
   .io-outcomes .t-body { margin-top: 8px; color: var(--fg-2); }
@@ -642,8 +629,7 @@ const audiences = [
   /* ── 2.9 Your next step and 2.10 the close ────────────────────────── */
   .io-next { padding-top: var(--sec-l); padding-bottom: 120px; overflow: hidden; }
   .io-geo-next { right: -320px; bottom: -300px; z-index: 0; }
-  .io-panorama { position: absolute; inset: 0; z-index: 0; opacity: .5; background-size: cover; background-position: center; pointer-events: none;
-    -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 70%); mask-image: linear-gradient(to top, #000 0%, transparent 70%); }
+  .io-panorama { position: absolute; inset: 0; z-index: 0; background-size: cover; background-position: center; pointer-events: none; }
   .io-next-in { max-width: calc(8 * var(--colw) + 7 * var(--gap)); margin-inline: auto; text-align: center; }
   .io-next-in .t-l { margin-inline: auto; }
   .io-next-lead { margin: var(--lead-gap) auto 0; color: var(--fg-2); }
@@ -660,6 +646,8 @@ const audiences = [
   .io-quote-by b { font-weight: 500; color: var(--fg); }
   /* The brand line in eyebrow style; its three sentences light in the accent (gold-2 on navy). */
   .io-brand-line { margin: 56px auto 0; font-family: var(--font-sans); font-size: 12.5px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; line-height: 2; color: var(--accent); }
+  /* Unlit, the brand line is steel (its lit colour, soft steel, is also the navy's unlit colour). */
+  .js p.io-brand-line > .lw { color: #4f6d8c; }
   .js p.io-brand-line > .lw.on { color: var(--accent); }
   .io-brand-mark { display: inline-flex; align-items: center; gap: 10px; margin: 24px auto 0; font-family: var(--font-display); font-size: 22px; font-weight: 400; letter-spacing: -.012em; line-height: 1; color: var(--fg); }
   .io-brand-mark-svg { width: 56px; height: 56px; display: block; }
@@ -668,7 +656,6 @@ const audiences = [
   /* ── Reduced motion: the book at rest, the brand line lit ─────────── */
   @media (prefers-reduced-motion: reduce) {
     .js .io-bookmat .io-book, .js .io-bookmat.in .io-book { opacity: 1; animation: none; }
-    .js .io-book-floor { opacity: 1; transition: none; }
     .js p.io-brand-line > .lw { color: var(--accent); }
   }
   @media (prefers-contrast: more) { .js p.io-brand-line > .lw { color: var(--accent) !important; } }
@@ -779,7 +766,7 @@ const audiences = [
     .io-cost-close { font-size: var(--fs-m); max-width: none; }
     .io-solution { padding-block: var(--sec); }
     /* The geo's centre sits off the right edge so its dot never meets the heading; its ring crosses the top corner. */
-    .io-geo-solution { --geo-size: 720px !important; --geo-o: .06 !important; right: -420px; top: -300px; }
+    .io-geo-solution { --geo-size: 720px !important; right: -420px; top: -300px; }
     .io-sol-state { max-width: none; }
     .io-sol-body { margin-top: 56px; }
     .io-sol-grid { padding-top: 40px; }
@@ -797,7 +784,6 @@ const audiences = [
     .io-book-copy { margin-top: 0; }
     .io-bookmat { height: 440px; margin-top: 40px; margin-inline: calc(-1 * var(--gutter)); border-radius: 0; }
     .io-book { width: 220px; height: 330px; margin-left: -110px; bottom: 40px; }
-    .io-book-floor { width: 250px; margin-left: -125px; bottom: 24px; height: 48px; }
     .io-book-btn { margin-top: 32px; }
     .io-book-btn .btn { width: 100%; }
     .io-impact { padding-top: var(--sec); }
@@ -817,15 +803,15 @@ const audiences = [
     .io-ledger > li:nth-child(3)::before { display: none; }
     .io-who-btn { margin-top: 36px; }
     .io-who-btn .btn { width: 100%; }
-    /* The margin rule becomes a 48 px horizontal gold rule above the full width button. */
+    /* The margin rule becomes a 48 px horizontal rule above the full width button. */
     .io-pt-rule { display: block; grid-column: 1 / -1; grid-row: 3; width: 48px; height: 1px; margin: 36px 0 0; justify-self: start; align-self: auto;
-      background: linear-gradient(90deg, var(--line-gold), var(--line-gold) 70%, transparent); transform-origin: left; }
+      background: var(--line-gold); transform-origin: left; }
     .js .io-pt-rule { transform: scaleX(0); }
     .js .io-pt-rule.in, .js .in .io-pt-rule { transform: scaleX(1); }
     .io-pt-btn { grid-row: 4; margin-top: 24px; width: 100%; }
     .io-pt-btn .btn { width: 100%; }
     .io-next { padding-top: 72px; padding-bottom: 64px; }
-    .io-geo-next { --geo-size: 720px !important; --geo-o: .06 !important; right: -400px; bottom: -330px; }
+    .io-geo-next { --geo-size: 720px !important; right: -400px; bottom: -330px; }
     .io-next-in, .io-close { max-width: none; }
     .io-next-line { margin-top: 28px; }
     .io-close-rule { margin-top: 48px; }

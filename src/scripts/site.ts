@@ -1224,16 +1224,19 @@ class StoryRun {
       d.shown = want;
     } else if (sc.index() !== want) sc.show(want, true);
     d.prevG = G;
-    /* The ring: arrives over -.10 to -.03, presses -.03 to 0, releases 0 to .08 around each press point. */
+    /* The ring: arrives over -.10 to -.03, presses -.03 to 0, releases 0 to .08 around each press point. It is
+     * shown whole or not at all (never part faded, so it only ever paints its two solid brand colours): it
+     * grows in as it arrives, shrinks as it presses (its steel ring thickening with --fill) and swells as it
+     * releases. */
     if (sc.tap) {
       let best: K3 | null = null, bu = 1;
       for (const rg of d.rings) { const u = G - rg[0]; if (u >= -0.1 && u <= 0.08 && Math.abs(u) < Math.abs(bu)) { best = rg; bu = u; } }
       if (best) {
         const u = bu;
         let op: number, s: number, fill: number;
-        if (u < -0.03) { const q = (u + 0.1) / 0.07; op = 0.9 * q; s = 0.6 + 0.18 * q; fill = 0.5; }
-        else if (u < 0) { const q = (u + 0.03) / 0.03; op = 0.9; s = 0.78 - 0.18 * q; fill = 0.5 + 0.4 * q; }
-        else { const q = u / 0.08; op = 0.9 * (1 - q); s = 0.6 + 0.6 * q; fill = 0.9; }
+        if (u < -0.03) { const q = (u + 0.1) / 0.07; op = 1; s = 0.4 + 0.38 * q; fill = 0.5; }
+        else if (u < 0) { const q = (u + 0.03) / 0.03; op = 1; s = 0.78 - 0.18 * q; fill = 0.5 + 0.4 * q; }
+        else { const q = u / 0.08; op = q < 0.75 ? 1 : 0; s = 0.6 + 0.6 * q; fill = 0.9; }
         const [x, y] = sc.toScreen(best[1], best[2]);
         put(c, sc.tap, "transform", `translate(${x.toFixed(2)}cqw, ${y.toFixed(2)}cqh) translate(-50%, -50%) scale(${s.toFixed(3)})`);
         put(c, sc.tap, "opacity", op.toFixed(3));
@@ -1281,7 +1284,8 @@ class StoryRun {
       put(this.c, day.phone, "--sx", (-26 * wM + 26 * wA).toFixed(1) + "px");
       put(this.c, day.phone, "--floor-a", (0.3 + 0.25 * wE).toFixed(3));
     }
-    if (day.mat) put(this.c, day.mat, "--day-cap", `color-mix(in srgb, #6e6660, rgba(230,231,234,.82) ${(wE * 100).toFixed(1)}%)`);
+    /* The caption's colour switches with the evening (solid brand colours, no blend between them). */
+    if (day.mat) put(this.c, day.mat, "--day-cap", wE >= 0.5 ? "#e6e7ea" : "#6e6660");
   }
 }
 /* One controller per story: bound while STORY_MQ matches, rebound when it or the wide line changes. */
